@@ -18,7 +18,10 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-image: url('/images/haver_backgroundV2.png');
+    background-size: auto 100%;
+    background-position: left bottom;
 }
 
 .navbar {
