@@ -1,6 +1,7 @@
 ﻿//Nigel Temple
 //Revised January 18, 2024
 
+using HaverDevProject.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace HaverIndividualTest.Models
@@ -43,16 +44,16 @@ namespace HaverIndividualTest.Models
         [Display(Name = "Disposition Type")]
         [Required(ErrorMessage = "You must select a Disposition Type.")]
         public int DispositionTypeID { get; set; }
-        //public EngineerDispositionType? EngineerDispositionType { get; set; }
+        public EngineerDispositionType? EngineerDispositionType { get; set; }
 
         [Display(Name = "User")]
         [Required(ErrorMessage = "You must select a User.")]
         public int UserID { get; set; }
-        //public User User { get; set; }
+        public User? User { get; set; }
 
         [Display(Name = "NCR")]
         [Required(ErrorMessage = "You must select an NCR.")]
         public int NCRID { get; set; }
-        //public NCR NCR { get; set; }
+        public Ncr? NCR { get; set; }
     }
 }

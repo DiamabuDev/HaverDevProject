@@ -13,7 +13,7 @@ namespace HaverIndividualTest.Models
         [Display(Name = "Defect")]
         [Required(ErrorMessage = "You must select a Defect.")]
         public int DefectID { get; set; }
-        //public Defect? Defect { get; set; }
+        public Defect? Defect { get; set; }
 
         [Display(Name = "Item")]
         [Required(ErrorMessage = "You must select an Item.")]

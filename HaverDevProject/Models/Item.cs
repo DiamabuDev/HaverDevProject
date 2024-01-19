@@ -1,6 +1,7 @@
 ﻿//Nigel Temple
 //Revised January 18, 2024
 
+using HaverDevProject.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace HaverIndividualTest.Models
@@ -23,6 +24,6 @@ namespace HaverIndividualTest.Models
         [Display(Name = "Supplier")]
         [Required(ErrorMessage = "You must select a Supplier.")]
         public int SupplierID { get; set; }
-        //public Supplier Supplier { get; set; }
+        public Supplier? Supplier { get; set; }
     }
 }

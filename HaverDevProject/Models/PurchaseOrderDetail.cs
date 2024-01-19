@@ -26,6 +26,6 @@ namespace HaverIndividualTest.Models
         [Display(Name = "Item")]
         [Required(ErrorMessage = "You must select an Item.")]
         public int ItemID { get; set; }
-        //public Item Item { get; set; }
+        public Item? Item { get; set; }
     }
 }
