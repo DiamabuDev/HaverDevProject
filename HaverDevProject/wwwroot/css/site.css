@@ -87,6 +87,10 @@ body {
     color: #FFFFFF
 }
 
+.dropdown-item {
+    width: 210px;
+}
+
 /* Styles for mobile devices */
 @media (max-width: 767px) {
     .dashboard {
@@ -97,7 +101,7 @@ body {
     }
 
     .dashboard-item {
-        width: 220px;
+        width: 90%;
         height: 80px;
         font-size: 16px;
         flex-direction: row;   
@@ -116,5 +120,17 @@ body {
     }
     .dashboard-item:hover i {
         font-size: 35px;
+    }
+
+    .dropdown-item {
+        width: 220px;
+    }
+
+    .dropdown {
+        width: 90%
+    }
+
+    .dropdown-with {
+        width: 100%
     }
 }
