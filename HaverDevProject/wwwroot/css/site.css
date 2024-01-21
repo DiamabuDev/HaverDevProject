@@ -1,23 +1,23 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
-body {    
+body {
     margin-bottom: 60px;
     background-image: url('/images/haver_backgroundV2.png');
     background-position: left bottom;
@@ -29,14 +29,16 @@ body {
     background-color: #1C335E;
     color: #fff;
 }
+
 .navbar-nav .nav-item {
     margin-left: 20px;
     font-size: 17px;
 }
-.navbar-nav .nav-item:hover a.nav-link {
-    color: #cccccc;
-    font-size: 18px;
-}
+
+    .navbar-nav .nav-item:hover a.nav-link {
+        color: #cccccc;
+        font-size: 18px;
+    }
 
 .dashboard {
     display: flex;
@@ -60,31 +62,35 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
 }
 
-.dashboard-item i {
-    font-size: 50px;    
-}
+    .dashboard-item i {
+        font-size: 50px;
+    }
 
-.dashboard-item p {
-    margin: 0;
-    font-weight: 500;
-    padding-top: 5px;        
-}
+    .dashboard-item p {
+        margin: 0;
+        font-weight: 500;
+        padding-top: 5px;
+    }
 
-.dashboard-item:hover {
-    background-color: #1C335E;
-    color: lightgray;    
-}
+    .dashboard-item:hover {
+        background-color: #1C335E;
+        color: lightgray;
+    }
 
-.dashboard-item:hover i {
-    font-size: 55px;
-}
+        .dashboard-item:hover i {
+            font-size: 55px;
+        }
 
 .custom-dropdown-color .dropdown-item:hover {
     background-color: #345B91; /*#345B91 #2C4A7C */
     color: #FFFFFF
+}
+
+.dropdown-item {
+    width: 210px;
 }
 
 /* Styles for mobile devices */
@@ -97,10 +103,10 @@ body {
     }
 
     .dashboard-item {
-        width: 220px;
+        width: 90%;
         height: 80px;
         font-size: 16px;
-        flex-direction: row;   
+        flex-direction: row;
         justify-content: left;
     }
 
@@ -114,7 +120,20 @@ body {
         padding-top: 3px;
         margin: 0;
     }
+
     .dashboard-item:hover i {
         font-size: 35px;
+    }
+
+    .dropdown-item {
+        width: 220px;
+    }
+
+    .dropdown {
+        width: 90%
+    }
+
+    .dropdown-with {
+        width: 100%
     }
 }
