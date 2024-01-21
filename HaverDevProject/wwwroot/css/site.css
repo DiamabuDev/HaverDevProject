@@ -56,7 +56,11 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
     cursor: pointer;
-    font-size:20px
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
 }
 
 .dashboard-item i {
@@ -66,7 +70,7 @@ body {
 .dashboard-item p {
     margin: 0;
     font-weight: 500;
-    padding-top: 5px;
+    padding-top: 5px;        
 }
 
 .dashboard-item:hover {
@@ -78,7 +82,12 @@ body {
     font-size: 55px;
 }
 
-/* Estilos para tamaños de pantalla pequeños (móviles) */
+.custom-dropdown-color .dropdown-item:hover {
+    background-color: #345B91; /*#345B91 #2C4A7C */
+    color: #FFFFFF
+}
+
+/* Styles for mobile devices */
 @media (max-width: 767px) {
     .dashboard {
         gap: 20px;
@@ -91,8 +100,7 @@ body {
         width: 220px;
         height: 80px;
         font-size: 16px;
-        display: flex;
-        align-items: center;
+        flex-direction: row;   
         justify-content: left;
     }
 
