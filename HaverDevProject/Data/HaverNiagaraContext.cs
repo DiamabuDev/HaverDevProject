@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using HaverDevProject.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace HaverDevProject.Models;
+namespace HaverDevProject.Data;
 
 public partial class HaverNiagaraContext : DbContext
 {
