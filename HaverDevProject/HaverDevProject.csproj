@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-HaverDevProject-5c48ec0c-ed61-47e4-92d9-aaa552a4d2fc</UserSecretsId>
   </PropertyGroup>
