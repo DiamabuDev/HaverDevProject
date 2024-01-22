@@ -17,7 +17,7 @@ html {
     min-height: 100%;
 }
 
-body {
+body {   
     margin-bottom: 60px;
     background-image: url('/images/haver_backgroundV2.png');
     background-position: left bottom;
@@ -34,12 +34,10 @@ body {
     margin-left: 20px;
     font-size: 17px;
 }
-
-    .navbar-nav .nav-item:hover a.nav-link {
-        color: #cccccc;
-        font-size: 18px;
-    }
-
+.navbar-nav .nav-item:hover a.nav-link {
+    color: #cccccc;
+    font-size: 18px;
+}
 .dashboard {
     display: flex;
     flex-wrap: wrap;
@@ -62,27 +60,27 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
 }
 
-    .dashboard-item i {
-        font-size: 50px;
-    }
+.dashboard-item i {
+    font-size: 50px;    
+}
 
-    .dashboard-item p {
-        margin: 0;
-        font-weight: 500;
-        padding-top: 5px;
-    }
+.dashboard-item p {
+    margin: 0;
+    font-weight: 500;
+    padding-top: 5px;        
+}
 
-    .dashboard-item:hover {
-        background-color: #1C335E;
-        color: lightgray;
-    }
+.dashboard-item:hover {
+    background-color: #1C335E;
+    color: lightgray;    
+}
 
-        .dashboard-item:hover i {
-            font-size: 55px;
-        }
+.dashboard-item:hover i {
+    font-size: 55px;
+}
 
 .custom-dropdown-color .dropdown-item:hover {
     background-color: #345B91; /*#345B91 #2C4A7C */
@@ -120,7 +118,7 @@ body {
         padding-top: 3px;
         margin: 0;
     }
-
+  
     .dashboard-item:hover i {
         font-size: 35px;
     }
@@ -136,4 +134,3 @@ body {
     .dropdown-with {
         width: 100%
     }
-}

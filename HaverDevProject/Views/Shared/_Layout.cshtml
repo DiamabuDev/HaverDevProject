@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/HaverDevProject.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" /> <!--URL for bootstrap icons-->
-    
 </head>
 <body>
     <header>
@@ -33,14 +32,14 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Suppliers</a>
-                        </li>                        
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Users
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Employees</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Roles</a></li>                                
+                                <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Roles</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -53,9 +52,6 @@
                                 <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Lookup values</a></li>
                             </ul>
                         </li>
-                        @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy.">Privacy</a>
-                        </li> *@
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
