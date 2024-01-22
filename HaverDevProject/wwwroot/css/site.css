@@ -1,23 +1,23 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
-body {    
+body {   
     margin-bottom: 60px;
     background-image: url('/images/haver_backgroundV2.png');
     background-position: left bottom;
@@ -29,6 +29,7 @@ body {
     background-color: #1C335E;
     color: #fff;
 }
+
 .navbar-nav .nav-item {
     margin-left: 20px;
     font-size: 17px;
@@ -37,7 +38,6 @@ body {
     color: #cccccc;
     font-size: 18px;
 }
-
 .dashboard {
     display: flex;
     flex-wrap: wrap;
@@ -104,7 +104,7 @@ body {
         width: 90%;
         height: 80px;
         font-size: 16px;
-        flex-direction: row;   
+        flex-direction: row;
         justify-content: left;
     }
 
@@ -118,6 +118,7 @@ body {
         padding-top: 3px;
         margin: 0;
     }
+  
     .dashboard-item:hover i {
         font-size: 35px;
     }
@@ -133,4 +134,3 @@ body {
     .dropdown-with {
         width: 100%
     }
-}
