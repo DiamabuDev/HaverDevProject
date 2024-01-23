@@ -13,7 +13,6 @@ public partial class NcrReInspect : IValidatableObject
     [Column("ncrReInspectId")]
     public int NcrReInspectId { get; set; }
 
-    //Required?
     [Column("ncrReInspectAcceptable")]
     public bool NcrReInspectAcceptable { get; set; } = false;
 

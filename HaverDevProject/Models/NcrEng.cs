@@ -13,7 +13,6 @@ public partial class NcrEng : IValidatableObject
     [Column("ncrEngId")]
     public int NcrEngId { get; set; }
 
-    //Required?
     [Column("ncrEngCustomerNotification")]
     public bool? NcrEngCustomerNotification { get; set; } = false;
 

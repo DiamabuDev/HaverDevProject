@@ -13,7 +13,6 @@ public partial class NcrQa : IValidatableObject
     [Column("ncrQAId")]
     public int NcrQaid { get; set; }
 
-    //Required?
     [Column("ncrQAItemMarNonConforming")]
     public bool NcrQaitemMarNonConforming { get; set; } = false;
 
