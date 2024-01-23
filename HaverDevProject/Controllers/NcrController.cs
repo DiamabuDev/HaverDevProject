@@ -21,6 +21,7 @@ namespace HaverDevProject.Controllers
             _context = context;
         }
 
+        // GET: Ncr
         public async Task<IActionResult> Index(string SearchCode, int? page, int? pageSizeID,
     string actionButton, string sortDirection = "asc", string sortField = "Status")
         {
