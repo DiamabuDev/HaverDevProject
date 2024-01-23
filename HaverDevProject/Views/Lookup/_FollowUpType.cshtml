@@ -5,8 +5,14 @@
         @Html.DropDownList("followUpTypeId", null, htmlAttributes: new { @size = 6, @class = "form-control" })
     </div>
     <div class="card-footer">
-        <a asp-controller="FollowUpType" asp-action="Create">Create</a> |
-        <a asp-controller="FollowUpType" asp-action="Edit" class="linkClick">Edit</a> |
-        <a asp-controller="FollowUpType" asp-action="Delete" class="linkClick">Delete</a>
+        <a asp-controller="FollowUpType" asp-action="Create" class="btn text-primary me-2" data-bs-toggle="tooltip" title="Create">
+            <i class="bi bi-plus-circle"></i>
+        </a>
+        <a asp-controller="FollowUpType" asp-action="Edit" class="btn text-primary linkClick me-2" data-bs-toggle="tooltip" title="Edit">
+            <i class="bi bi-pencil-square"></i>
+        </a>
+        <a asp-controller="FollowUpType" asp-action="Delete" class="btn text-danger linkClick" data-bs-toggle="tooltip" title="Delete">
+            <i class="bi bi-trash3-fill"></i>
+        </a>
     </div>
 </div>
