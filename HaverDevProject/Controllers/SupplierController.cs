@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HaverDevProject.Data;
 using HaverDevProject.Models;
+using HaverDevProject.Utilities;
+using HaverDevProject.CustomControllers;
+//using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HaverDevProject.Controllers
 {
-    public class SupplierController : Controller
+    public class SupplierController : ElephantController
     {
         private readonly HaverNiagaraContext _context;
 
@@ -20,17 +23,26 @@ namespace HaverDevProject.Controllers
         }
 
         // GET: Supplier
-        public async Task<IActionResult> Index(string actionButton, string sortDirection = "asc", string sortField = "Code")
+        public async Task<IActionResult> Index(string SearchCode, int? page, int? pageSizeID, 
+            string actionButton, string sortDirection = "asc", string sortField = "Code")
         {
             //List of sort options.
-            string[] sortOptions = new[] { "Code", "Name", "Email"};
+            string[] sortOptions = new[] { "Code", "Name", "Email"};            
 
             var suppliers = _context.Suppliers
                 .AsNoTracking();
 
+            //Filterig values                       
+            if (!String.IsNullOrEmpty(SearchCode))
+            {
+                suppliers = suppliers.Where(s => s.SupplierCode.ToUpper().Contains(SearchCode.ToUpper())
+                                        || s.SupplierName.ToUpper().Contains(SearchCode.ToUpper()));
+            }           
+
+            //Sorting columns
             if (!String.IsNullOrEmpty(actionButton)) //Form Submitted!
             {
-                //page = 1;//Reset page to start /***********deshabilitar cuando se defina el paginado.
+                page = 1;//Reset page to start
 
                 if (sortOptions.Contains(actionButton))//Change of sort is requested
                 {
@@ -48,13 +60,11 @@ namespace HaverDevProject.Controllers
                 {
                     suppliers = suppliers
                         .OrderBy(p => p.SupplierCode);
-                    ViewData["sortDirectionCodeApplied"]="<i class=\"bi bi-sort-down\"></i>";
                 }
                 else
                 {
                     suppliers = suppliers
                         .OrderByDescending(p => p.SupplierCode);
-                    ViewData["sortDirectionCodeApplied"]="<i class=\"bi bi-sort-up\"></i>";
                 }
             }
             else if (sortField == "Name")
@@ -63,13 +73,11 @@ namespace HaverDevProject.Controllers
                 {
                     suppliers = suppliers
                         .OrderBy(p => p.SupplierName);
-                    ViewData["sortDirectionNameApplied"] = "<i class=\"bi bi-sort-down\"></i>";
                 }
                 else
                 {
                     suppliers = suppliers
                         .OrderByDescending(p => p.SupplierName);
-                    ViewData["sortDirectionNameApplied"] = "<i class=\"bi bi-sort-up\"></i>";
                 }
             }            
             else //Sorting by Email
@@ -89,9 +97,15 @@ namespace HaverDevProject.Controllers
             ViewData["sortField"] = sortField;
             ViewData["sortDirection"] = sortDirection;
 
-            return View(await suppliers.ToListAsync());
+            //return View(await suppliers.ToListAsync());
 
-            
+            int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
+            ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
+            var pagedData = await PaginatedList<Supplier>.CreateAsync(suppliers.AsNoTracking(), page ?? 1, pageSize);
+
+            return View(pagedData);
+
+
         }
 
         // GET: Supplier/Details/5

@@ -6,27 +6,45 @@
 
 <h1>Suppliers</h1>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary float-end mb-3"> <i class="bi bi-plus-square-dotted"></i> Create New</a>
-</p>
+
 
 <form asp-action="Index" method="get">
     <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
     <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
-    <input type="hidden" name="sortField" value="@ViewData["sortDirectionCodeApplied"]"/>
-    <input type="hidden" name="sortField" value="@ViewData["sortDirectionNameApplied"]" />
+    <div class="form-horizontal">
+        
+            <div class="card card-body bg-light mb-3">
+            <div class="row align-content-center">
+                <div class="form-group col-md-6">
+                        <label class="control-label mb-2">Find by Code or Supplier Name:</label>
+                        @Html.TextBox("SearchCode", null, new { @class = "form-control" })
+                    </div>  
+                    <div class="form-group col-md-4 align-self-end">
+                        <input type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary" />
+                        <a asp-action="Index" class="btn btn-outline-dark ms-4">Clear</a>
+                    
+                        <a asp-action="Create" class="btn btn-primary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New</a>
+                    
+                    </div>
+                    
+                </div>
+            </div>
+        
+    </div>
+    
     <table class="table table-hover table-striped">
         <thead class="custom-header-bg">
             <tr>
-                <th>     
-                    <span>@Html.Raw(ViewData["sortDirectionCodeApplied"])</span>
+                <th>
+                    <span><i class="bi bi-filter"></i></span>
                     <input type="submit" name="actionButton" value="Code" class="btn text-light"/>                    
                 </th>
                 <th>
-                    <span>@Html.Raw(ViewData["sortDirectionNameApplied"])</span>
+                    <span><i class="bi bi-filter"></i></span>
                     <input type="submit" name="actionButton" value="Name" class="btn text-light" />
                 </th>
                 <th class="d-none d-md-table-cell">
+                    <span><i class="bi bi-filter"></i></span>
                     <input type="submit" name="actionButton" value="Email" class="btn text-light" />
                 </th>
                 <th></th>
@@ -53,6 +71,7 @@
     }
         </tbody>
     </table>
+    <partial name="_PagingNavBar" />
 </form>
 @section Scripts {
     <script type="text/javascript">
