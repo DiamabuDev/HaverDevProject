@@ -108,20 +108,20 @@ body {
         justify-content: left;
     }
 
-        .dashboard-item i {
-            font-size: 30px;
-            margin-right: 12px;
-            margin-left: 25px;
-        }
+    .dashboard-item i {
+        font-size: 30px;
+        margin-right: 12px;
+        margin-left: 25px;
+    }
 
-        .dashboard-item p {
-            padding-top: 3px;
-            margin: 0;
-        }
+    .dashboard-item p {
+        padding-top: 3px;
+        margin: 0;
+    }
 
-        .dashboard-item:hover i {
-            font-size: 35px;
-        }
+    .dashboard-item:hover i {
+        font-size: 35px;
+    }
 
     .dropdown-item {
         width: 220px;
@@ -150,8 +150,10 @@ body {
     background-color: #1C335E;
 }
 
-
-
+.bg-custom-color {
+    background-color: #E7EAEB;
+    border-color: #1C335E;
+}
 /* Provided by David S*/
 .form-group {
     margin-bottom: 1rem
