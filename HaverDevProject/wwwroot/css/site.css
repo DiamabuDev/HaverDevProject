@@ -118,7 +118,7 @@ body {
         padding-top: 3px;
         margin: 0;
     }
-  
+
     .dashboard-item:hover i {
         font-size: 35px;
     }
@@ -134,3 +134,28 @@ body {
     .dropdown-with {
         width: 100%
     }
+}
+
+.custom-header-bg {
+    background-color: #345B91;
+    color: #fff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #B2C2E0;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #1C335E;
+}
+
+.bg-custom-color {
+    background-color: #E7EAEB;
+    border-color: #1C335E;
+}
+/* Provided by David S*/
+.form-group {
+    margin-bottom: 1rem
+}
+
