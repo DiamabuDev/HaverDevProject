@@ -13,9 +13,9 @@ public partial class StatusUpdate
     [Column("statusUpdateId")]
     public int StatusUpdateId { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "You must provide name of the Status Update.")]
     [Column("statusUpdateName")]
-    [StringLength(45)]
+    [StringLength(45, ErrorMessage = "The Status Update cannot be more than 45 characters.")]
     [Unicode(false)]
     public string StatusUpdateName { get; set; }
 

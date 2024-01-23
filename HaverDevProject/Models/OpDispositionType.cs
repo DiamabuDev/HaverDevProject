@@ -13,9 +13,9 @@ public partial class OpDispositionType
     [Column("opDispositionTypeId")]
     public int OpDispositionTypeId { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "You must provide the Disposition Type.")]
     [Column("opDispositionTypeName")]
-    [StringLength(45)]
+    [StringLength(45, ErrorMessage = "The Disposition Type cannot be more than 45 characters.")]
     [Unicode(false)]
     public string OpDispositionTypeName { get; set; }
 

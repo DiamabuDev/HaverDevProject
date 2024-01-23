@@ -13,9 +13,9 @@ public partial class ProcessApplicable
     [Column("proAppId")]
     public int ProAppId { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "You must provide name of the Applicable Process.")]
     [Column("proAppName")]
-    [StringLength(45)]
+    [StringLength(45, ErrorMessage = "The Applicable Process cannot be more than 45 characters.")]
     [Unicode(false)]
     public string ProAppName { get; set; }
 
