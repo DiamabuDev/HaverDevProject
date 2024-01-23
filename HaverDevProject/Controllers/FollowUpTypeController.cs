@@ -11,91 +11,90 @@ using HaverDevProject.CustomControllers;
 
 namespace HaverDevProject.Controllers
 {
-    public class EngDispositionTypeController : CognizantController
+    public class FollowUpTypeController : CognizantController
     {
         private readonly HaverNiagaraContext _context;
 
-        public EngDispositionTypeController(HaverNiagaraContext context)
+        public FollowUpTypeController(HaverNiagaraContext context)
         {
             _context = context;
         }
 
-        // GET: EngDispositionTypes
+        // GET: FollowUpType
         public IActionResult Index()
         {
             return Redirect(ViewData["returnURL"].ToString());
         }
 
-        // GET: EngDispositionTypes/Create
+        // GET: FollowUpType/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: EngDispositionTypes/Create
+        // POST: FollowUpType/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EngDispositionTypeName")] EngDispositionType engDispositionType)
+        public async Task<IActionResult> Create([Bind("FollowUpTypeName")] FollowUpType followUpType)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Add(engDispositionType);
+                    _context.Add(followUpType);
                     await _context.SaveChangesAsync();
                     return Redirect(ViewData["returnURL"].ToString());
                 }
             }
-            catch (DbUpdateException) 
+            catch (DbUpdateException)
             {
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
-            return View(engDispositionType);
+            return View(followUpType);
         }
 
-        // GET: EngDispositionTypes/Edit/5
+        // GET: FollowUpType/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.EngDispositionTypes == null)
+            if (id == null || _context.FollowUpTypes == null)
             {
                 return NotFound();
             }
 
-            var engDispositionType = await _context.EngDispositionTypes.FindAsync(id);
-            if (engDispositionType == null)
+            var followUpType = await _context.FollowUpTypes.FindAsync(id);
+            if (followUpType == null)
             {
                 return NotFound();
             }
-            return View(engDispositionType);
+            return View(followUpType);
         }
 
-        // POST: EngDispositionTypes/Edit/5
+        // POST: FollowUpType/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id)
         {
-            var engDispositionTypeToUpdate = await _context.EngDispositionTypes.FirstOrDefaultAsync(dt => dt.EngDispositionTypeId == id);
-
-            if (engDispositionTypeToUpdate == null)
+            var followUpTypeToUpdate = await _context.FollowUpTypes.FirstOrDefaultAsync(ft => ft.FollowUpTypeId == id);
+            if (followUpTypeToUpdate == null)
             {
                 return NotFound();
             }
 
-            if (await TryUpdateModelAsync<EngDispositionType>(engDispositionTypeToUpdate, "",
-                    dt => dt.EngDispositionTypeName))
+            if (await TryUpdateModelAsync<FollowUpType>(followUpTypeToUpdate, "",
+                    dt => dt.FollowUpTypeName))
             {
                 try
-                {                    
+                {
                     await _context.SaveChangesAsync();
                     return Redirect(ViewData["returnURL"].ToString());
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EngDispositionTypeExists(engDispositionTypeToUpdate.EngDispositionTypeId))
+                    if (!FollowUpTypeExists(followUpTypeToUpdate.FollowUpTypeId))
                     {
                         return NotFound();
                     }
@@ -104,69 +103,70 @@ namespace HaverDevProject.Controllers
                         throw;
                     }
                 }
-                catch (DbUpdateException)                 
+                catch (DbUpdateException)
                 {
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
                 }
             }
-            return View(engDispositionType);
+            return View(followUpTypeToUpdate);
         }
 
-        // GET: EngDispositionTypes/Delete/5
+        // GET: FollowUpType/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.EngDispositionTypes == null)
+            if (id == null || _context.FollowUpTypes == null)
             {
                 return NotFound();
             }
 
-            var engDispositionType = await _context.EngDispositionTypes
+            var followUpType = await _context.FollowUpTypes
                 .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.EngDispositionTypeId == id);
-            if (engDispositionType == null)
+                .FirstOrDefaultAsync(m => m.FollowUpTypeId == id);
+            if (followUpType == null)
             {
                 return NotFound();
             }
 
-            return View(engDispositionType);
+            return View(followUpType);
         }
 
-        // POST: EngDispositionTypes/Delete/5
+        // POST: FollowUpType/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.EngDispositionTypes == null)
+            if (_context.FollowUpTypes == null)
             {
-                return Problem("There are no Disposition Types to delete.");
+                return Problem("There are no Follow Up Types to delete.");
             }
-            var engDispositionType = await _context.EngDispositionTypes.FindAsync(id);
+            var followUpType = await _context.FollowUpTypes.FindAsync(id);
             try
             {
-                if (engDispositionType != null)
+                if (followUpType != null)
                 {
-                    _context.EngDispositionTypes.Remove(engDispositionType);
+                    _context.FollowUpTypes.Remove(followUpType);
                 }
                 await _context.SaveChangesAsync();
                 return Redirect(ViewData["returnURL"].ToString());
-            }
+            }   
             catch (DbUpdateException dex)
             {
                 if (dex.GetBaseException().Message.Contains("FOREIGN KEY constraint failed"))
                 {
-                    ModelState.AddModelError("", "Unable to Delete Disposition Type. Remember, you cannot delete a Disposition Type that is used in the system.");
+                    ModelState.AddModelError("", "Unable to Delete Follow Up Type. Remember, you cannot delete a Function Type that is used in the system.");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
                 }
             }
-            return View(engDispositionType);
+
+            return View(followUpType);
         }
 
-        private bool EngDispositionTypeExists(int id)
+        private bool FollowUpTypeExists(int id)
         {
-          return _context.EngDispositionTypes.Any(e => e.EngDispositionTypeId == id);
+          return _context.FollowUpTypes.Any(e => e.FollowUpTypeId == id);
         }
     }
 }
