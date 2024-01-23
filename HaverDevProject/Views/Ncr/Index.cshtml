@@ -4,62 +4,103 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h2>NCR List</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NcrNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NcrEngs.FirstOrDefault().EngDispositionType.EngDispositionTypeName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NcrQas.FirstOrDefault().NcrQacreationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NcrLastUpdated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StatusUpdate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NcrQas.FirstOrDefault().NcrQauserId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<form asp-action="Index" method="get">
+    <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
+    <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
+    <div class="form-horizontal">
+        <div class="card card-body bg-custom-color mb-2">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="form-group col-lg-5 col-md-5 col-sm-10 col-10">
+                    <label class="control-label mb-1">Search NCR reports by the fields below:</label>
+                    @Html.TextBox("SearchCode", null, new { @class = "form-control" })
+                </div>
+                <div class="form-group col-lg-6 col-md-7 col-sm-10 col-10 align-self-end">
+                    <input type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary ms-2" />
+                    <a asp-action="Index" class="btn btn-outline-dark ms-4">Clear</a>
+                    <a asp-action="Create" class="btn btn-primary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover table-striped">
+        <thead class="custom-header-bg">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NcrNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NcrEngs.FirstOrDefault().EngDispositionType.EngDispositionTypeName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().NcrQacreationDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NcrLastUpdated)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StatusUpdate.StatusUpdateName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().NcrQauserId)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.NcrId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.NcrId">Details</a> |
-                </td>
+                <th>
+                    <span><i class="bi bi-filter"></i></span>
+                    <input type="submit" name="actionButton" value="NCR #" class="btn text-light" />
+                </th>
+                <th>
+                    <span><i class="bi bi-filter"></i></span>
+                    <input type="submit" name="actionButton" value="Defect" class="btn text-light" />
+                </th>
+                <th>
+                    <span><i class="bi bi-filter"></i></span>
+                    <input type="submit" name="actionButton" value="Disposition" class="btn text-light" />
+                </th>
+                <th>
+                    <span><i class="bi bi-filter"></i></span>
+                    <input type="submit" name="actionButton" value="Created" class="btn text-light" />
+                </th>
+                <th>
+                    <span><i class="bi bi-filter"></i></span>
+                    <input type="submit" name="actionButton" value="Updated" class="btn text-light" />
+                </th>
+                <th class="d-none d-md-table-cell">
+                    <span><i class="bi bi-filter"></i></span>
+                    <input type="submit" name="actionButton" value="Status" class="btn text-light" />
+                </th>
+                <th>
+                    <span><i class="bi bi-filter"></i></span>
+                    <input type="submit" name="actionButton" value="Assigned" class="btn text-light" />
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NcrNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NcrLastUpdated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NcrEngs.FirstOrDefault().EngDispositionType.EngDispositionTypeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().NcrQacreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NcrLastUpdated)
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        @Html.DisplayFor(modelItem => item.StatusUpdate.StatusUpdateName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().NcrQauserId)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.NcrId" class="btn text-primary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.NcrId" class="btn text-primary" data-bs-toggle="tooltip" title="Details"><i class="bi bi-eye-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <partial name="_PagingNavBar" />
+</form>
+@section Scripts {
+    <script type="text/javascript">
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+}
