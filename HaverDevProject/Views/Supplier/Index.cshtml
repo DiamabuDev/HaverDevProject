@@ -10,24 +10,22 @@
 
 <form asp-action="Index" method="get">
     <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
-    <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
-      <div class="container">
-        <div class="form-horizontal">        
-            <div class="card card-body bg-custom-color mb-2">
-                <div class="row d-flex justify-content-center align-items-center">
-                    <div class="form-group col-lg-5 col-md-6 col-sm-12">
-                        <label class="control-label mb-1">Find by Code or Supplier Name:</label>
-                        @Html.TextBox("SearchCode", null, new { @class = "form-control" })
-                    </div>  
-                    <div class="form-group col-md-4 col-md-6 col-sm-12 align-self-end">
-                        <input type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary ms-2"/>
-                        <a asp-action="Index" class="btn btn-outline-dark ms-4">Clear</a>                    
-                        <a asp-action="Create" class="btn btn-primary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New</a>
-                    </div>                    
-                </div>
-            </div>        
-        </div>
-    </div>
+    <input type="hidden" name="sortField" value="@ViewData["sortField"]" />      
+    <div class="form-horizontal">        
+        <div class="card card-body bg-custom-color mb-2">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="form-group col-lg-5 col-md-5 col-sm-10 col-10">
+                    <label class="control-label mb-1">Find by Code or Supplier Name:</label>
+                    @Html.TextBox("SearchCode", null, new { @class = "form-control" })
+                </div>  
+                <div class="form-group col-lg-6 col-md-7 col-sm-10 col-10 align-self-end">
+                    <input type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary ms-2"/>
+                    <a asp-action="Index" class="btn btn-outline-dark ms-4">Clear</a>                    
+                    <a asp-action="Create" class="btn btn-primary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New</a>
+                </div>                    
+            </div>
+        </div>        
+    </div>    
     <table class="table table-hover table-striped">
         <thead class="custom-header-bg">
             <tr>
