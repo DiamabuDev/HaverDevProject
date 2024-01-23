@@ -32,13 +32,28 @@ namespace HaverDevProject.Controllers
                 .OrderBy(a => a.EngDispositionTypeName), "EngDispositionTypeId", "EngDispositionTypeName");
             return PartialView("_EngDispositionType");
         }
-
         public PartialViewResult FollowUpType()
         {
             ViewData["FollowUpTypeId"] = new
                 SelectList(_context.FollowUpTypes
                 .OrderBy(a => a.FollowUpTypeName), "FollowUpTypeId", "FollowUpTypeName");
             return PartialView("_FollowUpType");
+        }
+
+        public PartialViewResult StatusUpdate()
+        {
+            ViewData["StatusUpdateId"] = new
+                SelectList(_context.StatusUpdates
+                .OrderBy(a => a.StatusUpdateName), "StatusUpdateId", "StatusUpdateName");
+            return PartialView("_StatusUpdate");
+        }
+
+        public PartialViewResult OpDispositionType()
+        {
+            ViewData["OpDispositionTypeId"] = new
+                SelectList(_context.OpDispositionTypes
+                .OrderBy(a => a.OpDispositionTypeName), "OpDispositionTypeId", "OpDispositionTypeName");
+            return PartialView("_OpDispositionType");
         }
     }
 }
