@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.NcrNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NcrEngs.FirstOrDefault().EngDispositionType)
+                @Html.DisplayNameFor(model => model.NcrEngs.FirstOrDefault().EngDispositionType.EngDispositionTypeName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NcrQas.FirstOrDefault().NcrQacreationDate)
@@ -41,7 +41,7 @@
                     @Html.DisplayFor(modelItem => item.NcrNumber)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NcrEngs.FirstOrDefault().EngDispositionType)
+                    @Html.DisplayFor(modelItem => item.NcrEngs.FirstOrDefault().EngDispositionType.EngDispositionTypeName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().NcrQacreationDate)
