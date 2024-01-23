@@ -1,36 +1,153 @@
 ﻿@model HaverDevProject.Models.Ncr
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Non Conforming Report Details";
 }
 
-<h1>Details</h1>
+<h1 class="m-2">Non Conforming Report Details</h1>
 
-<div>
-    <h4>Ncr</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NcrNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NcrNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NcrLastUpdated)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NcrLastUpdated)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StatusUpdate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StatusUpdate.StatusUpdateName)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.NcrId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header custom-header-bg">
+                    Quality Representative
+                </div>
+                <div class="card-body pb-0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>NCR No</th>
+                                <th>Process Applicable</th>
+                                <th>Quality Representative</th>
+                                <th>Creation Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.NcrNumber</td>
+                                <td>Supplier</td>
+                                <td>J. Smith</td>
+                                <td>2023-10-12</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-header">
+                    Item Information
+                </div>
+                <div class="card-body pb-0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Qty Received</th>
+                                <th>Qty Defective</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td>Description</td>
+                                <td>QuantityReceived</td>
+                                <td>QuantityDefective</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-header">
+                    Defect Information
+                </div>
+                <div class="card-body pb-0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td>Description</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header custom-header-bg">
+                    Quality Representative
+                </div>
+                <div class="card-body pb-0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>NCR No</th>
+                                <th>Process Applicable</th>
+                                <th>Quality Representative</th>
+                                <th>Creation Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.NcrNumber</td>
+                                <td>Supplier</td>
+                                <td>J. Smith</td>
+                                <td>2023-10-12</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-header">
+                    Item Information
+                </div>
+                <div class="card-body pb-0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Qty Received</th>
+                                <th>Qty Defective</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td>Description</td>
+                                <td>QuantityReceived</td>
+                                <td>QuantityDefective</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-header">
+                    Defect Information
+                </div>
+                <div class="card-body pb-0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td>Description</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-3">
+        <a asp-action="Edit" asp-route-id="@Model.NcrId" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
 </div>
