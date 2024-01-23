@@ -32,6 +32,7 @@ public partial class NcrQa : IValidatableObject
     [Display(Name = "Last Updated")]
     [Required(ErrorMessage = "You must provide the last date the NCR was updated.")]
     [Column("ncrQALastUpdated", TypeName = "datetime")]
+    [DataType(DataType.DateTime)]
     public DateTime NcrQalastUpdated { get; set; }
 
     [Display(Name = "Quality Inspector")]

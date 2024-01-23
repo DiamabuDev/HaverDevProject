@@ -30,6 +30,7 @@ public partial class Supplier
     [Display(Name = "Supplier Email")]
     [Column("supplierEmail")]
     [StringLength(45, ErrorMessage = "The Supplier Email cannot be more than 45 characters.")]
+    [RegularExpression("^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$", ErrorMessage = "Please provide a valid email.")]
     [Unicode(false)]
     public string SupplierEmail { get; set; }
 

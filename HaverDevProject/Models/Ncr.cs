@@ -23,6 +23,7 @@ public partial class Ncr
     [Display(Name = "Last Updated")]
     [Required(ErrorMessage = "You must provide the last date the NCR was updated.")]
     [Column("ncrLastUpdated", TypeName = "datetime")]
+    [DataType(DataType.DateTime)]
     public DateTime NcrLastUpdated { get; set; }
 
     [Display(Name = "Status Update")]

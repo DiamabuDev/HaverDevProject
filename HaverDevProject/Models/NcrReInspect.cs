@@ -29,6 +29,7 @@ public partial class NcrReInspect : IValidatableObject
     [Display(Name = "Last Updated")]
     [Required(ErrorMessage = "You must provide the last date the NCR was updated.")]
     [Column("ncrReInspectLastUpdated", TypeName = "datetime")]
+    [DataType(DataType.DateTime)]
     public DateTime NcrReInspectLastUpdated { get; set; }
 
     [Display(Name = "Inspector")] //????

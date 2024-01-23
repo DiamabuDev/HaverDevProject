@@ -21,6 +21,7 @@ public partial class NcrPurchasing : IValidatableObject
     [Display(Name = "Last Updated")]
     [Required(ErrorMessage = "You must provide the last date the NCR was updated.")]
     [Column("ncrPurchasingLastUpdated", TypeName = "datetime")]
+    [DataType(DataType.DateTime)]
     public DateTime NcrPurchasingLastUpdated { get; set; }
 
     [Display(Name = "Purchasing")]
