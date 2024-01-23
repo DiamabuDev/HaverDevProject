@@ -11,83 +11,83 @@ using HaverDevProject.CustomControllers;
 
 namespace HaverDevProject.Controllers
 {
-    public class ProcessApplicableController : CognizantController
+    public class EngDispositionTypeController : CognizantController
     {
         private readonly HaverNiagaraContext _context;
 
-        public ProcessApplicableController(HaverNiagaraContext context)
+        public EngDispositionTypeController(HaverNiagaraContext context)
         {
             _context = context;
         }
 
-        // GET: ProcessApplicable
+        // GET: EngDispositionTypes
         public IActionResult Index()
         {
             return Redirect(ViewData["returnURL"].ToString());
         }
 
-        // GET: ProcessApplicable/Create
+        // GET: EngDispositionTypes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: ProcessApplicable/Create
+        // POST: EngDispositionTypes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProAppName")] ProcessApplicable processApplicable)
+        public async Task<IActionResult> Create([Bind("EngDispositionTypeName")] EngDispositionType engDispositionType)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Add(processApplicable);
+                    _context.Add(engDispositionType);
                     await _context.SaveChangesAsync();
                     return Redirect(ViewData["returnURL"].ToString());
                 }
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException) 
             {
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
-
-            return View(processApplicable);
+            return View(engDispositionType);
         }
 
-        // GET: ProcessApplicable/Edit/5
+        // GET: EngDispositionTypes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.ProcessApplicables == null)
+            if (id == null || _context.EngDispositionTypes == null)
             {
                 return NotFound();
             }
 
-            var processApplicable = await _context.ProcessApplicables.FindAsync(id);
-            if (processApplicable == null)
+            var engDispositionType = await _context.EngDispositionTypes.FindAsync(id);
+            if (engDispositionType == null)
             {
                 return NotFound();
             }
-            return View(processApplicable);
+            return View(engDispositionType);
         }
 
-        // POST: ProcessApplicable/Edit/5
+        // POST: EngDispositionTypes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id, [Bind("EngDispositionTypeId,EngDispositionTypeName")] EngDispositionType engDispositionType)
         {
-            var processApplicableToUpdate = await _context.ProcessApplicables.FirstOrDefaultAsync(pa => pa.ProAppId == id);
 
-            if (processApplicableToUpdate == null)
+            var engDispositionTypeToUpdate = await _context.EngDispositionTypes.FirstOrDefaultAsync(dt => dt.EngDispositionTypeId == id);
+
+            if (engDispositionTypeToUpdate == null)
             {
                 return NotFound();
             }
 
-            if (await TryUpdateModelAsync<ProcessApplicable>(processApplicableToUpdate, "",
-                 pa => pa.ProAppName))
+            if (await TryUpdateModelAsync<EngDispositionType>(engDispositionTypeToUpdate, "",
+                    dt => dt.EngDispositionTypeName))
             {
                 try
                 {                    
@@ -96,7 +96,7 @@ namespace HaverDevProject.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProcessApplicableExists(processApplicableToUpdate.ProAppId))
+                    if (!EngDispositionTypeExists(engDispositionTypeToUpdate.EngDispositionTypeId))
                     {
                         return NotFound();
                     }
@@ -105,73 +105,69 @@ namespace HaverDevProject.Controllers
                         throw;
                     }
                 }
-                catch (DbUpdateException)
+                catch (DbUpdateException)                 
                 {
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
                 }
             }
-            return View(processApplicableToUpdate);
+            return View(engDispositionType);
         }
 
-        // GET: ProcessApplicable/Delete/5
+        // GET: EngDispositionTypes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.ProcessApplicables == null)
+            if (id == null || _context.EngDispositionTypes == null)
             {
                 return NotFound();
             }
 
-            var processApplicable = await _context.ProcessApplicables
+            var engDispositionType = await _context.EngDispositionTypes
                 .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.ProAppId == id);
-            if (processApplicable == null)
+                .FirstOrDefaultAsync(m => m.EngDispositionTypeId == id);
+            if (engDispositionType == null)
             {
                 return NotFound();
             }
 
-            return View(processApplicable);
+            return View(engDispositionType);
         }
 
-        // POST: ProcessApplicable/Delete/5
+        // POST: EngDispositionTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.ProcessApplicables == null)
+            if (_context.EngDispositionTypes == null)
             {
-                return Problem("There are no Process Applicables to delete.");
+                return Problem("There are no Disposition Types to delete.");
             }
-            var processApplicable = await _context.ProcessApplicables.FindAsync(id);
-            
+            var engDispositionType = await _context.EngDispositionTypes.FindAsync(id);
             try
             {
-                if (processApplicable != null)
+                if (engDispositionType != null)
                 {
-                    _context.ProcessApplicables.Remove(processApplicable);
+                    _context.EngDispositionTypes.Remove(engDispositionType);
                 }
-
                 await _context.SaveChangesAsync();
                 return Redirect(ViewData["returnURL"].ToString());
             }
-
             catch (DbUpdateException dex)
             {
                 if (dex.GetBaseException().Message.Contains("FOREIGN KEY constraint failed"))
                 {
-                    ModelState.AddModelError("", "Unable to Delete Process Applicable. Remember, you cannot delete a Process Applicable that is used in the system.");
+                    ModelState.AddModelError("", "Unable to Delete Disposition Type. Remember, you cannot delete a Disposition Type that is used in the system.");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
                 }
             }
-
-            return View(processApplicable);
+            return View(engDispositionType);
         }
 
-        private bool ProcessApplicableExists(int id)
+        private bool EngDispositionTypeExists(int id)
         {
-          return _context.ProcessApplicables.Any(e => e.ProAppId == id);
+          return _context.EngDispositionTypes.Any(e => e.EngDispositionTypeId == id);
         }
     }
 }
