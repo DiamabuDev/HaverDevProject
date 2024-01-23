@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HaverDevProject.Data;
 using HaverDevProject.Models;
+using HaverDevProject.Utilities;
+using HaverDevProject.CustomControllers;
+//using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HaverDevProject.Controllers
 {
-    public class SupplierController : Controller
+    public class SupplierController : ElephantController
     {
         private readonly HaverNiagaraContext _context;
 
@@ -20,9 +23,89 @@ namespace HaverDevProject.Controllers
         }
 
         // GET: Supplier
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SearchCode, int? page, int? pageSizeID, 
+            string actionButton, string sortDirection = "asc", string sortField = "Code")
         {
-              return View(await _context.Suppliers.ToListAsync());
+            //List of sort options.
+            string[] sortOptions = new[] { "Code", "Name", "Email"};            
+
+            var suppliers = _context.Suppliers
+                .AsNoTracking();
+
+            //Filterig values                       
+            if (!String.IsNullOrEmpty(SearchCode))
+            {
+                suppliers = suppliers.Where(s => s.SupplierCode.ToUpper().Contains(SearchCode.ToUpper())
+                                        || s.SupplierName.ToUpper().Contains(SearchCode.ToUpper()));
+            }           
+
+            //Sorting columns
+            if (!String.IsNullOrEmpty(actionButton)) //Form Submitted!
+            {
+                page = 1;//Reset page to start
+
+                if (sortOptions.Contains(actionButton))//Change of sort is requested
+                {
+                    if (actionButton == sortField) //Reverse order on same field
+                    {
+                        sortDirection = sortDirection == "asc" ? "desc" : "asc";
+                    }
+                    sortField = actionButton;//Sort by the button clicked
+                }
+            }
+            //Now we know which field and direction to sort by
+            if (sortField == "Code")
+            {
+                if (sortDirection == "asc")
+                {
+                    suppliers = suppliers
+                        .OrderBy(p => p.SupplierCode);
+                }
+                else
+                {
+                    suppliers = suppliers
+                        .OrderByDescending(p => p.SupplierCode);
+                }
+            }
+            else if (sortField == "Name")
+            {
+                if (sortDirection == "asc")
+                {
+                    suppliers = suppliers
+                        .OrderBy(p => p.SupplierName);
+                }
+                else
+                {
+                    suppliers = suppliers
+                        .OrderByDescending(p => p.SupplierName);
+                }
+            }            
+            else //Sorting by Email
+            {
+                if (sortDirection == "asc")
+                {
+                    suppliers = suppliers
+                        .OrderBy(p => p.SupplierEmail);
+                }
+                else
+                {
+                    suppliers = suppliers
+                        .OrderByDescending(p => p.SupplierEmail);
+                }
+            }
+            //Set sort for next time
+            ViewData["sortField"] = sortField;
+            ViewData["sortDirection"] = sortDirection;
+
+            //return View(await suppliers.ToListAsync());
+
+            int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
+            ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
+            var pagedData = await PaginatedList<Supplier>.CreateAsync(suppliers.AsNoTracking(), page ?? 1, pageSize);
+
+            return View(pagedData);
+
+
         }
 
         // GET: Supplier/Details/5
