@@ -1,18 +1,13 @@
 ﻿@model HaverDevProject.Models.ProcessApplicable
 
-@{
-    ViewData["Title"] = "Edit";
-}
+<partial name="_ViewHeading" />
 
-<h1>Edit</h1>
-
-<h4>ProcessApplicable</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ProAppId" />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ProAppId" />
+    <div class="row">
+        <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="ProAppName" class="control-label"></label>
                 <input asp-for="ProAppName" class="form-control" />
@@ -21,14 +16,10 @@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <partial name="_BackToList" />
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

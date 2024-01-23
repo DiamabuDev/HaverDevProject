@@ -1,18 +1,13 @@
 ﻿@model HaverDevProject.Models.EngDispositionType
 
-@{
-    ViewData["Title"] = "Edit";
-}
+<partial name="_ViewHeading" />
 
-<h1>Edit</h1>
-
-<h4>EngDispositionType</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="EngDispositionTypeId" />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="EngDispositionTypeId" />
+    <div class="row">
+        <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="EngDispositionTypeName" class="control-label"></label>
                 <input asp-for="EngDispositionTypeName" class="form-control" />
@@ -21,14 +16,16 @@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <partial name="_BackToList" />
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
