@@ -22,12 +22,15 @@ public partial class Drawing
     [Column("drawingRevDate", TypeName = "date")]
     public DateTime DrawingRevDate { get; set; }
 
+    [Display(Name = "Drawing User ID")]
     [Column("drawingUserId")]
     public int DrawingUserId { get; set; }
 
+    [Display(Name = "NCR Engineer ID")]
     [Column("ncrEngId")]
     public int NcrEngId { get; set; }
 
+    [Display(Name = "NCR Engineer ID")]
     [ForeignKey("NcrEngId")]
     [InverseProperty("Drawings")]
     public virtual NcrEng NcrEng { get; set; }

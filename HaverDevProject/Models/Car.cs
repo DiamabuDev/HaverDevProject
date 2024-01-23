@@ -13,12 +13,15 @@ public partial class Car
     [Column("carId")]
     public int CarId { get; set; }
 
+    [Display(Name ="CAR Number")]
     [Column("carNumber")]
     public int CarNumber { get; set; }
 
+    [Display(Name = "Purchase ID")]
     [Column("ncrPurchId")]
     public int NcrPurchId { get; set; }
 
+    [Display(Name = "Purchase ID")]
     [ForeignKey("NcrPurchId")]
     [InverseProperty("Cars")]
     public virtual NcrPurchasing NcrPurch { get; set; }
