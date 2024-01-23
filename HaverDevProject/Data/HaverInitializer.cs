@@ -22,27 +22,27 @@ namespace HaverDevProject.Data
                     context.Suppliers.AddRange(
                         new Supplier
                         {
-                            SupplierCode = "123456",
-                            SupplierName = "",
-                            SupplierEmail = ""
+                            SupplierCode = "880006",
+                            SupplierName = "W S TYLER - PARTICLE & FINE",
+                            SupplierEmail = "wstyler@example.com"
                         },
                         new Supplier
                         {
-                            SupplierCode = "987654",
-                            SupplierName = "",
-                            SupplierEmail = ""
+                            SupplierCode = "790891",
+                            SupplierName = "LAWRENCE SINTERED METALS",
+                            SupplierEmail = "lsm@example.com"
                         },
                         new Supplier
                         {
-                            SupplierCode = "135790",
-                            SupplierName = "",
-                            SupplierEmail = ""
+                            SupplierCode = "700493",
+                            SupplierName = "FASTENAL COMPANY",
+                            SupplierEmail = "fastenal@example.com"
                         },
                         new Supplier
                         {
-                            SupplierCode = "257482",
-                            SupplierName = "",
-                            SupplierEmail = ""
+                            SupplierCode = "880065",
+                            SupplierName = "HBC ENGINEERING",
+                            SupplierEmail = "hbc@example.com"
                         });
                 }
 
