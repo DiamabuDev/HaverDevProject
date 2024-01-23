@@ -11,7 +11,7 @@ using HaverDevProject.CustomControllers;
 
 namespace HaverDevProject.Controllers
 {
-    public class EngDispositionTypeController : CognizantController
+    public class EngDispositionTypeController : LookupsController
     {
         private readonly HaverNiagaraContext _context;
 
@@ -109,7 +109,7 @@ namespace HaverDevProject.Controllers
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
                 }
             }
-            return View(engDispositionType);
+            return View(engDispositionTypeToUpdate);
         }
 
         // GET: EngDispositionTypes/Delete/5

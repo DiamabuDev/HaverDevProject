@@ -11,7 +11,7 @@ using HaverDevProject.CustomControllers;
 
 namespace HaverDevProject.Controllers
 {
-    public class ProcessApplicableController : CognizantController
+    public class ProcessApplicableController : LookupsController
     {
         private readonly HaverNiagaraContext _context;
 
