@@ -4,44 +4,61 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Suppliers</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary float-end mb-3"> <i class="bi bi-plus-square-dotted"></i> Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.SupplierCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SupplierName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SupplierEmail)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SupplierCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SupplierName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SupplierEmail)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.SupplierId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SupplierId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SupplierId">Delete</a>
-            </td>
-        </tr>
+
+<form asp-action="Index" method="get">
+    <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
+    <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
+    <input type="hidden" name="sortField" value="@ViewData["sortDirectionCodeApplied"]"/>
+    <input type="hidden" name="sortField" value="@ViewData["sortDirectionNameApplied"]" />
+    <table class="table table-hover table-striped">
+        <thead class="custom-header-bg">
+            <tr>
+                <th>     
+                    <span>@Html.Raw(ViewData["sortDirectionCodeApplied"])</span>
+                    <input type="submit" name="actionButton" value="Code" class="btn text-light"/>                    
+                </th>
+                <th>
+                    <span>@Html.Raw(ViewData["sortDirectionNameApplied"])</span>
+                    <input type="submit" name="actionButton" value="Name" class="btn text-light" />
+                </th>
+                <th class="d-none d-md-table-cell">
+                    <input type="submit" name="actionButton" value="Email" class="btn text-light" />
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierName)
+                </td>
+                    <td class="d-none d-md-table-cell">
+                    @Html.DisplayFor(modelItem => item.SupplierEmail)
+                </td>
+                <td>   
+                    <a asp-action="Edit" asp-route-id="@item.SupplierId" class="btn text-primary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil-square"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.SupplierId" class="btn text-primary" data-bs-toggle="tooltip" title="Details"><i class="bi bi-eye-fill"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.SupplierId" class="btn text-danger" data-bs-toggle="tooltip" title="Delete"><i class="bi bi-trash3-fill"></i></a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</form>
+@section Scripts {
+    <script type="text/javascript">
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
 }
-    </tbody>
-</table>

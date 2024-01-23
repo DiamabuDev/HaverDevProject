@@ -20,9 +20,78 @@ namespace HaverDevProject.Controllers
         }
 
         // GET: Supplier
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string actionButton, string sortDirection = "asc", string sortField = "Code")
         {
-              return View(await _context.Suppliers.ToListAsync());
+            //List of sort options.
+            string[] sortOptions = new[] { "Code", "Name", "Email"};
+
+            var suppliers = _context.Suppliers
+                .AsNoTracking();
+
+            if (!String.IsNullOrEmpty(actionButton)) //Form Submitted!
+            {
+                //page = 1;//Reset page to start /***********deshabilitar cuando se defina el paginado.
+
+                if (sortOptions.Contains(actionButton))//Change of sort is requested
+                {
+                    if (actionButton == sortField) //Reverse order on same field
+                    {
+                        sortDirection = sortDirection == "asc" ? "desc" : "asc";
+                    }
+                    sortField = actionButton;//Sort by the button clicked
+                }
+            }
+            //Now we know which field and direction to sort by
+            if (sortField == "Code")
+            {
+                if (sortDirection == "asc")
+                {
+                    suppliers = suppliers
+                        .OrderBy(p => p.SupplierCode);
+                    ViewData["sortDirectionCodeApplied"]="<i class=\"bi bi-sort-down\"></i>";
+                }
+                else
+                {
+                    suppliers = suppliers
+                        .OrderByDescending(p => p.SupplierCode);
+                    ViewData["sortDirectionCodeApplied"]="<i class=\"bi bi-sort-up\"></i>";
+                }
+            }
+            else if (sortField == "Name")
+            {
+                if (sortDirection == "asc")
+                {
+                    suppliers = suppliers
+                        .OrderBy(p => p.SupplierName);
+                    ViewData["sortDirectionNameApplied"] = "<i class=\"bi bi-sort-down\"></i>";
+                }
+                else
+                {
+                    suppliers = suppliers
+                        .OrderByDescending(p => p.SupplierName);
+                    ViewData["sortDirectionNameApplied"] = "<i class=\"bi bi-sort-up\"></i>";
+                }
+            }            
+            else //Sorting by Email
+            {
+                if (sortDirection == "asc")
+                {
+                    suppliers = suppliers
+                        .OrderBy(p => p.SupplierEmail);
+                }
+                else
+                {
+                    suppliers = suppliers
+                        .OrderByDescending(p => p.SupplierEmail);
+                }
+            }
+            //Set sort for next time
+            ViewData["sortField"] = sortField;
+            ViewData["sortDirection"] = sortDirection;
+
+            return View(await suppliers.ToListAsync());
+
+            
         }
 
         // GET: Supplier/Details/5
