@@ -23,6 +23,7 @@ public partial class NcrQa
     public string NcrQasalesOrder { get; set; }
 
     [Column("ncrQACreationDate", TypeName = "date")]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime NcrQacreationDate { get; set; }
 
     [Column("ncrQALastUpdated", TypeName = "datetime")]
