@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HaverDevProject.Data;
 using HaverDevProject.Models;
+using HaverDevProject.CustomControllers;
+using HaverDevProject.Utilities;
 
 namespace HaverDevProject.Controllers
 {
-    public class ItemController : Controller
+    public class ItemController : ElephantController
     {
         private readonly HaverNiagaraContext _context;
 
@@ -20,10 +22,103 @@ namespace HaverDevProject.Controllers
         }
 
         // GET: Item
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SearchCode, int? page, int? pageSizeID,
+            string actionButton, string sortDirection = "asc", string sortField = "Code")
         {
-            var haverNiagaraContext = _context.Items.Include(i => i.Supplier);
-            return View(await haverNiagaraContext.ToListAsync());
+            //List of sort options.
+            string[] sortOptions = new[] { "Number", "Name", "Description", "Supplier" };
+
+            var items = _context.Items
+                .Include(i => i.Supplier)
+                .AsNoTracking();
+
+            //Filterig values                       
+            if (!String.IsNullOrEmpty(SearchCode))
+            {
+                items = items.Where(s => s.ItemName.ToUpper().Contains(SearchCode.ToUpper())
+                                        || s.Supplier.SupplierName.ToUpper().Contains(SearchCode.ToUpper()));
+            }
+
+            //Sorting columns
+            if (!String.IsNullOrEmpty(actionButton)) //Form Submitted!
+            {
+                page = 1;//Reset page to start
+
+                if (sortOptions.Contains(actionButton))//Change of sort is requested
+                {
+                    if (actionButton == sortField) //Reverse order on same field
+                    {
+                        sortDirection = sortDirection == "asc" ? "desc" : "asc";
+                    }
+                    sortField = actionButton;//Sort by the button clicked
+                }
+            }
+
+            //Now we know which field and direction to sort by
+            if (sortField == "Number")
+            {
+                if (sortDirection == "asc")
+                {
+                    items = items
+                        .OrderBy(p => p.ItemNumber);
+                }
+                else
+                {
+                    items = items
+                        .OrderByDescending(p => p.ItemNumber);
+                }
+            }
+            else if (sortField == "Name")
+            {
+                if (sortDirection == "asc")
+                {
+                    items = items
+                        .OrderBy(p => p.ItemName);
+                }
+                else
+                {
+                    items = items
+                        .OrderByDescending(p => p.ItemName);
+                }
+            }
+            else if (sortField == "Description")
+            {
+                if (sortDirection == "asc")
+                {
+                    items = items
+                        .OrderBy(p => p.ItemDescription);
+                }
+                else
+                {
+                    items = items
+                        .OrderByDescending(p => p.ItemDescription);
+                }
+            }
+            else //Sorting by Supplier Name
+            {
+                if (sortDirection == "asc")
+                {
+                    items = items
+                        .OrderBy(p => p.Supplier.SupplierName);
+                }
+                else
+                {
+                    items = items
+                        .OrderByDescending(p => p.Supplier.SupplierName);
+                }
+            }
+            //Set sort for next time
+            ViewData["sortField"] = sortField;
+            ViewData["sortDirection"] = sortDirection;
+
+            //return View(await suppliers.ToListAsync());
+
+            int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
+            ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
+            var pagedData = await PaginatedList<Item>.CreateAsync(items.AsNoTracking(), page ?? 1, pageSize);
+
+            return View(pagedData);
+
         }
 
         // GET: Item/Details/5
