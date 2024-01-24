@@ -31,15 +31,15 @@
                     <span><i class="bi bi-filter"></i></span>
                     <input type="submit" name="actionButton" value="NCR #" class="btn text-light" />
                 </th>
-                <th>
+                <th class="d-none d-md-table-cell">
                     <span><i class="bi bi-filter"></i></span>
                     <input type="submit" name="actionButton" value="Defect" class="btn text-light" />
                 </th>
-                <th>
+                <th class="d-none d-md-table-cell">
                     <span><i class="bi bi-filter"></i></span>
                     <input type="submit" name="actionButton" value="Disposition" class="btn text-light" />
                 </th>
-                <th>
+                <th class="d-none d-md-table-cell">
                     <span><i class="bi bi-filter"></i></span>
                     <input type="submit" name="actionButton" value="Created" class="btn text-light" />
                 </th>
@@ -47,7 +47,7 @@
                     <span><i class="bi bi-filter"></i></span>
                     <input type="submit" name="actionButton" value="Updated" class="btn text-light" />
                 </th>
-                <th class="d-none d-md-table-cell">
+                <th>
                     <span><i class="bi bi-filter"></i></span>
                     <input type="submit" name="actionButton" value="Status" class="btn text-light" />
                 </th>
@@ -65,22 +65,19 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.NcrNumber)
                     </td>
-                    <td>
+                    <td class="d-none d-md-table-cell">
                         @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NcrLastUpdated)
-                    </td>
-                    <td>
+                    <td class="d-none d-md-table-cell">
                         @Html.DisplayFor(modelItem => item.NcrEngs.FirstOrDefault().EngDispositionType.EngDispositionTypeName)
                     </td>
-                    <td>
+                    <td class="d-none d-md-table-cell">
                         @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().NcrQacreationDate)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.NcrLastUpdated)
                     </td>
-                    <td class="d-none d-md-table-cell">
+                    <td>
                         @Html.DisplayFor(modelItem => item.StatusUpdate.StatusUpdateName)
                     </td>
                     <td>

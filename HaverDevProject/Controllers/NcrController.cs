@@ -32,6 +32,7 @@ namespace HaverDevProject.Controllers
             var ncr = _context.Ncrs
                 .Include(n=>n.StatusUpdate)
                 .Include(n=>n.NcrEngs)
+                .ThenInclude(n=>n.EngDispositionType)
                 .Include(n=>n.NcrQas)
                 .ThenInclude(n=>n.OrderDetails)
                 .ThenInclude(n =>n.Item)
