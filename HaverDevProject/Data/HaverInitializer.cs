@@ -476,7 +476,6 @@ namespace HaverDevProject.Data
                         });
                 }
 
-
                 if (!context.Cars.Any())
                 {
                     context.Cars.AddRange(
