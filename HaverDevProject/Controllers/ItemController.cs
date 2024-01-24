@@ -21,12 +21,25 @@ namespace HaverDevProject.Controllers
             _context = context;
         }
 
+        private SelectList SupplierSelectList(int? selectedId)
+        {
+            return new SelectList(_context.Suppliers.OrderBy(s => s.SupplierName), "SupplierId", "SupplierName", selectedId);
+        }
+
+        private void PopulateDrodDownList(Supplier supplier = null)
+        {
+            ViewData["SupplierID"] = SupplierSelectList(supplier?.SupplierId);
+        }
+
+
         // GET: Item
-        public async Task<IActionResult> Index(string SearchCode, int? page, int? pageSizeID,
+        public async Task<IActionResult> Index(string SearchCode, int? SupplierID, int? page, int? pageSizeID,
             string actionButton, string sortDirection = "asc", string sortField = "Code")
         {
             //List of sort options.
             string[] sortOptions = new[] { "Number", "Name", "Description", "Supplier" };
+
+            PopulateDrodDownList();
 
             var items = _context.Items
                 .Include(i => i.Supplier)
@@ -38,6 +51,13 @@ namespace HaverDevProject.Controllers
                 items = items.Where(s => s.ItemName.ToUpper().Contains(SearchCode.ToUpper())
                                         || s.Supplier.SupplierName.ToUpper().Contains(SearchCode.ToUpper()));
             }
+
+            if (SupplierID.HasValue)
+            {
+                items = items.Where(s => s.Supplier.SupplierId == SupplierID);
+            }
+
+
 
             //Sorting columns
             if (!String.IsNullOrEmpty(actionButton)) //Form Submitted!
