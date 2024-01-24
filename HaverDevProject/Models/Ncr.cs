@@ -20,6 +20,7 @@ public partial class Ncr
     public string NcrNumber { get; set; }
 
     [Column("ncrLastUpdated", TypeName = "datetime")]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime NcrLastUpdated { get; set; }
 
     [Column("statusUpdateId")]
