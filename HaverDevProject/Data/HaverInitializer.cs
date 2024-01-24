@@ -46,6 +46,8 @@ namespace HaverDevProject.Data
                             SupplierName = "HBC ENGINEERING",
                             SupplierEmail = "hbc@example.com"
                         });
+
+                    context.SaveChanges();
                 }
 
                 if (!context.Items.Any())
@@ -79,6 +81,8 @@ namespace HaverDevProject.Data
                             ItemDescription = "Surface to house internal components.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "HBC ENGINEERING").SupplierId
                         });
+
+                    context.SaveChanges();
                 }
 
                 if (!context.Defects.Any())
@@ -104,6 +108,8 @@ namespace HaverDevProject.Data
                             DefectName = "Incorrect dimensions",
                             DefectDesription = "Hardware has improper dimensions."
                         });
+
+                    context.SaveChanges();
                 }
 
                 if (!context.ItemDefects.Any())
@@ -129,6 +135,8 @@ namespace HaverDevProject.Data
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Panel").ItemId,
                             DefectId = context.Defects.FirstOrDefault(f => f.DefectName == "Incorrect dimensions").DefectId
                         });
+
+                    context.SaveChanges();
                 }
 
                 if (!context.ProcessApplicables.Any())
@@ -142,6 +150,8 @@ namespace HaverDevProject.Data
                         {
                             ProAppName = "WIP (Production Order)"
                         });
+
+                    context.SaveChanges();
                 }
 
                 if (!context.StatusUpdates.Any())
@@ -159,6 +169,8 @@ namespace HaverDevProject.Data
                         {
                             StatusUpdateName = "In Progress"
                         });
+
+                    context.SaveChanges();
                 }
 
                 if (!context.Ncrs.Any())
@@ -272,6 +284,8 @@ namespace HaverDevProject.Data
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Panel").ItemId,
                             NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "64162").NcrQaid
                         });
+
+                    context.SaveChanges();
                 }
 
                 if (!context.EngDispositionTypes.Any())
@@ -285,6 +299,8 @@ namespace HaverDevProject.Data
                         {
                             EngDispositionTypeName = "Drawing updated for correct dimensions."
                         });
+
+                    context.SaveChanges();
                 }
 
                 if (!context.NcrEngs.Any())
@@ -390,6 +406,8 @@ namespace HaverDevProject.Data
                         {
                             FollowUpTypeName = "Update"
                         });
+
+                    context.SaveChanges();
                 }
 
                 if (!context.OpDispositionTypes.Any())
@@ -407,6 +425,8 @@ namespace HaverDevProject.Data
                         {
                             OpDispositionTypeName = "Replacement required."
                         });
+
+                    context.SaveChanges();
                 }
 
                 if (!context.NcrPurchasings.Any())
@@ -474,6 +494,8 @@ namespace HaverDevProject.Data
                             FollowUpTypeId = context.FollowUpTypes.FirstOrDefault(f => f.FollowUpTypeName == "Update").FollowUpTypeId,
                             NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 4).NcrPurchId //THIS MUST CHANGE
                         });
+
+                    context.SaveChanges();
                 }
 
                 if (!context.Cars.Any())
@@ -499,6 +521,8 @@ namespace HaverDevProject.Data
                             CarNumber = 9253,
                             NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 4).NcrPurchId //THIS MUST CHANGE
                         });
+
+                    context.SaveChanges();
                 }
 
                 if (!context.NcrReInspects.Any())
