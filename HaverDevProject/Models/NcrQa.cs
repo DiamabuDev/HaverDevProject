@@ -27,6 +27,7 @@ public partial class NcrQa : IValidatableObject
     [Display(Name = "Creation Date")]
     [Required(ErrorMessage = "You must provide the date the NCR was created.")]
     [Column("ncrQACreationDate", TypeName = "date")]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime NcrQacreationDate { get; set; }
 
     [Display(Name = "Last Updated")]

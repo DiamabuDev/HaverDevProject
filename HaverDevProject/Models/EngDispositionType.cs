@@ -13,6 +13,7 @@ public partial class EngDispositionType
     [Column("engDispositionTypeId")]
     public int EngDispositionTypeId { get; set; }
 
+    [Display(Name = "Disposition")]
     [Required]
     [Column("engDispositionTypeName")]
     [StringLength(45)]

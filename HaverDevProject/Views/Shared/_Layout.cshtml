@@ -25,13 +25,16 @@
                 <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">New NCR</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Ncr" asp-action="Create">New NCR</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">NCR List</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Ncr" asp-action="Index">NCR List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Suppliers</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="NcrQa" asp-action="Index">NCR QA List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Supplier" asp-action="Index">Suppliers</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,9 +50,9 @@
                                 Admin
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Items</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Item" asp-action="Index">Items</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Defects</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Lookup values</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Lookup" asp-action="Index">Lookup values</a></li>
                             </ul>
                         </li>
                     </ul>
