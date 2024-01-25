@@ -20,7 +20,7 @@ public partial class ProcessApplicable
     [Unicode(false)]
     public string ProAppName { get; set; }
 
-    [Display(Name = "Quality Inspector")] //???
+    [Display(Name = "Quality Inspector")]
     [InverseProperty("ProApp")]
     public virtual ICollection<NcrQa> NcrQas { get; set; } = new List<NcrQa>();
 }

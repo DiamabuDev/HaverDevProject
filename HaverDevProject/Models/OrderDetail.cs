@@ -32,7 +32,7 @@ public partial class OrderDetail
     [Column("itemId")]
     public int ItemId { get; set; }
 
-    [Display(Name = "Quality Inspector")] //???
+    [Display(Name = "Quality Inspector")]
     [Column("ncrQAId")]
     public int NcrQaid { get; set; }
 
@@ -42,7 +42,7 @@ public partial class OrderDetail
     [InverseProperty("OrderDetails")]
     public virtual Item Item { get; set; }
 
-    [Display(Name = "Quality Inspector")] //???
+    [Display(Name = "Quality Inspector")]
     [Required(ErrorMessage = "You must provide the Disposition Type.")]
     [ForeignKey("NcrQaid")]
     [InverseProperty("OrderDetails")]

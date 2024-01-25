@@ -32,7 +32,7 @@ public partial class NcrReInspect : IValidatableObject
     [DataType(DataType.DateTime)]
     public DateTime NcrReInspectLastUpdated { get; set; }
 
-    [Display(Name = "Inspector")] //????
+    [Display(Name = "Inspector")]
     [Column("ncrReInspectUserId")]
     public int NcrReInspectUserId { get; set; }
 

@@ -42,7 +42,7 @@ public partial class Ncr
     [InverseProperty("Ncr")]
     public virtual ICollection<NcrQa> NcrQas { get; set; } = new List<NcrQa>();
 
-    [Display(Name = "Inspector")] //what is re inspects?
+    [Display(Name = "Inspector")]
     [InverseProperty("Ncr")]
     public virtual ICollection<NcrReInspect> NcrReInspects { get; set; } = new List<NcrReInspect>();
 
