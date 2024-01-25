@@ -13,12 +13,14 @@ public partial class ProcessApplicable
     [Column("proAppId")]
     public int ProAppId { get; set; }
 
-    [Required]
+    [Display(Name = "Process Applicable")]
+    [Required(ErrorMessage = "You must provide name of the Applicable Process.")]
     [Column("proAppName")]
-    [StringLength(45)]
+    [StringLength(45, ErrorMessage = "The Applicable Process cannot be more than 45 characters.")]
     [Unicode(false)]
     public string ProAppName { get; set; }
 
+    [Display(Name = "Quality Inspector")]
     [InverseProperty("ProApp")]
     public virtual ICollection<NcrQa> NcrQas { get; set; } = new List<NcrQa>();
 }
