@@ -2,6 +2,10 @@ html {
     font-size: 14px;
 }
 
+h3{
+    font-size: 20px;
+}
+
 @media (min-width: 768px) {
     html {
         font-size: 16px;
@@ -153,6 +157,10 @@ body {
 .bg-custom-color {
     background-color: #E7EAEB;
     border-color: #1C335E;
+}
+
+.text-danger {
+    font-style: italic;
 }
 
 /* Provided by David S*/
