@@ -167,6 +167,10 @@ body {
     font-size: 14px;
 }
 
+.custom-bg-dashboard-item {
+    background-color: gray;
+}
+
 /* Provided by David S*/
 .form-group {
     margin-bottom: 1rem
