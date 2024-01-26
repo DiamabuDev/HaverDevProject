@@ -8,7 +8,28 @@
 
 <div class="container mt-3">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header custom-header-bg">
+                    General Information
+                </div>
+                <div class="card-body pb-0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>NCR No</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.NcrNumber</td>
+                                <td>@Model.StatusUpdate.StatusUpdateName</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-header custom-header-bg">
                     Quality Representative
@@ -17,111 +38,291 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>NCR No</th>
                                 <th>Process Applicable</th>
                                 <th>Quality Representative</th>
                                 <th>Creation Date</th>
+                                <th>Last Updated</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>@Model.NcrNumber</td>
-                                <td>Supplier</td>
-                                <td>J. Smith</td>
-                                <td>2023-10-12</td>
-                            </tr>
+                            @foreach (var qa in Model.NcrQas)
+                            {
+                                <tr>
+                                    <td>@qa.ProApp.ProAppName</td>
+                                    <td>R. May</td>
+                                    <td>@qa.NcrQacreationDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@qa.NcrQalastUpdated.ToString("yyyy-MM-dd")</td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
-                </div>
-                <div class="card-header">
-                    Item Information
                 </div>
                 <div class="card-body pb-0">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Qty Received</th>
-                                <th>Qty Defective</th>
+                                <th>Supplier Name</th>
+                                <th>PO or Prod. No.</th>
+                                <th>Sales Order No.</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Name</td>
-                                <td>Description</td>
-                                <td>QuantityReceived</td>
-                                <td>QuantityDefective</td>
-                            </tr>
+                            @foreach (var qa in Model.NcrQas)
+                            {
+                                <tr>
+                                    <td>@qa.OrderDetails.FirstOrDefault().Item.Supplier.SupplierName</td>
+                                    <td>@qa.OrderDetails.FirstOrDefault().OrderNumber</td>
+                                    <td>@qa.NcrQasalesOrder</td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
-                <div class="card-header">
-                    Defect Information
+                <div class="row">
+                    <!-- Item Information -->
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                Item Information
+                            </div>
+                            <div class="card-body pb-0">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Number</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Qty Received</th>
+                                            <th>Qty Defective</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var qa in Model.NcrQas)
+                                        {
+                                            <tr>
+                                                <td>@qa.OrderDetails.FirstOrDefault().Item.ItemNumber</td>
+                                                <td>@qa.OrderDetails.FirstOrDefault().Item.ItemName</td>
+                                                <td>@qa.OrderDetails.FirstOrDefault().Item.ItemDescription</td>
+                                                <td>@qa.OrderDetails.FirstOrDefault().OrderQuanReceived</td>
+                                                <td>@qa.OrderDetails.FirstOrDefault().OrderQuanDefective</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Defect Information -->
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                Defect Information
+                            </div>
+                            <div class="card-body pb-0">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Item Marked Non Conforming</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var qa in Model.NcrQas)
+                                        {
+                                            <tr>
+                                                <td>@qa.OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName</td>
+                                                <td>@qa.OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectDesription</td>
+                                                <td>@(qa.NcrQaitemMarNonConforming == true ? "Yes" : "No")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body pb-0">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Name</td>
-                                <td>Description</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="card">
+                    <div class="card-header custom-header-bg">
+                        Engineering
+                    </div>
+                    <div class="card-body pb-0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Disposition</th>
+                                    <th>Disposition Details</th>
+                                    <th>Engineer</th>
+                                    <th>Creation Date</th>
+                                    <th>Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var e in Model.NcrEngs)
+                                {
+                                    <tr>
+                                        <td>@e.EngDispositionType.EngDispositionTypeName</td>
+                                        <td>@e.NcrEngDispositionDescription</td>
+                                        <td>T. Jones</td>
+                                        <td>@e.NcrEngCreationDate.ToString("yyyy-MM-dd")</td>
+                                        <td>@e.NcrEngLastUpdated.ToString("yyyy-MM-dd")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-body pb-0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Customer Notification Required</th>
+                                    <th>Notification Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var e in Model.NcrEngs)
+                                {
+                                    <tr>
+                                        <td>@(e.NcrEngCustomerNotification == true ? "Yes" : "No")</td>
+                                        <td>Sent</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-header">
+                        Drawing Information
+                    </div>
+                    <div class="card-body pb-0">
+                        <table class="table">
+                            <thead>
+                                @foreach (var e in Model.NcrEngs)
+                                {
+                                    <tr>
+                                        <th>Drawing Update Required</th>
+                                        <th>@(e.Drawings.Any() ? "Original Review Number" : "")</th>
+                                        <th>@(e.Drawings.Any() ? "Updated Review Number" : "")</th>
+                                        <th>@(e.Drawings.Any() ? "Engineer" : "")</th>
+                                        <th>@(e.Drawings.Any() ? "Revision Date" : "")</th>
+                                    </tr>
+                                }
+                            </thead>
+                            <tbody>
+                                @foreach (var e in Model.NcrEngs)
+                                {
+                                    <tr>
+                                        <td>@(e.Drawings.Any() ? "Yes" : "No")</td>
+                                        <td>@e.Drawings.FirstOrDefault().DrawingOriginalRevNumber</td>
+                                        <td>@e.Drawings.FirstOrDefault().DrawingUpdatedRevNumber</td>
+                                        <td>J. Williams</td>
+                                        <td>@e.Drawings.FirstOrDefault().DrawingRevDate.ToString("yyyy-MM-dd")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-header custom-header-bg">
-                    Engineering
+
+                <div class="card">
+                    <div class="card-header custom-header-bg">
+                        Purchasing
+                    </div>
+                    <div class="card-body pb-0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Preliminary Decision</th>
+                                    <th>Replacement Required</th>
+                                    <th>Operations Manager</th>
+                                    <th>Creation Date</th>
+                                    <th>Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var p in Model.NcrPurchasings)
+                                {
+                                    <tr>
+                                        <td>@p.OpDispositionType.OpDispositionTypeName</td>
+                                        <td></td>
+                                        <td>L. Pentland</td>
+                                        <td>@p.NcrPurchCreationDate.ToString("yyyy-MM-dd")</td>
+                                        <td>@p.NcrPurchasingLastUpdated.ToString("yyyy-MM-dd")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-body pb-0">
+                        <table class="table">
+                            <thead>
+                                @foreach (var p in Model.NcrPurchasings)
+                                {
+                                    <tr>
+                                        <th>Was CAR raised?</th>
+                                        <th>@(p.Cars.Any() ? "Car Number" : "")</th>
+                                        <th>Follow Up Required</th>
+                                        <th>@(p.FollowUps.Any() ? "Follow Up Type" : "")</th>
+                                        <th>@(p.FollowUps.Any() ? "Follow Up Expected Date" : "")</th>
+                                    </tr>
+                                }
+                            </thead>
+                            <tbody>
+                                @foreach (var p in Model.NcrPurchasings)
+                                {
+                                    <tr>
+                                        <td>@(p.Cars.Any() ? "Yes" : "No")</td>
+                                        <td>@p.Cars.FirstOrDefault().CarNumber</td>
+                                        <td>@(p.FollowUps.Any() ? "Yes" : "No")</td>
+                                        <td>@p.FollowUps.FirstOrDefault().FollowUpType.FollowUpTypeName</td>
+                                        <td>@p.FollowUps.FirstOrDefault().FollowUpExpectedDate.ToString("yyyy-MM-dd")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="card-body pb-0">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Disposition</th>
-                                <th>Disposition Details</th>
-                                <th>Engineer</th>
-                                <th>Creation Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Use As Is</td>
-                                <td>None</td>
-                                <td>T. Jones</td>
-                                <td>2023-10-15</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>               
-                <div class="card-body pb-0">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Customer Notification Required</th>
-                                <th>Notification Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Yes</td>
-                                <td>Sent</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="card">
+                    <div class="card-header custom-header-bg">
+                        Re-Inspection
+                    </div>
+                    <div class="card-body pb-0">
+                        <table class="table">
+                            <thead>
+                                @foreach (var ri in Model.NcrReInspects)
+                                {
+                                    <tr>
+                                        <th>Re-Inspection Acceptable</th>
+                                        <th>@(ri.NcrReInspectAcceptable ? "" : "New NCR Number")</th>
+                                        <th>Quality Inspector</th>
+                                        <th>Creation Date</th>
+                                        <th>Last Updated</th>
+                                    </tr>
+                                }
+                            </thead>
+                            <tbody>
+                                @foreach (var ri in Model.NcrReInspects)
+                                {
+                                    <tr>
+                                        <td>@(ri.NcrReInspectAcceptable ? "Yes" : "No")</td>
+                                        <td>@ri.NcrReInspectNewNcrNumber</td>
+                                        <td>R. May</td>
+                                        <td>@ri.NcrReInspectCreationDate.ToString("yyyy-MM-dd")</td>
+                                        <td>@ri.NcrReInspectLastUpdated.ToString("yyyy-MM-dd")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="my-3">
-        <a asp-action="Edit" asp-route-id="@Model.NcrId" class="btn btn-primary">Edit</a>
-        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        <div class="my-3">
+            <a asp-action="" asp-route-id="" class="btn btn-primary">Download PDF</a>
+            <a asp-action="" asp-route-id="" class="btn btn-primary">Download Excel File</a>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
     </div>
 </div>

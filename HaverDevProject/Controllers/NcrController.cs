@@ -30,13 +30,14 @@ namespace HaverDevProject.Controllers
 
 
             var ncr = _context.Ncrs
-                .Include(n=>n.StatusUpdate)
-                .Include(n=>n.NcrEngs)
-                .Include(n=>n.NcrQas)
-                .ThenInclude(n=>n.OrderDetails)
-                .ThenInclude(n =>n.Item)
-                .ThenInclude(n=>n.ItemDefects)
-                .ThenInclude(n=>n.Defect)
+                .Include(n => n.StatusUpdate)
+                .Include(n => n.NcrEngs)
+                .ThenInclude(n => n.EngDispositionType)
+                .Include(n => n.NcrQas)
+                .ThenInclude(n => n.OrderDetails)
+                .ThenInclude(n => n.Item)
+                .ThenInclude(n => n.ItemDefects)
+                .ThenInclude(n => n.Defect)
                 .AsNoTracking();
 
             //Filterig values                       
@@ -180,7 +181,32 @@ namespace HaverDevProject.Controllers
 
             var ncr = await _context.Ncrs
                 .Include(n => n.StatusUpdate)
+                .Include(n => n.NcrQas)
+                    .ThenInclude(nqa => nqa.OrderDetails)
+                        .ThenInclude(od => od.Item)
+                            .ThenInclude(i => i.Supplier)
+                .Include(n => n.NcrQas)
+                      .ThenInclude(nqa => nqa.OrderDetails)
+                        .ThenInclude(od => od.Item)
+                        .ThenInclude(i => i.ItemDefects)
+                            .ThenInclude(id => id.Defect)
+               .Include(n => n.NcrQas)
+                   .ThenInclude(n => n.ProApp)
+                .Include(n => n.NcrEngs)
+                    .ThenInclude(ne => ne.EngDispositionType)
+                .Include(n => n.NcrEngs)
+                    .ThenInclude(ne => ne.Drawings)
+                .Include(n => n.NcrPurchasings)
+                    .ThenInclude(np => np.OpDispositionType)
+                .Include(n => n.NcrPurchasings)
+                    .ThenInclude(np => np.Cars)
+                .Include(n => n.NcrPurchasings)
+                    .ThenInclude(np => np.FollowUps)
+                        .ThenInclude(fu => fu.FollowUpType)
+                .Include(n => n.NcrReInspects)
                 .FirstOrDefaultAsync(m => m.NcrId == id);
+
+
             if (ncr == null)
             {
                 return NotFound();
@@ -299,14 +325,14 @@ namespace HaverDevProject.Controllers
             {
                 _context.Ncrs.Remove(ncr);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool NcrExists(int id)
         {
-          return _context.Ncrs.Any(e => e.NcrId == id);
+            return _context.Ncrs.Any(e => e.NcrId == id);
         }
     }
 }
