@@ -3,12 +3,11 @@ using System;
 using HaverDevProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace HaverDevProject.Data.HNMigrations
+namespace HaverDevProject.Data.QLMigrations
 {
     [DbContext(typeof(HaverNiagaraContext))]
     partial class HaverNiagaraContextModelSnapshot : ModelSnapshot
@@ -16,27 +15,21 @@ namespace HaverDevProject.Data.HNMigrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.15")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.15");
 
             modelBuilder.Entity("HaverDevProject.Models.Car", b =>
                 {
                     b.Property<int>("CarId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("carId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarId"));
-
                     b.Property<int>("CarNumber")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("carNumber");
 
                     b.Property<int>("NcrPurchId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrPurchId");
 
                     b.HasKey("CarId")
@@ -51,22 +44,20 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("DefectId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("defectId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DefectId"));
 
                     b.Property<string>("DefectDesription")
                         .HasMaxLength(300)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(300)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("defectDesription");
 
                     b.Property<string>("DefectName")
                         .IsRequired()
                         .HasMaxLength(45)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("defectName");
 
                     b.HasKey("DefectId")
@@ -79,13 +70,11 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("DrawingId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("drawingId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DrawingId"));
-
                     b.Property<int>("DrawingOriginalRevNumber")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("drawingOriginalRevNumber");
 
                     b.Property<DateTime>("DrawingRevDate")
@@ -93,15 +82,15 @@ namespace HaverDevProject.Data.HNMigrations
                         .HasColumnName("drawingRevDate");
 
                     b.Property<int>("DrawingUpdatedRevNumber")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("drawingUpdatedRevNumber");
 
                     b.Property<int>("DrawingUserId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("drawingUserId");
 
                     b.Property<int>("NcrEngId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrEngId");
 
                     b.HasKey("DrawingId")
@@ -116,16 +105,14 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("EngDispositionTypeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("engDispositionTypeId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EngDispositionTypeId"));
 
                     b.Property<string>("EngDispositionTypeName")
                         .IsRequired()
                         .HasMaxLength(45)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("engDispositionTypeName");
 
                     b.HasKey("EngDispositionTypeId")
@@ -138,21 +125,19 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("FollowUpId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("followUpId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FollowUpId"));
 
                     b.Property<DateTime>("FollowUpExpectedDate")
                         .HasColumnType("date")
                         .HasColumnName("followUpExpectedDate");
 
                     b.Property<int>("FollowUpTypeId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("followUpTypeId");
 
                     b.Property<int>("NcrPurchId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrPurchId");
 
                     b.HasKey("FollowUpId")
@@ -169,16 +154,14 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("FollowUpTypeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("followUpTypeId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FollowUpTypeId"));
 
                     b.Property<string>("FollowUpTypeName")
                         .IsRequired()
                         .HasMaxLength(45)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("followUpTypeName");
 
                     b.HasKey("FollowUpTypeId")
@@ -191,30 +174,28 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("ItemId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("itemId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemId"));
 
                     b.Property<string>("ItemDescription")
                         .HasMaxLength(300)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(300)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("itemDescription");
 
                     b.Property<string>("ItemName")
                         .IsRequired()
                         .HasMaxLength(45)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("itemName");
 
                     b.Property<int>("ItemNumber")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("itemNumber");
 
                     b.Property<int>("SupplierId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("supplierId");
 
                     b.HasKey("ItemId")
@@ -229,17 +210,15 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("ItemDefectId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("itemDefectId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemDefectId"));
-
                     b.Property<int>("DefectId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("defectId");
 
                     b.Property<int>("ItemId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("itemId");
 
                     b.HasKey("ItemDefectId")
@@ -256,31 +235,29 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("ItemDefectPhotoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("itemDefectPhotoId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemDefectPhotoId"));
-
                     b.Property<int>("ItemDefectId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("itemDefectId");
 
                     b.Property<byte[]>("ItemDefectPhotoContent")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)")
+                        .HasColumnType("BLOB")
                         .HasColumnName("itemDefectPhotoContent");
 
                     b.Property<string>("ItemDefectPhotoDescription")
                         .HasMaxLength(300)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(300)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("itemDefectPhotoDescription");
 
                     b.Property<string>("ItemDefectPhotoMimeType")
                         .IsRequired()
                         .HasMaxLength(45)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("itemDefectPhotoMimeType");
 
                     b.HasKey("ItemDefectPhotoId")
@@ -295,20 +272,18 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("ItemDefectVideoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("itemDefectVideoId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemDefectVideoId"));
-
                     b.Property<int>("ItemDefectId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("itemDefectId");
 
                     b.Property<string>("ItemDefectVideoLink")
                         .IsRequired()
                         .HasMaxLength(100)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(100)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("itemDefectVideoLink");
 
                     b.HasKey("ItemDefectVideoId")
@@ -323,10 +298,8 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("NcrId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NcrId"));
 
                     b.Property<DateTime>("NcrLastUpdated")
                         .HasColumnType("datetime")
@@ -336,11 +309,11 @@ namespace HaverDevProject.Data.HNMigrations
                         .IsRequired()
                         .HasMaxLength(10)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(10)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("ncrNumber");
 
                     b.Property<int>("StatusUpdateId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("statusUpdateId");
 
                     b.HasKey("NcrId")
@@ -355,13 +328,11 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("NcrEngId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrEngId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NcrEngId"));
-
                     b.Property<int>("EngDispositionTypeId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("engDispositionTypeId");
 
                     b.Property<DateTime>("NcrEngCreationDate")
@@ -369,13 +340,13 @@ namespace HaverDevProject.Data.HNMigrations
                         .HasColumnName("ncrEngCreationDate");
 
                     b.Property<bool?>("NcrEngCustomerNotification")
-                        .HasColumnType("bit")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrEngCustomerNotification");
 
                     b.Property<string>("NcrEngDispositionDescription")
                         .HasMaxLength(300)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(300)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("ncrEngDispositionDescription");
 
                     b.Property<DateTime>("NcrEngLastUpdated")
@@ -383,11 +354,11 @@ namespace HaverDevProject.Data.HNMigrations
                         .HasColumnName("ncrEngLastUpdated");
 
                     b.Property<int>("NcrEngUserId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrEngUserId");
 
                     b.Property<int>("NcrId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrId");
 
                     b.HasKey("NcrEngId")
@@ -404,13 +375,11 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("NcrPurchId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrPurchId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NcrPurchId"));
-
                     b.Property<int>("NcrId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrId");
 
                     b.Property<DateTime>("NcrPurchCreationDate")
@@ -422,11 +391,11 @@ namespace HaverDevProject.Data.HNMigrations
                         .HasColumnName("ncrPurchasingLastUpdated");
 
                     b.Property<int>("NcrPurchasingUserId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrPurchasingUserId");
 
                     b.Property<int>("OpDispositionTypeId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("opDispositionTypeId");
 
                     b.HasKey("NcrPurchId")
@@ -443,13 +412,11 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("NcrQaid")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrQAId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NcrQaid"));
-
                     b.Property<int>("NcrId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrId");
 
                     b.Property<DateTime>("NcrQacreationDate")
@@ -457,7 +424,7 @@ namespace HaverDevProject.Data.HNMigrations
                         .HasColumnName("ncrQACreationDate");
 
                     b.Property<bool>("NcrQaitemMarNonConforming")
-                        .HasColumnType("bit")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrQAItemMarNonConforming");
 
                     b.Property<DateTime>("NcrQalastUpdated")
@@ -468,15 +435,15 @@ namespace HaverDevProject.Data.HNMigrations
                         .IsRequired()
                         .HasMaxLength(45)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("ncrQASalesOrder");
 
                     b.Property<int>("NcrQauserId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrQAUserId");
 
                     b.Property<int>("ProAppId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("proAppId");
 
                     b.HasKey("NcrQaid")
@@ -493,17 +460,15 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("NcrReInspectId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrReInspectId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NcrReInspectId"));
-
                     b.Property<int>("NcrId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrId");
 
                     b.Property<bool>("NcrReInspectAcceptable")
-                        .HasColumnType("bit")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrReInspectAcceptable");
 
                     b.Property<DateTime>("NcrReInspectCreationDate")
@@ -515,11 +480,11 @@ namespace HaverDevProject.Data.HNMigrations
                         .HasColumnName("ncrReInspectLastUpdated");
 
                     b.Property<int?>("NcrReInspectNewNcrNumber")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrReInspectNewNcrNumber");
 
                     b.Property<int>("NcrReInspectUserId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrReInspectUserId");
 
                     b.HasKey("NcrReInspectId")
@@ -534,16 +499,14 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("OpDispositionTypeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("opDispositionTypeId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OpDispositionTypeId"));
 
                     b.Property<string>("OpDispositionTypeName")
                         .IsRequired()
                         .HasMaxLength(45)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("opDispositionTypeName");
 
                     b.HasKey("OpDispositionTypeId")
@@ -556,29 +519,27 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("orderId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
-
                     b.Property<int>("ItemId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("itemId");
 
                     b.Property<int>("NcrQaid")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ncrQAId");
 
                     b.Property<int>("OrderNumber")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("orderNumber");
 
                     b.Property<int>("OrderQuanDefective")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("orderQuanDefective");
 
                     b.Property<int>("OrderQuanReceived")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("orderQuanReceived");
 
                     b.HasKey("OrderId")
@@ -595,16 +556,14 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("ProAppId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("proAppId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProAppId"));
 
                     b.Property<string>("ProAppName")
                         .IsRequired()
                         .HasMaxLength(45)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("proAppName");
 
                     b.HasKey("ProAppId")
@@ -617,16 +576,14 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("StatusUpdateId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("statusUpdateId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusUpdateId"));
 
                     b.Property<string>("StatusUpdateName")
                         .IsRequired()
                         .HasMaxLength(45)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("statusUpdateName");
 
                     b.HasKey("StatusUpdateId")
@@ -639,29 +596,27 @@ namespace HaverDevProject.Data.HNMigrations
                 {
                     b.Property<int>("SupplierId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("supplierId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplierId"));
 
                     b.Property<string>("SupplierCode")
                         .IsRequired()
                         .HasMaxLength(45)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("supplierCode");
 
                     b.Property<string>("SupplierEmail")
                         .HasMaxLength(45)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("supplierEmail");
 
                     b.Property<string>("SupplierName")
                         .IsRequired()
                         .HasMaxLength(45)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("supplierName");
 
                     b.HasKey("SupplierId")

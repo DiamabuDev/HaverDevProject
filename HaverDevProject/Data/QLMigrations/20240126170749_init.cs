@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace HaverDevProject.Data.HNMigrations
+namespace HaverDevProject.Data.QLMigrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,10 +15,10 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "defect",
                 columns: table => new
                 {
-                    defectId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    defectName = table.Column<string>(type: "varchar(45)", unicode: false, maxLength: 45, nullable: false),
-                    defectDesription = table.Column<string>(type: "varchar(300)", unicode: false, maxLength: 300, nullable: true)
+                    defectId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    defectName = table.Column<string>(type: "TEXT", unicode: false, maxLength: 45, nullable: false),
+                    defectDesription = table.Column<string>(type: "TEXT", unicode: false, maxLength: 300, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -29,9 +29,9 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "engDispositionType",
                 columns: table => new
                 {
-                    engDispositionTypeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    engDispositionTypeName = table.Column<string>(type: "varchar(45)", unicode: false, maxLength: 45, nullable: false)
+                    engDispositionTypeId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    engDispositionTypeName = table.Column<string>(type: "TEXT", unicode: false, maxLength: 45, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,9 +42,9 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "followUpType",
                 columns: table => new
                 {
-                    followUpTypeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    followUpTypeName = table.Column<string>(type: "varchar(45)", unicode: false, maxLength: 45, nullable: false)
+                    followUpTypeId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    followUpTypeName = table.Column<string>(type: "TEXT", unicode: false, maxLength: 45, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,9 +55,9 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "opDispositionType",
                 columns: table => new
                 {
-                    opDispositionTypeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    opDispositionTypeName = table.Column<string>(type: "varchar(45)", unicode: false, maxLength: 45, nullable: false)
+                    opDispositionTypeId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    opDispositionTypeName = table.Column<string>(type: "TEXT", unicode: false, maxLength: 45, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,9 +68,9 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "processApplicable",
                 columns: table => new
                 {
-                    proAppId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    proAppName = table.Column<string>(type: "varchar(45)", unicode: false, maxLength: 45, nullable: false)
+                    proAppId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    proAppName = table.Column<string>(type: "TEXT", unicode: false, maxLength: 45, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -81,9 +81,9 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "statusUpdate",
                 columns: table => new
                 {
-                    statusUpdateId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    statusUpdateName = table.Column<string>(type: "varchar(45)", unicode: false, maxLength: 45, nullable: false)
+                    statusUpdateId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    statusUpdateName = table.Column<string>(type: "TEXT", unicode: false, maxLength: 45, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -94,11 +94,11 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "supplier",
                 columns: table => new
                 {
-                    supplierId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    supplierCode = table.Column<string>(type: "varchar(45)", unicode: false, maxLength: 45, nullable: false),
-                    supplierName = table.Column<string>(type: "varchar(45)", unicode: false, maxLength: 45, nullable: false),
-                    supplierEmail = table.Column<string>(type: "varchar(45)", unicode: false, maxLength: 45, nullable: true)
+                    supplierId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    supplierCode = table.Column<string>(type: "TEXT", unicode: false, maxLength: 45, nullable: false),
+                    supplierName = table.Column<string>(type: "TEXT", unicode: false, maxLength: 45, nullable: false),
+                    supplierEmail = table.Column<string>(type: "TEXT", unicode: false, maxLength: 45, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -109,11 +109,11 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "ncr",
                 columns: table => new
                 {
-                    ncrId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ncrNumber = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: false),
+                    ncrId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ncrNumber = table.Column<string>(type: "TEXT", unicode: false, maxLength: 10, nullable: false),
                     ncrLastUpdated = table.Column<DateTime>(type: "datetime", nullable: false),
-                    statusUpdateId = table.Column<int>(type: "int", nullable: false)
+                    statusUpdateId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -129,12 +129,12 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "item",
                 columns: table => new
                 {
-                    itemId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    itemNumber = table.Column<int>(type: "int", nullable: false),
-                    itemName = table.Column<string>(type: "varchar(45)", unicode: false, maxLength: 45, nullable: false),
-                    itemDescription = table.Column<string>(type: "varchar(300)", unicode: false, maxLength: 300, nullable: true),
-                    supplierId = table.Column<int>(type: "int", nullable: false)
+                    itemId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    itemNumber = table.Column<int>(type: "INTEGER", nullable: false),
+                    itemName = table.Column<string>(type: "TEXT", unicode: false, maxLength: 45, nullable: false),
+                    itemDescription = table.Column<string>(type: "TEXT", unicode: false, maxLength: 300, nullable: true),
+                    supplierId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -150,15 +150,15 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "ncrEng",
                 columns: table => new
                 {
-                    ncrEngId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ncrEngCustomerNotification = table.Column<bool>(type: "bit", nullable: true),
-                    ncrEngDispositionDescription = table.Column<string>(type: "varchar(300)", unicode: false, maxLength: 300, nullable: true),
+                    ncrEngId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ncrEngCustomerNotification = table.Column<bool>(type: "INTEGER", nullable: true),
+                    ncrEngDispositionDescription = table.Column<string>(type: "TEXT", unicode: false, maxLength: 300, nullable: true),
                     ncrEngLastUpdated = table.Column<DateTime>(type: "datetime", nullable: false),
                     ncrEngCreationDate = table.Column<DateTime>(type: "date", nullable: false),
-                    ncrEngUserId = table.Column<int>(type: "int", nullable: false),
-                    engDispositionTypeId = table.Column<int>(type: "int", nullable: false),
-                    ncrId = table.Column<int>(type: "int", nullable: false)
+                    ncrEngUserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    engDispositionTypeId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ncrId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -179,13 +179,13 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "ncrPurchasing",
                 columns: table => new
                 {
-                    ncrPurchId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ncrPurchId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     ncrPurchCreationDate = table.Column<DateTime>(type: "date", nullable: false),
                     ncrPurchasingLastUpdated = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ncrPurchasingUserId = table.Column<int>(type: "int", nullable: false),
-                    opDispositionTypeId = table.Column<int>(type: "int", nullable: false),
-                    ncrId = table.Column<int>(type: "int", nullable: false)
+                    ncrPurchasingUserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    opDispositionTypeId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ncrId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -206,15 +206,15 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "ncrQA",
                 columns: table => new
                 {
-                    ncrQAId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ncrQAItemMarNonConforming = table.Column<bool>(type: "bit", nullable: false),
-                    ncrQASalesOrder = table.Column<string>(type: "varchar(45)", unicode: false, maxLength: 45, nullable: false),
+                    ncrQAId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ncrQAItemMarNonConforming = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ncrQASalesOrder = table.Column<string>(type: "TEXT", unicode: false, maxLength: 45, nullable: false),
                     ncrQACreationDate = table.Column<DateTime>(type: "date", nullable: false),
                     ncrQALastUpdated = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ncrQAUserId = table.Column<int>(type: "int", nullable: false),
-                    proAppId = table.Column<int>(type: "int", nullable: false),
-                    ncrId = table.Column<int>(type: "int", nullable: false)
+                    ncrQAUserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    proAppId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ncrId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -235,14 +235,14 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "ncrReInspect",
                 columns: table => new
                 {
-                    ncrReInspectId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ncrReInspectAcceptable = table.Column<bool>(type: "bit", nullable: false),
-                    ncrReInspectNewNcrNumber = table.Column<int>(type: "int", nullable: true),
+                    ncrReInspectId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ncrReInspectAcceptable = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ncrReInspectNewNcrNumber = table.Column<int>(type: "INTEGER", nullable: true),
                     ncrReInspectCreationDate = table.Column<DateTime>(type: "date", nullable: false),
                     ncrReInspectLastUpdated = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ncrReInspectUserId = table.Column<int>(type: "int", nullable: false),
-                    ncrId = table.Column<int>(type: "int", nullable: false)
+                    ncrReInspectUserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ncrId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -258,10 +258,10 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "itemDefect",
                 columns: table => new
                 {
-                    itemDefectId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    itemId = table.Column<int>(type: "int", nullable: false),
-                    defectId = table.Column<int>(type: "int", nullable: false)
+                    itemDefectId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    itemId = table.Column<int>(type: "INTEGER", nullable: false),
+                    defectId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -282,13 +282,13 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "drawing",
                 columns: table => new
                 {
-                    drawingId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    drawingOriginalRevNumber = table.Column<int>(type: "int", nullable: false),
-                    drawingUpdatedRevNumber = table.Column<int>(type: "int", nullable: false),
+                    drawingId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    drawingOriginalRevNumber = table.Column<int>(type: "INTEGER", nullable: false),
+                    drawingUpdatedRevNumber = table.Column<int>(type: "INTEGER", nullable: false),
                     drawingRevDate = table.Column<DateTime>(type: "date", nullable: false),
-                    drawingUserId = table.Column<int>(type: "int", nullable: false),
-                    ncrEngId = table.Column<int>(type: "int", nullable: false)
+                    drawingUserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ncrEngId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -304,10 +304,10 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "car",
                 columns: table => new
                 {
-                    carId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    carNumber = table.Column<int>(type: "int", nullable: false),
-                    ncrPurchId = table.Column<int>(type: "int", nullable: false)
+                    carId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    carNumber = table.Column<int>(type: "INTEGER", nullable: false),
+                    ncrPurchId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -323,11 +323,11 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "followUp",
                 columns: table => new
                 {
-                    followUpId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    followUpId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     followUpExpectedDate = table.Column<DateTime>(type: "date", nullable: false),
-                    followUpTypeId = table.Column<int>(type: "int", nullable: false),
-                    ncrPurchId = table.Column<int>(type: "int", nullable: false)
+                    followUpTypeId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ncrPurchId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -348,13 +348,13 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "orderDetail",
                 columns: table => new
                 {
-                    orderId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    orderNumber = table.Column<int>(type: "int", nullable: false),
-                    orderQuanReceived = table.Column<int>(type: "int", nullable: false),
-                    orderQuanDefective = table.Column<int>(type: "int", nullable: false),
-                    itemId = table.Column<int>(type: "int", nullable: false),
-                    ncrQAId = table.Column<int>(type: "int", nullable: false)
+                    orderId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    orderNumber = table.Column<int>(type: "INTEGER", nullable: false),
+                    orderQuanReceived = table.Column<int>(type: "INTEGER", nullable: false),
+                    orderQuanDefective = table.Column<int>(type: "INTEGER", nullable: false),
+                    itemId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ncrQAId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -375,12 +375,12 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "itemDefectPhoto",
                 columns: table => new
                 {
-                    itemDefectPhotoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    itemDefectPhotoContent = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    itemDefectPhotoMimeType = table.Column<string>(type: "varchar(45)", unicode: false, maxLength: 45, nullable: false),
-                    itemDefectPhotoDescription = table.Column<string>(type: "varchar(300)", unicode: false, maxLength: 300, nullable: true),
-                    itemDefectId = table.Column<int>(type: "int", nullable: false)
+                    itemDefectPhotoId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    itemDefectPhotoContent = table.Column<byte[]>(type: "BLOB", nullable: false),
+                    itemDefectPhotoMimeType = table.Column<string>(type: "TEXT", unicode: false, maxLength: 45, nullable: false),
+                    itemDefectPhotoDescription = table.Column<string>(type: "TEXT", unicode: false, maxLength: 300, nullable: true),
+                    itemDefectId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -396,10 +396,10 @@ namespace HaverDevProject.Data.HNMigrations
                 name: "itemDefectVideo",
                 columns: table => new
                 {
-                    itemDefectVideoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    itemDefectVideoLink = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
-                    itemDefectId = table.Column<int>(type: "int", nullable: false)
+                    itemDefectVideoId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    itemDefectVideoLink = table.Column<string>(type: "TEXT", unicode: false, maxLength: 100, nullable: false),
+                    itemDefectId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

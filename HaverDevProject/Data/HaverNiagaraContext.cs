@@ -56,8 +56,8 @@ public partial class HaverNiagaraContext : DbContext
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=HaverNiagara;Trusted_Connection=SSPI;encrypt=false;");
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //    => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=HaverNiagara;Trusted_Connection=SSPI;encrypt=false;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -127,6 +127,7 @@ public partial class HaverNiagaraContext : DbContext
             entity.HasOne(d => d.Item).WithMany(p => p.ItemDefects)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_itemDefect_item");
+
         });
 
         modelBuilder.Entity<ItemDefectPhoto>(entity =>
