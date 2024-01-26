@@ -1,6 +1,13 @@
 html {
     font-size: 14px;
 }
+h1{
+    font-size: 26px;
+}
+
+h2{
+    font-size: 20px;
+}
 
 @media (min-width: 768px) {
     html {
@@ -150,6 +157,14 @@ body {
 .bg-custom-color {
     background-color: #E7EAEB;
     border-color: #1C335E;
+}
+
+.text-danger {
+    font-style: italic;
+}
+
+.custom-tooltip {
+    font-size: 14px;
 }
 
 /* Provided by David S*/
