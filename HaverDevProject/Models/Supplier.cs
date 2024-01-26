@@ -13,6 +13,7 @@ public partial class Supplier
     [Column("supplierId")]
     public int SupplierId { get; set; }
 
+
     [Display(Name = "Supplier Code")]
     [Required(ErrorMessage = "You must provide the Supplier Code.")]
     [Column("supplierCode")]
@@ -28,9 +29,10 @@ public partial class Supplier
     public string SupplierName { get; set; }
 
     [Display(Name = "Supplier Email")]
-    [Column("supplierEmail")]
-    [StringLength(45, ErrorMessage = "The Supplier Email cannot be more than 45 characters.")]
-    [RegularExpression("^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$", ErrorMessage = "Please provide a valid email.")]
+    [Column("supplierEmail")]   
+    [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Please provide a valid email.")]
+    [DataType(DataType.EmailAddress)]   
+    [StringLength(45, ErrorMessage = "The Supplier Email cannot be more than 45 characters.")]    
     [Unicode(false)]
     public string SupplierEmail { get; set; }
 
