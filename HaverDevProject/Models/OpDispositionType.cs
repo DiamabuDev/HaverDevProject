@@ -13,12 +13,14 @@ public partial class OpDispositionType
     [Column("opDispositionTypeId")]
     public int OpDispositionTypeId { get; set; }
 
-    [Required]
+    [Display(Name = "Disposition Type")]
+    [Required(ErrorMessage = "You must provide the Disposition Type.")]
     [Column("opDispositionTypeName")]
-    [StringLength(45)]
+    [StringLength(45, ErrorMessage = "The Disposition Type cannot be more than 45 characters.")]
     [Unicode(false)]
     public string OpDispositionTypeName { get; set; }
 
+    [Display(Name = "Purchasing")]
     [InverseProperty("OpDispositionType")]
     public virtual ICollection<NcrPurchasing> NcrPurchasings { get; set; } = new List<NcrPurchasing>();
 }

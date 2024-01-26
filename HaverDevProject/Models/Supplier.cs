@@ -13,28 +13,30 @@ public partial class Supplier
     [Column("supplierId")]
     public int SupplierId { get; set; }
 
-    [Required]
-    [Display(Name = "Code")]
+
+    [Display(Name = "Supplier Code")]
+    [Required(ErrorMessage = "You must provide the Supplier Code.")]
     [Column("supplierCode")]
-    [StringLength(45, ErrorMessage = "Supplier Code cannot be more than 45 characters long.")]
+    [StringLength(45, ErrorMessage = "The Supplier Code cannot be more than 45 characters.")]
     [Unicode(false)]
     public string SupplierCode { get; set; }
 
-    [Required]
-    [Display(Name = "Name")]
+    [Display(Name = "Supplier Name")]
+    [Required(ErrorMessage = "You must provide the Supplier Name.")]
     [Column("supplierName")]
-    [StringLength(45, ErrorMessage = "Supplier Name cannot be more than 45 characters long.")]
+    [StringLength(45, ErrorMessage = "The Supplier Name cannot be more than 45 characters.")]
     [Unicode(false)]
     public string SupplierName { get; set; }
 
-    [Column("supplierEmail")]
-    [Display(Name = "Email")]
-    [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Invalid email format.")]
-    [DataType(DataType.EmailAddress)]
-    [StringLength(45, ErrorMessage = "Supplier Name cannot be more than 45 characters long.")]
+    [Display(Name = "Supplier Email")]
+    [Column("supplierEmail")]   
+    [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Please provide a valid email.")]
+    [DataType(DataType.EmailAddress)]   
+    [StringLength(45, ErrorMessage = "The Supplier Email cannot be more than 45 characters.")]    
     [Unicode(false)]
     public string SupplierEmail { get; set; }
 
+    [Display(Name = "Items")]
     [InverseProperty("Supplier")]
     public virtual ICollection<Item> Items { get; set; } = new List<Item>();
 }
