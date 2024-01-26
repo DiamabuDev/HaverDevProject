@@ -166,6 +166,10 @@ body {
     font-style: italic;
 }
 
+.custom-tooltip {
+    font-size: 14px;
+}
+
 /* Provided by David S*/
 .form-group {
     margin-bottom: 1rem
