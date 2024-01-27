@@ -13,6 +13,7 @@ public partial class Car
     [Column("carId")]
     public int CarId { get; set; }
 
+    [Display(Name = "CAR #")]
     [Column("carNumber")]
     public int CarNumber { get; set; }
 

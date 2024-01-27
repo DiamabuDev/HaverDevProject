@@ -13,6 +13,7 @@ public partial class FollowUp
     [Column("followUpId")]
     public int FollowUpId { get; set; }
 
+    [Display(Name = "Expected Date")]
     [Column("followUpExpectedDate", TypeName = "date")]
     public DateTime FollowUpExpectedDate { get; set; }
 

@@ -13,7 +13,7 @@ public partial class OrderDetail
     [Column("orderId")]
     public int OrderId { get; set; }
 
-    [Display(Name = "Order Number")]
+    [Display(Name = "PO or Prod. No.")]
     [Required(ErrorMessage = "You must provide the Order Number.")]
     [Column("orderNumber")]
     public int OrderNumber { get; set; }

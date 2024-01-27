@@ -53,7 +53,7 @@ public partial class NcrQa : IValidatableObject
     [InverseProperty("NcrQas")]
     public virtual Ncr Ncr { get; set; }
 
-    [Display(Name = "Order Details")]
+    [Display(Name = "PO or Prod. No.")]
     [InverseProperty("NcrQa")]
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 

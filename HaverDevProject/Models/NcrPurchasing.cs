@@ -50,7 +50,7 @@ public partial class NcrPurchasing : IValidatableObject
     [InverseProperty("NcrPurchasings")]
     public virtual Ncr Ncr { get; set; }
 
-    [Display(Name = "Disposition Type")]
+    [Display(Name = "Purchasing's Preliminary Decision")]
     [Required(ErrorMessage = "You must provide the Disposition Type.")]
     [ForeignKey("OpDispositionTypeId")]
     [InverseProperty("NcrPurchasings")]
