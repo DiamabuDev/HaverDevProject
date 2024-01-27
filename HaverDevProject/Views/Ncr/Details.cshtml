@@ -159,6 +159,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-header">
+                    Attachments / Comments
+                </div>
+                <div class="card-body pb-0">
+                    @foreach (var qa in Model.NcrQas)
+                      {
+                        <p>
+                            @(qa.OrderDetails.FirstOrDefault()?.Item?.ItemDefects.FirstOrDefault()?.ItemDefectVideos.FirstOrDefault()?.ItemDefectVideoLink?.Any() == true ? "Yes" : "C\\Users\\lesley\\Dropbox\\ncr 2023-095-4.mp4")
+                        </p>
+                      }
+                </div>                
                 <div class="card">
                     <div class="card-header custom-header-bg">
                         Engineering
