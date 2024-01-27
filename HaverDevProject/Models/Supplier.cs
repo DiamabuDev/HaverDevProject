@@ -14,21 +14,21 @@ public partial class Supplier
     public int SupplierId { get; set; }
 
 
-    [Display(Name = "Supplier Code")]
+    [Display(Name = "Code")]
     [Required(ErrorMessage = "You must provide the Supplier Code.")]
     [Column("supplierCode")]
     [StringLength(45, ErrorMessage = "The Supplier Code cannot be more than 45 characters.")]
     [Unicode(false)]
     public string SupplierCode { get; set; }
 
-    [Display(Name = "Supplier Name")]
+    [Display(Name = "Name")]
     [Required(ErrorMessage = "You must provide the Supplier Name.")]
     [Column("supplierName")]
     [StringLength(45, ErrorMessage = "The Supplier Name cannot be more than 45 characters.")]
     [Unicode(false)]
     public string SupplierName { get; set; }
 
-    [Display(Name = "Supplier Email")]
+    [Display(Name = "Email")]
     [Column("supplierEmail")]   
     [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Please provide a valid email.")]
     [DataType(DataType.EmailAddress)]   
