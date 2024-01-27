@@ -22,6 +22,7 @@ public partial class Item
     [Unicode(false)]
     public string ItemName { get; set; }
 
+    [Display(Name = "Description of Item (including SAP No.)")]
     [Column("itemDescription")]
     [StringLength(300)]
     [Unicode(false)]

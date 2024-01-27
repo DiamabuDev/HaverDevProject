@@ -23,7 +23,7 @@ public partial class OrderDetail
     [Column("orderQuanReceived")]
     public int OrderQuanReceived { get; set; }
 
-    [Display(Name = "Defective Quantity")]
+    [Display(Name = "Quantity Defective")]
     [Required(ErrorMessage = "You must provide the Defective Quantity.")]
     [Column("orderQuanDefective")]
     public int OrderQuanDefective { get; set; }

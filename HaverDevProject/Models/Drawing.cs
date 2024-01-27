@@ -13,18 +13,22 @@ public partial class Drawing
     [Column("drawingId")]
     public int DrawingId { get; set; }
 
+    [Display(Name = "Original Rev. Number")]
     [Column("drawingOriginalRevNumber")]
     public int DrawingOriginalRevNumber { get; set; }
 
+    [Display(Name = "Updated Rev. Number")]
     [Column("drawingUpdatedRevNumber")]
     public int DrawingUpdatedRevNumber { get; set; }
 
+    [Display(Name = "Revision Date")]
     [Column("drawingRevDate", TypeName = "date")]
     public DateTime DrawingRevDate { get; set; }
 
     [Column("drawingUserId")]
     public int DrawingUserId { get; set; }
 
+    [Display(Name = "Name of Engineer")]
     [Column("ncrEngId")]
     public int NcrEngId { get; set; }
 

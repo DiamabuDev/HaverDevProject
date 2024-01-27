@@ -13,7 +13,7 @@ public partial class NcrReInspect : IValidatableObject
     [Column("ncrReInspectId")]
     public int NcrReInspectId { get; set; }
 
-    [Display(Name = "Inspect Acceptable")]
+    [Display(Name = "Re-Inspected Acceptable")]
     [Column("ncrReInspectAcceptable")]
     public bool NcrReInspectAcceptable { get; set; } = false;
 
@@ -26,13 +26,13 @@ public partial class NcrReInspect : IValidatableObject
     [Column("ncrReInspectCreationDate", TypeName = "date")]
     public DateTime NcrReInspectCreationDate { get; set; }
 
-    [Display(Name = "Last Updated")]
+    [Display(Name = "Date")]
     [Required(ErrorMessage = "You must provide the last date the NCR was updated.")]
     [Column("ncrReInspectLastUpdated", TypeName = "datetime")]
     [DataType(DataType.DateTime)]
     public DateTime NcrReInspectLastUpdated { get; set; }
 
-    [Display(Name = "Inspector")]
+    [Display(Name = "Inspector's Name")]
     [Column("ncrReInspectUserId")]
     public int NcrReInspectUserId { get; set; }
 

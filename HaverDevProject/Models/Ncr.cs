@@ -13,7 +13,7 @@ public partial class Ncr
     [Column("ncrId")]
     public int NcrId { get; set; }
 
-    [Display(Name = "NCR Number")]
+    [Display(Name = "NCR No.")]
     [Required(ErrorMessage = "You must provide the NCR Number.")]
     [Column("ncrNumber")]
     [StringLength(10, ErrorMessage = "The NCR Number cannot be more than 10 characters long.")]
