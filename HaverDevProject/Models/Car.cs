@@ -17,9 +17,11 @@ public partial class Car
     [Column("carNumber")]
     public int CarNumber { get; set; }
 
+    [Display(Name = "Purchase ID")]
     [Column("ncrPurchId")]
     public int NcrPurchId { get; set; }
 
+    [Display(Name = "Purchase ID")]
     [ForeignKey("NcrPurchId")]
     [InverseProperty("Cars")]
     public virtual NcrPurchasing NcrPurch { get; set; }

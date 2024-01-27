@@ -13,6 +13,13 @@ public partial class NcrPurchasing : IValidatableObject
     [Column("ncrPurchId")]
     public int NcrPurchId { get; set; }
 
+    [Column("ncrPurchasingDescription")]
+    [StringLength(300)]
+    [Display(Name = "Description")]
+    [DataType(DataType.MultilineText)] 
+    [Unicode(false)]
+    public string NcrPurchasingDescription { get; set; }
+
     [Display(Name = "Creation Date")]
     [Required(ErrorMessage = "You must provide the date the NCR was created.")]
     [Column("ncrPurchCreationDate", TypeName = "date")]

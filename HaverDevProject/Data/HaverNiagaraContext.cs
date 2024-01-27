@@ -56,9 +56,8 @@ public partial class HaverNiagaraContext : DbContext
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=HaverNiagara;Trusted_Connection=SSPI;encrypt=false;");
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //    => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=HaverNiagara;Trusted_Connection=SSPI;encrypt=false;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -128,6 +127,7 @@ public partial class HaverNiagaraContext : DbContext
             entity.HasOne(d => d.Item).WithMany(p => p.ItemDefects)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_itemDefect_item");
+
         });
 
         modelBuilder.Entity<ItemDefectPhoto>(entity =>
@@ -236,6 +236,8 @@ public partial class HaverNiagaraContext : DbContext
         modelBuilder.Entity<Supplier>(entity =>
         {
             entity.HasKey(e => e.SupplierId).HasName("pk_supplier_supplierId");
+
+            entity.HasIndex(e => e.SupplierCode).IsUnique(); //check restriction for unique code.
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -14,7 +14,8 @@ public partial class Defect
     [Column("defectId")]
     public int DefectId { get; set; }
 
-    [Required]
+    [Display(Name = "Defect Name")]
+    [Required(ErrorMessage = "You cannot leave Defect Name blank ")]
     [Column("defectName")]
     [StringLength(45)]
     [Unicode(false)]

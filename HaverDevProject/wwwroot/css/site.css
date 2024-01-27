@@ -1,6 +1,13 @@
 html {
     font-size: 14px;
 }
+h1{
+    font-size: 26px;
+}
+
+h2{
+    font-size: 20px;
+}
 
 @media (min-width: 768px) {
     html {
@@ -26,7 +33,7 @@ body {
 }
 
 .navbar {
-    background-color: #1C335E;
+    background-color: #001B40;
     color: #fff;
 }
 
@@ -34,10 +41,7 @@ body {
     margin-left: 20px;
     font-size: 17px;
 }
-.navbar-nav .nav-item:hover a.nav-link {
-    color: #cccccc;
-    font-size: 18px;
-}
+
 .dashboard {
     display: flex;
     flex-wrap: wrap;
@@ -118,7 +122,7 @@ body {
         padding-top: 3px;
         margin: 0;
     }
-  
+
     .dashboard-item:hover i {
         font-size: 35px;
     }
@@ -134,3 +138,55 @@ body {
     .dropdown-with {
         width: 100%
     }
+}
+
+.custom-header-bg {
+    background-color: #345B91;
+    color: #fff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #B2C2E0;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #1C335E;
+}
+
+.bg-custom-color {
+    background-color: #E7EAEB;
+    border-color: #1C335E;
+}
+
+.text-danger {
+    font-style: italic;
+}
+
+.custom-tooltip {
+    font-size: 14px;
+}
+
+.custom-bg-dashboard-item {
+    background-color: gray;
+}
+
+/* Provided by David S*/
+.form-group {
+    margin-bottom: 1rem
+}
+
+/*Style for NCR List (Index.html)*/
+
+.stillactive {
+    color: green;
+}
+
+.closed {
+    color: red;
+}
+
+.standout, .closed, .stillactive {
+    font-weight: 600;
+}
+
