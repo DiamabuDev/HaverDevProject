@@ -145,6 +145,11 @@ body {
     color: #fff;
 }
 
+.custom-secondary-bg {
+    background-color: #002B5C99;
+    color: #fff;
+}
+
 .table-hover tbody tr:hover {
     background-color: #B2C2E0;
     color: #fff;

@@ -143,6 +143,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-header custom-secondary-bg">
+                    Additional Information
+                </div>
+                <div class="card-header">
+                    Images
+                </div>
+                <div class="card-body pb-0">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="~/images/img-example1.png" class="img-fluid" alt="Description of Image 1">
+                        </div>
+                        <div class="col-md-6">
+                            <img src="~/images/img-example2.png" class="img-fluid" alt="Description of Image 2">
+                        </div>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-header custom-header-bg">
                         Engineering
@@ -222,7 +238,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div>            
 
                 <div class="card">
                     <div class="card-header custom-header-bg">
@@ -233,7 +249,7 @@
                             <thead>
                                 <tr>
                                     <th>Preliminary Decision</th>
-                                    <th>Replacement Required</th>
+                                    <th>Description</th>
                                     <th>Operations Manager</th>
                                     <th>Creation Date</th>
                                     <th>Last Updated</th>
@@ -244,7 +260,7 @@
                                 {
                                     <tr>
                                         <td>@p.OpDispositionType.OpDispositionTypeName</td>
-                                        <td></td>
+                                        <td>@p.NcrPurchasingDescription</td>
                                         <td>L. Pentland</td>
                                         <td>@p.NcrPurchCreationDate.ToString("yyyy-MM-dd")</td>
                                         <td>@p.NcrPurchasingLastUpdated.ToString("yyyy-MM-dd")</td>
