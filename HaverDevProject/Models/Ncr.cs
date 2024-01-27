@@ -38,11 +38,11 @@ public partial class Ncr
     [InverseProperty("Ncr")]
     public virtual ICollection<NcrPurchasing> NcrPurchasings { get; set; } = new List<NcrPurchasing>();
 
-    [Display(Name = "Quality Inspector")]
+    [Display(Name = "Quality Representative")]
     [InverseProperty("Ncr")]
     public virtual ICollection<NcrQa> NcrQas { get; set; } = new List<NcrQa>();
 
-    [Display(Name = "Inspector")]
+    [Display(Name = "Re-Inspector")]
     [InverseProperty("Ncr")]
     public virtual ICollection<NcrReInspect> NcrReInspects { get; set; } = new List<NcrReInspect>();
 

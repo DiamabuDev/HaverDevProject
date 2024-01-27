@@ -31,11 +31,11 @@ public partial class NcrPurchasing : IValidatableObject
     [DataType(DataType.DateTime)]
     public DateTime NcrPurchasingLastUpdated { get; set; }
 
-    [Display(Name = "Purchasing")]
+    [Display(Name = "Operations Manager")]
     [Column("ncrPurchasingUserId")]
     public int NcrPurchasingUserId { get; set; }
 
-    [Display(Name = "Disposition Type")]
+    [Display(Name = "Purchasing's Preliminary Decision")]
     [Column("opDispositionTypeId")]
     public int OpDispositionTypeId { get; set; }
 
@@ -43,11 +43,11 @@ public partial class NcrPurchasing : IValidatableObject
     [Column("ncrId")]
     public int NcrId { get; set; }
 
-    [Display(Name = "CAR")]
+    [Display(Name = "Was a CAR raised")]
     [InverseProperty("NcrPurch")]
     public virtual ICollection<Car> Cars { get; set; } = new List<Car>();
 
-    [Display(Name = "Follow Up")]
+    [Display(Name = "Follow-up Required")]
     [InverseProperty("NcrPurch")]
     public virtual ICollection<FollowUp> FollowUps { get; set; } = new List<FollowUp>();
 

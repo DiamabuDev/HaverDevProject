@@ -33,7 +33,7 @@ public partial class Drawing
     [Column("ncrEngId")]
     public int NcrEngId { get; set; }
 
-    [Display(Name = "NCR Engineer ID")]
+    [Display(Name = "Engineering")]
     [ForeignKey("NcrEngId")]
     [InverseProperty("Drawings")]
     public virtual NcrEng NcrEng { get; set; }

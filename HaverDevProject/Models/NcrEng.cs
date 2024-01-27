@@ -34,7 +34,7 @@ public partial class NcrEng : IValidatableObject
     [Column("ncrEngCreationDate", TypeName = "date")]
     public DateTime NcrEngCreationDate { get; set; }
 
-    [Display(Name = "Engineer")]
+    [Display(Name = "Engineering")]
     [Column("ncrEngUserId")]
     public int NcrEngUserId { get; set; }
 
@@ -50,7 +50,7 @@ public partial class NcrEng : IValidatableObject
     [InverseProperty("NcrEng")]
     public virtual ICollection<Drawing> Drawings { get; set; } = new List<Drawing>();
 
-    [Display(Name = "Disposition Type")]
+    [Display(Name = "Review by HBC Engineering")]
     [Required(ErrorMessage = "You must provide the Disposition Type.")]
     [ForeignKey("EngDispositionTypeId")]
     [InverseProperty("NcrEngs")]
