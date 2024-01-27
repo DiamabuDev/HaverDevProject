@@ -149,7 +149,7 @@ namespace HaverDevProject.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-            catch (RetryLimitExceededException /* dex */)
+            catch (RetryLimitExceededException)
             {
                 ModelState.AddModelError("", "Unable to save changes after multiple attempts. Try again, and if the problem persists, see your system administrator.");
             }
@@ -202,19 +202,31 @@ namespace HaverDevProject.Controllers
                 {
                     _context.Update(supplier);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (RetryLimitExceededException)
+                {
+                    ModelState.AddModelError("", "Unable to save changes after multiple attempts. Try again, and if the problem persists, see your system administrator.");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!SupplierExists(supplier.SupplierId))
                     {
-                        return NotFound();
+                        ModelState.AddModelError("", "Unable to save changes. The Supplier was deleted by another user.");
+                    }                    
+                }
+                catch (DbUpdateException dex)
+                {
+                    if (dex.GetBaseException().Message.Contains("UNIQUE"))
+                    {
+                        ModelState.AddModelError("SupplierCode", "Unable to save changes. Remember, you cannot have duplicate Supplier Code.");
                     }
                     else
                     {
-                        throw;
+                        ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                
             }
             return View(supplier);
         }
