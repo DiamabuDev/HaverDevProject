@@ -386,6 +386,12 @@ namespace HaverDevProject.Data.QLMigrations
                         .HasColumnType("date")
                         .HasColumnName("ncrPurchCreationDate");
 
+                    b.Property<string>("NcrPurchasingDescription")
+                        .HasMaxLength(300)
+                        .IsUnicode(false)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("ncrPurchasingDescription");
+
                     b.Property<DateTime>("NcrPurchasingLastUpdated")
                         .HasColumnType("datetime")
                         .HasColumnName("ncrPurchasingLastUpdated");
@@ -621,6 +627,9 @@ namespace HaverDevProject.Data.QLMigrations
 
                     b.HasKey("SupplierId")
                         .HasName("pk_supplier_supplierId");
+
+                    b.HasIndex("SupplierCode")
+                        .IsUnique();
 
                     b.ToTable("supplier");
                 });

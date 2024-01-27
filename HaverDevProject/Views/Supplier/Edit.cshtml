@@ -9,8 +9,13 @@
 <div class="col-md-6 col-10 mx-auto">
     <form asp-action="Edit">
         <div class="card border-2">
-            <div class="card-header bg-custom-color mb-2">
-                <h2>Edit Supplier</h2>
+            <div class="card-header bg-custom-color mb-2 d-flex justify-content-between">
+                <div>
+                    <h2>Edit Supplier</h2>
+                </div>
+                <div class="justify-content-end">
+                    <p>Fields marked <span class="fw-bold text-danger">*</span> are required.</p>
+                </div>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="SupplierId" />
             </div>

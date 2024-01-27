@@ -236,6 +236,8 @@ public partial class HaverNiagaraContext : DbContext
         modelBuilder.Entity<Supplier>(entity =>
         {
             entity.HasKey(e => e.SupplierId).HasName("pk_supplier_supplierId");
+
+            entity.HasIndex(e => e.SupplierCode).IsUnique(); //check restriction for unique code.
         });
 
         OnModelCreatingPartial(modelBuilder);

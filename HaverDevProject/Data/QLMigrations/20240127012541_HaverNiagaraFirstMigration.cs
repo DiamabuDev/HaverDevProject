@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HaverDevProject.Data.QLMigrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class HaverNiagaraFirstMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -181,6 +181,7 @@ namespace HaverDevProject.Data.QLMigrations
                 {
                     ncrPurchId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    ncrPurchasingDescription = table.Column<string>(type: "TEXT", unicode: false, maxLength: 300, nullable: true),
                     ncrPurchCreationDate = table.Column<DateTime>(type: "date", nullable: false),
                     ncrPurchasingLastUpdated = table.Column<DateTime>(type: "datetime", nullable: false),
                     ncrPurchasingUserId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -505,6 +506,12 @@ namespace HaverDevProject.Data.QLMigrations
                 name: "IX_orderDetail_ncrQAId",
                 table: "orderDetail",
                 column: "ncrQAId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_supplier_supplierCode",
+                table: "supplier",
+                column: "supplierCode",
+                unique: true);
         }
 
         /// <inheritdoc />

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HaverDevProject.Data.QLMigrations
 {
     [DbContext(typeof(HaverNiagaraContext))]
-    [Migration("20240126170749_init")]
-    partial class init
+    [Migration("20240127012541_HaverNiagaraFirstMigration")]
+    partial class HaverNiagaraFirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -389,6 +389,12 @@ namespace HaverDevProject.Data.QLMigrations
                         .HasColumnType("date")
                         .HasColumnName("ncrPurchCreationDate");
 
+                    b.Property<string>("NcrPurchasingDescription")
+                        .HasMaxLength(300)
+                        .IsUnicode(false)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("ncrPurchasingDescription");
+
                     b.Property<DateTime>("NcrPurchasingLastUpdated")
                         .HasColumnType("datetime")
                         .HasColumnName("ncrPurchasingLastUpdated");
@@ -624,6 +630,9 @@ namespace HaverDevProject.Data.QLMigrations
 
                     b.HasKey("SupplierId")
                         .HasName("pk_supplier_supplierId");
+
+                    b.HasIndex("SupplierCode")
+                        .IsUnique();
 
                     b.ToTable("supplier");
                 });
