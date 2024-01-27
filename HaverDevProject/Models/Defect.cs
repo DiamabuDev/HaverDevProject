@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,7 @@ public partial class Defect
     [Unicode(false)]
     public string DefectName { get; set; }
 
-    [Display(Name = "Defect Description")]
+    [Display(Name = "Description of Defect")]
     [Column("defectDesription")]
     [StringLength(300)]
     [Unicode(false)]

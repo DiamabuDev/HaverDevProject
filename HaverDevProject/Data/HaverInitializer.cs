@@ -1023,7 +1023,7 @@ namespace HaverDevProject.Data
                         new NcrReInspect
                         {
                             NcrReInspectAcceptable = true,
-                            NcrReInspectNewNcrNumber = 1,
+                            NcrReInspectNewNcrNumber = null,
                             NcrReInspectCreationDate = DateTime.Parse("2023-11-05"),
                             NcrReInspectLastUpdated = DateTime.Now,
                             NcrReInspectUserId = 2, //need to make nullable
@@ -1032,7 +1032,7 @@ namespace HaverDevProject.Data
                         new NcrReInspect
                         {
                             NcrReInspectAcceptable = true,
-                            NcrReInspectNewNcrNumber = 2,
+                            NcrReInspectNewNcrNumber = null,
                             NcrReInspectCreationDate = DateTime.Parse("2023-12-18"),
                             NcrReInspectLastUpdated = DateTime.Now,
                             NcrReInspectUserId = 3, //need to make nullable
@@ -1041,7 +1041,7 @@ namespace HaverDevProject.Data
                         new NcrReInspect
                         {
                             NcrReInspectAcceptable = true,
-                            NcrReInspectNewNcrNumber = 3,
+                            NcrReInspectNewNcrNumber = null,
                             NcrReInspectCreationDate = DateTime.Parse("2024-01-04"),
                             NcrReInspectLastUpdated = DateTime.Now,
                             NcrReInspectUserId = 4, //need to make nullable

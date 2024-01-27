@@ -13,7 +13,7 @@ public partial class OrderDetail
     [Column("orderId")]
     public int OrderId { get; set; }
 
-    [Display(Name = "Order Number")]
+    [Display(Name = "PO or Prod. No.")]
     [Required(ErrorMessage = "You must provide the Order Number.")]
     [Column("orderNumber")]
     public int OrderNumber { get; set; }
@@ -23,7 +23,7 @@ public partial class OrderDetail
     [Column("orderQuanReceived")]
     public int OrderQuanReceived { get; set; }
 
-    [Display(Name = "Defective Quantity")]
+    [Display(Name = "Quantity Defective")]
     [Required(ErrorMessage = "You must provide the Defective Quantity.")]
     [Column("orderQuanDefective")]
     public int OrderQuanDefective { get; set; }
