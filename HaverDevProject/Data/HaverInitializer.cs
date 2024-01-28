@@ -1177,8 +1177,8 @@ namespace HaverDevProject.Data
                         {
                             NcrReInspectAcceptable = true,
                             NcrReInspectNewNcrNumber = null,
-                            NcrReInspectCreationDate = DateTime.Parse("2023-11-05"),
-                            NcrReInspectLastUpdated = DateTime.Now,
+                            NcrReInspectCreationDate = DateTime.Parse("2023-12-13"),
+                            NcrReInspectLastUpdated = DateTime.Parse("2023-12-13"),
                             NcrReInspectUserId = 2, //need to make nullable
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-138").NcrId
                         },
