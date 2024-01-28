@@ -19,7 +19,7 @@
                     @Html.DropDownList("SupplierID", null, "All Suppliers", htmlAttributes: new { @class = "form-control" })
                 </div>
                 <div class="form-group col-lg-4 col-md-5 col-sm-10 col-10">
-                    <label class="control-label mb-1">Find by Item or Supplier Name:</label>
+                    <label class="control-label mb-1">Find by Item:</label>
                     @Html.TextBox("SearchCode", null, new { @class = "form-control" })
                 </div>  
                 <div class="form-group col-lg-4 col-md-6 col-sm-10 col-8 align-self-end">
@@ -34,20 +34,20 @@
         <thead class="custom-header-bg">
             <tr>
                 <th>
+                    <input type="submit" name="actionButton" value="Code" class="btn text-light"/>
                     <span><i class="bi bi-filter"></i></span>
-                    <input type="submit" name="actionButton" value="Code" class="btn text-light"/>                    
                 </th>
                 <th>
-                    <span><i class="bi bi-filter"></i></span>
                     <input type="submit" name="actionButton" value="Item" class="btn text-light" />
+                    <span><i class="bi bi-filter"></i></span>
                 </th>
                 <th class="d-none d-md-table-cell">
-                    <span><i class="bi bi-filter"></i></span>
                     <input type="submit" name="actionButton" value="Description" class="btn text-light" />
+                    <span><i class="bi bi-filter"></i></span>
                 </th>
                 <th class="d-md-table-cell">
-                    <span><i class="bi bi-filter"></i></span>
                     <input type="submit" name="actionButton" value="Supplier" class="btn text-light" />
+                    <span><i class="bi bi-filter"></i></span>
                 </th>
                 <th></th>
             </tr>

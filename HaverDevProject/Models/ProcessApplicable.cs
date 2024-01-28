@@ -13,7 +13,7 @@ public partial class ProcessApplicable
     [Column("proAppId")]
     public int ProAppId { get; set; }
 
-    [Display(Name = "Process Applicable")]
+    [Display(Name = "Identify Process Applicable")]
     [Required(ErrorMessage = "You must provide name of the Applicable Process.")]
     [Column("proAppName")]
     [StringLength(45, ErrorMessage = "The Applicable Process cannot be more than 45 characters.")]

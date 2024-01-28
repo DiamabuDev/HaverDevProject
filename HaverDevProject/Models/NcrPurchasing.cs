@@ -13,22 +13,29 @@ public partial class NcrPurchasing : IValidatableObject
     [Column("ncrPurchId")]
     public int NcrPurchId { get; set; }
 
+    [Column("ncrPurchasingDescription")]
+    [StringLength(300)]
+    [Display(Name = "Description")]
+    [DataType(DataType.MultilineText)] 
+    [Unicode(false)]
+    public string NcrPurchasingDescription { get; set; }
+
     [Display(Name = "Creation Date")]
     [Required(ErrorMessage = "You must provide the date the NCR was created.")]
     [Column("ncrPurchCreationDate", TypeName = "date")]
     public DateTime NcrPurchCreationDate { get; set; }
 
-    [Display(Name = "Last Updated")]
+    [Display(Name = "Date")]
     [Required(ErrorMessage = "You must provide the last date the NCR was updated.")]
     [Column("ncrPurchasingLastUpdated", TypeName = "datetime")]
     [DataType(DataType.DateTime)]
     public DateTime NcrPurchasingLastUpdated { get; set; }
 
-    [Display(Name = "Purchasing")]
+    [Display(Name = "Operations Manager")]
     [Column("ncrPurchasingUserId")]
     public int NcrPurchasingUserId { get; set; }
 
-    [Display(Name = "Disposition Type")]
+    [Display(Name = "Purchasing's Preliminary Decision")]
     [Column("opDispositionTypeId")]
     public int OpDispositionTypeId { get; set; }
 
@@ -36,11 +43,11 @@ public partial class NcrPurchasing : IValidatableObject
     [Column("ncrId")]
     public int NcrId { get; set; }
 
-    [Display(Name = "CAR")]
+    [Display(Name = "Was a CAR raised")]
     [InverseProperty("NcrPurch")]
     public virtual ICollection<Car> Cars { get; set; } = new List<Car>();
 
-    [Display(Name = "Follow Up")]
+    [Display(Name = "Follow-up Required")]
     [InverseProperty("NcrPurch")]
     public virtual ICollection<FollowUp> FollowUps { get; set; } = new List<FollowUp>();
 
@@ -50,7 +57,7 @@ public partial class NcrPurchasing : IValidatableObject
     [InverseProperty("NcrPurchasings")]
     public virtual Ncr Ncr { get; set; }
 
-    [Display(Name = "Disposition Type")]
+    [Display(Name = "Purchasing's Preliminary Decision")]
     [Required(ErrorMessage = "You must provide the Disposition Type.")]
     [ForeignKey("OpDispositionTypeId")]
     [InverseProperty("NcrPurchasings")]

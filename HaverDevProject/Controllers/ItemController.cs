@@ -37,7 +37,7 @@ namespace HaverDevProject.Controllers
             string actionButton, string sortDirection = "asc", string sortField = "Code")
         {
             //List of sort options.
-            string[] sortOptions = new[] { "Number", "Name", "Description", "Supplier" };
+            string[] sortOptions = new[] { "Code", "Item", "Description", "Supplier" };
 
             PopulateDrodDownList();
 
@@ -75,7 +75,7 @@ namespace HaverDevProject.Controllers
             }
 
             //Now we know which field and direction to sort by
-            if (sortField == "Number")
+            if (sortField == "Code")
             {
                 if (sortDirection == "asc")
                 {
@@ -88,7 +88,7 @@ namespace HaverDevProject.Controllers
                         .OrderByDescending(p => p.ItemNumber);
                 }
             }
-            else if (sortField == "Name")
+            else if (sortField == "Item")
             {
                 if (sortDirection == "asc")
                 {

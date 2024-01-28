@@ -56,8 +56,8 @@ public partial class HaverNiagaraContext : DbContext
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=HaverNiagara;Trusted_Connection=SSPI;encrypt=false;");
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //    => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=HaverNiagara;Trusted_Connection=SSPI;encrypt=false;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -127,6 +127,7 @@ public partial class HaverNiagaraContext : DbContext
             entity.HasOne(d => d.Item).WithMany(p => p.ItemDefects)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_itemDefect_item");
+
         });
 
         modelBuilder.Entity<ItemDefectPhoto>(entity =>
@@ -235,6 +236,8 @@ public partial class HaverNiagaraContext : DbContext
         modelBuilder.Entity<Supplier>(entity =>
         {
             entity.HasKey(e => e.SupplierId).HasName("pk_supplier_supplierId");
+
+            entity.HasIndex(e => e.SupplierCode).IsUnique(); //check restriction for unique code.
         });
 
         OnModelCreatingPartial(modelBuilder);
