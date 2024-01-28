@@ -13,17 +13,17 @@ public partial class NcrEng : IValidatableObject
     [Column("ncrEngId")]
     public int NcrEngId { get; set; }
 
-    [Display(Name = "Customer Notification")]
+    [Display(Name = "Does Customer require notification of NCR")]
     [Column("ncrEngCustomerNotification")]
     public bool? NcrEngCustomerNotification { get; set; } = false;
 
-    [Display(Name = "Disposition Description")]
+    [Display(Name = "Disposition")]
     [Column("ncrEngDispositionDescription")]
     [StringLength(300)]
     [Unicode(false)]
     public string NcrEngDispositionDescription { get; set; }
 
-    [Display(Name = "Last Updated")]
+    [Display(Name = "Date")]
     [Required(ErrorMessage = "You must provide the last date the NCR was updated.")]
     [Column("ncrEngLastUpdated", TypeName = "datetime")]
     [DataType(DataType.DateTime)]
@@ -34,7 +34,7 @@ public partial class NcrEng : IValidatableObject
     [Column("ncrEngCreationDate", TypeName = "date")]
     public DateTime NcrEngCreationDate { get; set; }
 
-    [Display(Name = "Engineer")]
+    [Display(Name = "Engineering")]
     [Column("ncrEngUserId")]
     public int NcrEngUserId { get; set; }
 
@@ -50,7 +50,7 @@ public partial class NcrEng : IValidatableObject
     [InverseProperty("NcrEng")]
     public virtual ICollection<Drawing> Drawings { get; set; } = new List<Drawing>();
 
-    [Display(Name = "Disposition Type")]
+    [Display(Name = "Review by HBC Engineering")]
     [Required(ErrorMessage = "You must provide the Disposition Type.")]
     [ForeignKey("EngDispositionTypeId")]
     [InverseProperty("NcrEngs")]

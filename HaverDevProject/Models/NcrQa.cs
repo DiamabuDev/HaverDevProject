@@ -13,12 +13,12 @@ public partial class NcrQa : IValidatableObject
     [Column("ncrQAId")]
     public int NcrQaid { get; set; }
 
-    [Display(Name = "Non Conforming")]
+    [Display(Name = "Item marked Nonconforming")]
     [Column("ncrQAItemMarNonConforming")]
     public bool NcrQaitemMarNonConforming { get; set; } = false;
 
-    [Display(Name = "Sales Order")]
-    [Required(ErrorMessage = "You must provide the Sales Order.")]
+    [Display(Name = "Sales Order No.")]
+    [Required(ErrorMessage = "You must provide the Sales Order Number.")]
     [Column("ncrQASalesOrder")]
     [StringLength(45)]
     [Unicode(false)]
@@ -30,17 +30,17 @@ public partial class NcrQa : IValidatableObject
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime NcrQacreationDate { get; set; }
 
-    [Display(Name = "Last Updated")]
+    [Display(Name = "Date")]
     [Required(ErrorMessage = "You must provide the last date the NCR was updated.")]
     [Column("ncrQALastUpdated", TypeName = "datetime")]
     [DataType(DataType.DateTime)]
     public DateTime NcrQalastUpdated { get; set; }
 
-    [Display(Name = "Quality Inspector")]
+    [Display(Name = "Quality Representative's Name")]
     [Column("ncrQAUserId")]
     public int NcrQauserId { get; set; }
 
-    [Display(Name = "Process Applicable")]
+    [Display(Name = "Identify Process Applicable")]
     [Column("proAppId")]
     public int ProAppId { get; set; }
 
@@ -54,11 +54,11 @@ public partial class NcrQa : IValidatableObject
     [InverseProperty("NcrQas")]
     public virtual Ncr Ncr { get; set; }
 
-    [Display(Name = "Order Details")]
+    [Display(Name = "PO or Prod. No.")]
     [InverseProperty("NcrQa")]
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 
-    [Display(Name = "Process Applicable")]
+    [Display(Name = "Identify Process Applicable")]
     [Required(ErrorMessage = "You must provide the Applicable Process.")]
     [ForeignKey("ProAppId")]
     [InverseProperty("NcrQas")]

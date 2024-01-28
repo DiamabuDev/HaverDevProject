@@ -13,6 +13,7 @@ public partial class FollowUpType
     [Column("followUpTypeId")]
     public int FollowUpTypeId { get; set; }
 
+    [Display(Name = "Follow-up Type")]
     [Required]
     [Column("followUpTypeName")]
     [StringLength(45)]
