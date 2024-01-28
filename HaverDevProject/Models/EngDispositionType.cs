@@ -13,7 +13,7 @@ public partial class EngDispositionType
     [Column("engDispositionTypeId")]
     public int EngDispositionTypeId { get; set; }
 
-    [Display(Name = "Disposition")]
+    [Display(Name = "Review by HBC Engineering")]
     [Required]
     [Column("engDispositionTypeName")]
     [StringLength(45)]

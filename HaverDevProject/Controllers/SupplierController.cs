@@ -9,6 +9,7 @@ using HaverDevProject.Data;
 using HaverDevProject.Models;
 using HaverDevProject.Utilities;
 using HaverDevProject.CustomControllers;
+using Microsoft.EntityFrameworkCore.Storage;
 //using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HaverDevProject.Controllers
@@ -139,12 +140,31 @@ namespace HaverDevProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("SupplierId,SupplierCode,SupplierName,SupplierEmail")] Supplier supplier)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(supplier);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(supplier);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
+            catch (RetryLimitExceededException)
+            {
+                ModelState.AddModelError("", "Unable to save changes after multiple attempts. Try again, and if the problem persists, see your system administrator.");
+            }
+            catch (DbUpdateException dex)
+            {
+                if (dex.GetBaseException().Message.Contains("UNIQUE"))
+                {
+                    ModelState.AddModelError("SupplierCode", "Unable to save changes. Remember, you cannot have duplicate Supplier Code.");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+            }
+
             return View(supplier);
         }
 
@@ -182,19 +202,31 @@ namespace HaverDevProject.Controllers
                 {
                     _context.Update(supplier);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (RetryLimitExceededException)
+                {
+                    ModelState.AddModelError("", "Unable to save changes after multiple attempts. Try again, and if the problem persists, see your system administrator.");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!SupplierExists(supplier.SupplierId))
                     {
-                        return NotFound();
+                        ModelState.AddModelError("", "Unable to save changes. The Supplier was deleted by another user.");
+                    }                    
+                }
+                catch (DbUpdateException dex)
+                {
+                    if (dex.GetBaseException().Message.Contains("UNIQUE"))
+                    {
+                        ModelState.AddModelError("SupplierCode", "Unable to save changes. Remember, you cannot have duplicate Supplier Code.");
                     }
                     else
                     {
-                        throw;
+                        ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                
             }
             return View(supplier);
         }
@@ -224,16 +256,32 @@ namespace HaverDevProject.Controllers
         {
             if (_context.Suppliers == null)
             {
-                return Problem("Entity set 'HaverNiagaraContext.Suppliers'  is null.");
+                return Problem("There are no Suppliers to delete");
             }
             var supplier = await _context.Suppliers.FindAsync(id);
-            if (supplier != null)
+
+            try
             {
-                _context.Suppliers.Remove(supplier);
+                if (supplier != null)
+                {
+                    _context.Suppliers.Remove(supplier);
+                }
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            catch (DbUpdateException dex)
+            {
+                if (dex.GetBaseException().Message.Contains("FOREIGN KEY constraint failed"))
+                {
+                    ModelState.AddModelError("", "Unable to Delete Supplier. Remember, you cannot delete a Supplier that has a NCR in the system.");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+            }
+            return View(supplier);            
         }
 
         private bool SupplierExists(int id)

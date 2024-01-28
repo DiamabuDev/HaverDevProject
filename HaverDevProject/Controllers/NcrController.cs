@@ -30,14 +30,14 @@ namespace HaverDevProject.Controllers
 
 
             var ncr = _context.Ncrs
-                .Include(n => n.StatusUpdate)
-                .Include(n => n.NcrEngs)
-                .ThenInclude(n => n.EngDispositionType)
-                .Include(n => n.NcrQas)
-                .ThenInclude(n => n.OrderDetails)
-                .ThenInclude(n => n.Item)
-                .ThenInclude(n => n.ItemDefects)
-                .ThenInclude(n => n.Defect)
+                .Include(n=>n.StatusUpdate)
+                .Include(n=>n.NcrEngs)
+                .ThenInclude(n=>n.EngDispositionType)
+                .Include(n=>n.NcrQas)
+                .ThenInclude(n=>n.OrderDetails)
+                .ThenInclude(n =>n.Item)
+                .ThenInclude(n=>n.ItemDefects)
+                .ThenInclude(n=>n.Defect)
                 .AsNoTracking();
 
             //Filterig values                       
@@ -205,7 +205,6 @@ namespace HaverDevProject.Controllers
                         .ThenInclude(fu => fu.FollowUpType)
                 .Include(n => n.NcrReInspects)
                 .FirstOrDefaultAsync(m => m.NcrId == id);
-
 
             if (ncr == null)
             {
