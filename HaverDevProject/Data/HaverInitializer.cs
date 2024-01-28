@@ -7,6 +7,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Drawing;
 using System.Reflection;
 using System.Threading;
+using System;
 
 namespace HaverDevProject.Data
 {
@@ -313,74 +314,74 @@ namespace HaverDevProject.Data
                     context.Ncrs.AddRange(
                         new Ncr
                         {
-                            NcrNumber = "2023-001",
-                            NcrLastUpdated = DateTime.Parse("2024-01-02"),
+                            NcrNumber = "23-137",
+                            NcrLastUpdated = DateTime.Parse("2023-12-18"),
                             StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Closed").StatusUpdateId
                         },
                         new Ncr
                         {
-                            NcrNumber = "2023-002",
-                            NcrLastUpdated = DateTime.Parse("2024-01-02"),
+                            NcrNumber = "23-138",
+                            NcrLastUpdated = DateTime.Parse("2023-12-19"),
+                            StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Closed").StatusUpdateId
+                        },
+                        new Ncr
+                        {
+                            NcrNumber = "23-139",
+                            NcrLastUpdated = DateTime.Parse("2023-12-22"),
+                            StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Closed").StatusUpdateId
+                        },
+                        new Ncr
+                        {
+                            NcrNumber = "23-140",
+                            NcrLastUpdated = DateTime.Parse("2024-01-18"),
                             StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Active").StatusUpdateId
                         },
                         new Ncr
                         {
-                            NcrNumber = "2023-003",
-                            NcrLastUpdated = DateTime.Parse("2024-01-09"),
-                            StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Closed").StatusUpdateId
-                        },
-                        new Ncr
-                        {
-                            NcrNumber = "2024-004",
-                            NcrLastUpdated = DateTime.Parse("2023-12-31"),
+                            NcrNumber = "23-141",
+                            NcrLastUpdated = DateTime.Parse("2024-01-14"),
                             StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Active").StatusUpdateId
                         },
                         new Ncr
                         {
-                            NcrNumber = "2023-005",
-                            NcrLastUpdated = DateTime.Parse("2023-12-28"),
+                            NcrNumber = "24-001",
+                            NcrLastUpdated = DateTime.Parse("2024-01-10"),
                             StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Closed").StatusUpdateId
                         },
                         new Ncr
                         {
-                            NcrNumber = "2023-006",
-                            NcrLastUpdated = DateTime.Parse("2024-01-26"),
-                            StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Active").StatusUpdateId
-                        },
-                        new Ncr
-                        {
-                            NcrNumber = "2023-007",
-                            NcrLastUpdated = DateTime.Parse("2024-01-03"),
+                            NcrNumber = "24-002",
+                            NcrLastUpdated = DateTime.Parse("2024-01-11"),
                             StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Closed").StatusUpdateId
                         },
                         new Ncr
                         {
-                            NcrNumber = "2024-008",
-                            NcrLastUpdated = DateTime.Parse("2024-01-25"),
-                            StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Active").StatusUpdateId
-                        },
-                        new Ncr
-                        {
-                            NcrNumber = "2023-009",
-                            NcrLastUpdated = DateTime.Parse("2024-01-22"),
-                            StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Closed").StatusUpdateId
-                        },
-                        new Ncr
-                        {
-                            NcrNumber = "2023-010",
-                            NcrLastUpdated = DateTime.Parse("2024-01-13"),
-                            StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Active").StatusUpdateId
-                        },
-                        new Ncr
-                        {
-                            NcrNumber = "2023-011",
-                            NcrLastUpdated = DateTime.Parse("2024-01-03"),
-                            StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Closed").StatusUpdateId
-                        },
-                        new Ncr
-                        {
-                            NcrNumber = "2024-001",
+                            NcrNumber = "24-003",
                             NcrLastUpdated = DateTime.Parse("2024-01-15"),
+                            StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Active").StatusUpdateId
+                        },
+                        new Ncr
+                        {
+                            NcrNumber = "24-004",
+                            NcrLastUpdated = DateTime.Parse("2024-01-19"),
+                            StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Active").StatusUpdateId
+                        },
+                        new Ncr
+                        {
+                            NcrNumber = "24-005",
+                            NcrLastUpdated = DateTime.Parse("2024-01-22"),
+                            StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Active").StatusUpdateId
+                        },
+                        new Ncr
+                        {
+                            NcrNumber = "24-006",
+                            NcrLastUpdated = DateTime.Parse("2024-01-23"),
+                            StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Active").StatusUpdateId
+                        },
+                        new Ncr
+                        {
+                            NcrNumber = "24-007",
+                            NcrLastUpdated = DateTime.Parse("2024-01-23"),
                             StatusUpdateId = context.StatusUpdates.FirstOrDefault(f => f.StatusUpdateName == "Active").StatusUpdateId
                         });
                     context.SaveChanges();
@@ -393,121 +394,121 @@ namespace HaverDevProject.Data
                         {
                             NcrQaitemMarNonConforming = true,
                             NcrQasalesOrder = "12345",
-                            NcrQacreationDate = DateTime.Parse("2023-10-22"),
-                            NcrQalastUpdated = DateTime.Now,
+                            NcrQacreationDate = DateTime.Parse("2023-12-07"),
+                            NcrQalastUpdated = DateTime.Parse("2023-12-07"),
                             NcrQauserId = 1, //need to make nullable
                             ProAppId = context.ProcessApplicables.FirstOrDefault(f => f.ProAppName == "Supplier or Rec-Insp").ProAppId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-001").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-137").NcrId
                         },
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
                             NcrQasalesOrder = "12346",
-                            NcrQacreationDate = DateTime.Parse("2023-11-02"),
-                            NcrQalastUpdated = DateTime.Now,
+                            NcrQacreationDate = DateTime.Parse("2023-12-09"),
+                            NcrQalastUpdated = DateTime.Parse("2023-12-09"),
                             NcrQauserId = 2, //need to make nullable
                             ProAppId = context.ProcessApplicables.FirstOrDefault(f => f.ProAppName == "Supplier or Rec-Insp").ProAppId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-002").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-138").NcrId
                         },
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
                             NcrQasalesOrder = "98765",
-                            NcrQacreationDate = DateTime.Parse("2023-12-15"),
-                            NcrQalastUpdated = DateTime.Now,
+                            NcrQacreationDate = DateTime.Parse("2023-12-11"),
+                            NcrQalastUpdated = DateTime.Parse("2023-12-11"),
                             NcrQauserId = 3, //need to make nullable
                             ProAppId = context.ProcessApplicables.FirstOrDefault(f => f.ProAppName == "Supplier or Rec-Insp").ProAppId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-003").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-139").NcrId
                         },
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
                             NcrQasalesOrder = "64162",
-                            NcrQacreationDate = DateTime.Parse("2024-01-01"),
-                            NcrQalastUpdated = DateTime.Now,
+                            NcrQacreationDate = DateTime.Parse("2023-12-13"),
+                            NcrQalastUpdated = DateTime.Parse("2023-12-13"),
                             NcrQauserId = 4, //need to make nullable
                             ProAppId = context.ProcessApplicables.FirstOrDefault(f => f.ProAppName == "WIP (Production Order)").ProAppId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-005").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-140").NcrId
                         },
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
                             NcrQasalesOrder = "98766",
-                            NcrQacreationDate = DateTime.Parse("2023-10-22"),
-                            NcrQalastUpdated = DateTime.Now,
+                            NcrQacreationDate = DateTime.Parse("2023-12-17"),
+                            NcrQalastUpdated = DateTime.Parse("2023-12-17"),
                             NcrQauserId = 1, //need to make nullable
                             ProAppId = context.ProcessApplicables.FirstOrDefault(f => f.ProAppName == "Supplier or Rec-Insp").ProAppId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-006").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-141").NcrId
                         },
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
                             NcrQasalesOrder = "87654",
-                            NcrQacreationDate = DateTime.Parse("2023-11-02"),
-                            NcrQalastUpdated = DateTime.Now,
+                            NcrQacreationDate = DateTime.Parse("2024-01-03"),
+                            NcrQalastUpdated = DateTime.Parse("2024-01-03"),
                             NcrQauserId = 2, //need to make nullable
                             ProAppId = context.ProcessApplicables.FirstOrDefault(f => f.ProAppName == "Supplier or Rec-Insp").ProAppId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-007").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-001").NcrId
                         },
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
                             NcrQasalesOrder = "76543",
-                            NcrQacreationDate = DateTime.Parse("2023-12-15"),
-                            NcrQalastUpdated = DateTime.Now,
+                            NcrQacreationDate = DateTime.Parse("2024-01-04"),
+                            NcrQalastUpdated = DateTime.Parse("2024-01-04"),
                             NcrQauserId = 3, //need to make nullable
                             ProAppId = context.ProcessApplicables.FirstOrDefault(f => f.ProAppName == "Supplier or Rec-Insp").ProAppId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-008").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-002").NcrId
                         },
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
                             NcrQasalesOrder = "55554",
-                            NcrQacreationDate = DateTime.Parse("2024-01-01"),
-                            NcrQalastUpdated = DateTime.Now,
+                            NcrQacreationDate = DateTime.Parse("2024-01-06"),
+                            NcrQalastUpdated = DateTime.Parse("2024-01-06"),
                             NcrQauserId = 4, //need to make nullable
                             ProAppId = context.ProcessApplicables.FirstOrDefault(f => f.ProAppName == "WIP (Production Order)").ProAppId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-009").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-003").NcrId
                         },
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
                             NcrQasalesOrder = "32145",
-                            NcrQacreationDate = DateTime.Parse("2023-10-22"),
-                            NcrQalastUpdated = DateTime.Now,
+                            NcrQacreationDate = DateTime.Parse("2024-01-07"),
+                            NcrQalastUpdated = DateTime.Parse("2024-01-07"),
                             NcrQauserId = 1, //need to make nullable
                             ProAppId = context.ProcessApplicables.FirstOrDefault(f => f.ProAppName == "Supplier or Rec-Insp").ProAppId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-010").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-004").NcrId
                         },
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
                             NcrQasalesOrder = "34345",
-                            NcrQacreationDate = DateTime.Parse("2023-11-02"),
-                            NcrQalastUpdated = DateTime.Now,
+                            NcrQacreationDate = DateTime.Parse("2024-01-11"),
+                            NcrQalastUpdated = DateTime.Parse("2024-01-11"),
                             NcrQauserId = 2, //need to make nullable
                             ProAppId = context.ProcessApplicables.FirstOrDefault(f => f.ProAppName == "Supplier or Rec-Insp").ProAppId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-011").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-005").NcrId
                         },
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
                             NcrQasalesOrder = "45456",
-                            NcrQacreationDate = DateTime.Parse("2023-12-15"),
-                            NcrQalastUpdated = DateTime.Now,
+                            NcrQacreationDate = DateTime.Parse("2024-01-14"),
+                            NcrQalastUpdated = DateTime.Parse("2024-01-14"),
                             NcrQauserId = 3, //need to make nullable
                             ProAppId = context.ProcessApplicables.FirstOrDefault(f => f.ProAppName == "Supplier or Rec-Insp").ProAppId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-004").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-006").NcrId
                         },
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
                             NcrQasalesOrder = "56567",
-                            NcrQacreationDate = DateTime.Parse("2024-01-01"),
-                            NcrQalastUpdated = DateTime.Now,
+                            NcrQacreationDate = DateTime.Parse("2024-01-14"),
+                            NcrQalastUpdated = DateTime.Parse("2024-01-14"),
                             NcrQauserId = 4, //need to make nullable
                             ProAppId = context.ProcessApplicables.FirstOrDefault(f => f.ProAppName == "WIP (Production Order)").ProAppId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-001").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-007").NcrId
                         });
                     context.SaveChanges();
                 }
@@ -637,121 +638,121 @@ namespace HaverDevProject.Data
                         {
                             NcrEngCustomerNotification = false,
                             NcrEngDispositionDescription = "Example Description of Disposition 1",
-                            NcrEngLastUpdated = DateTime.Now,
-                            NcrEngCreationDate = DateTime.Parse("2023-10-23"),
+                            NcrEngLastUpdated = DateTime.Parse("2023-12-08"),
+                            NcrEngCreationDate = DateTime.Parse("2023-12-08"),
                             NcrEngUserId = 1, //nullable
                             EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "N/A").EngDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-001").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-137").NcrId
                         },
                         new NcrEng
                         {
                             NcrEngCustomerNotification = true,
                             NcrEngDispositionDescription = "Example Description of Disposition 2",
-                            NcrEngLastUpdated = DateTime.Now,
-                            NcrEngCreationDate = DateTime.Parse("2023-11-03"),
+                            NcrEngLastUpdated = DateTime.Parse("2023-12-10"),
+                            NcrEngCreationDate = DateTime.Parse("2023-12-10"),
                             NcrEngUserId = 2, //nullable
                             EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "N/A").EngDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-002").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-138").NcrId
                         },
                         new NcrEng
                         {
                             NcrEngCustomerNotification = true,
                             NcrEngDispositionDescription = "Example Description of Disposition 3",
-                            NcrEngLastUpdated = DateTime.Now,
+                            NcrEngLastUpdated = DateTime.Parse("2023-12-16"),
                             NcrEngCreationDate = DateTime.Parse("2023-12-16"),
                             NcrEngUserId = 3, //nullable
                             EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Drawing updated for correct dimensions.").EngDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-003").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-139").NcrId
                         },
                         new NcrEng
                         {
                             NcrEngCustomerNotification = true,
                             NcrEngDispositionDescription = "Example Description of Disposition 4",
-                            NcrEngLastUpdated = DateTime.Now,
-                            NcrEngCreationDate = DateTime.Parse("2024-1-02"),
+                            NcrEngLastUpdated = DateTime.Parse("2023-12-16"),
+                            NcrEngCreationDate = DateTime.Parse("2023-12-16"),
                             NcrEngUserId = 4, //nullable
                             EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Drawing updated for correct dimensions.").EngDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-004").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-140").NcrId
                         },
                         new NcrEng
                         {
                             NcrEngCustomerNotification = false,
-                            NcrEngDispositionDescription = "Example Description of Disposition 1",
-                            NcrEngLastUpdated = DateTime.Now,
-                            NcrEngCreationDate = DateTime.Parse("2023-10-23"),
+                            NcrEngDispositionDescription = "Example Description of Disposition 5",
+                            NcrEngLastUpdated = DateTime.Parse("2023-12-19"),
+                            NcrEngCreationDate = DateTime.Parse("2023-12-19"),
                             NcrEngUserId = 1, //nullable
                             EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "N/A").EngDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-005").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-141").NcrId
                         },
                         new NcrEng
                         {
                             NcrEngCustomerNotification = true,
-                            NcrEngDispositionDescription = "Example Description of Disposition 2",
-                            NcrEngLastUpdated = DateTime.Now,
-                            NcrEngCreationDate = DateTime.Parse("2023-11-03"),
+                            NcrEngDispositionDescription = "Example Description of Disposition 6",
+                            NcrEngLastUpdated = DateTime.Parse("2024-01-04"),
+                            NcrEngCreationDate = DateTime.Parse("2024-01-04"),
                             NcrEngUserId = 2, //nullable
                             EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "N/A").EngDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-006").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-001").NcrId
                         },
                         new NcrEng
                         {
                             NcrEngCustomerNotification = true,
-                            NcrEngDispositionDescription = "Example Description of Disposition 3",
-                            NcrEngLastUpdated = DateTime.Now,
-                            NcrEngCreationDate = DateTime.Parse("2023-12-16"),
+                            NcrEngDispositionDescription = "Example Description of Disposition 7",
+                            NcrEngLastUpdated = DateTime.Parse("2024-01-06"),
+                            NcrEngCreationDate = DateTime.Parse("2024-01-06"),
                             NcrEngUserId = 3, //nullable
                             EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Drawing updated for correct dimensions.").EngDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-007").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-002").NcrId
                         },
                         new NcrEng
                         {
                             NcrEngCustomerNotification = true,
-                            NcrEngDispositionDescription = "Example Description of Disposition 4",
-                            NcrEngLastUpdated = DateTime.Now,
-                            NcrEngCreationDate = DateTime.Parse("2024-1-02"),
+                            NcrEngDispositionDescription = "Example Description of Disposition 8",
+                            NcrEngLastUpdated = DateTime.Parse("2024-01-07"),
+                            NcrEngCreationDate = DateTime.Parse("2024-01-07"),
                             NcrEngUserId = 4, //nullable
                             EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Drawing updated for correct dimensions.").EngDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-008").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-003").NcrId
                         },
                         new NcrEng
                         {
                             NcrEngCustomerNotification = false,
-                            NcrEngDispositionDescription = "Example Description of Disposition 1",
-                            NcrEngLastUpdated = DateTime.Now,
-                            NcrEngCreationDate = DateTime.Parse("2023-10-23"),
+                            NcrEngDispositionDescription = "Example Description of Disposition 9",
+                            NcrEngLastUpdated = DateTime.Parse("2024-01-08"),
+                            NcrEngCreationDate = DateTime.Parse("2024-01-08"),
                             NcrEngUserId = 1, //nullable
                             EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "N/A").EngDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-009").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-004").NcrId
                         },
                         new NcrEng
                         {
                             NcrEngCustomerNotification = true,
-                            NcrEngDispositionDescription = "Example Description of Disposition 2",
-                            NcrEngLastUpdated = DateTime.Now,
-                            NcrEngCreationDate = DateTime.Parse("2023-11-03"),
+                            NcrEngDispositionDescription = "Example Description of Disposition 10",
+                            NcrEngLastUpdated = DateTime.Parse("2024-01-12"),
+                            NcrEngCreationDate = DateTime.Parse("2024-01-12"),
                             NcrEngUserId = 2, //nullable
                             EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "N/A").EngDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-010").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-005").NcrId
                         },
                         new NcrEng
                         {
                             NcrEngCustomerNotification = true,
-                            NcrEngDispositionDescription = "Example Description of Disposition 3",
-                            NcrEngLastUpdated = DateTime.Now,
-                            NcrEngCreationDate = DateTime.Parse("2023-12-16"),
+                            NcrEngDispositionDescription = "Example Description of Disposition 11",
+                            NcrEngLastUpdated = DateTime.Parse("2024-01-14"),
+                            NcrEngCreationDate = DateTime.Parse("2024-01-14"),
                             NcrEngUserId = 3, //nullable
                             EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Drawing updated for correct dimensions.").EngDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-011").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-006").NcrId
                         },
                         new NcrEng
                         {
                             NcrEngCustomerNotification = true,
-                            NcrEngDispositionDescription = "Example Description of Disposition 4",
-                            NcrEngLastUpdated = DateTime.Now,
-                            NcrEngCreationDate = DateTime.Parse("2024-1-02"),
+                            NcrEngDispositionDescription = "Example Description of Disposition 12",
+                            NcrEngLastUpdated = DateTime.Parse("2024-01-18"),
+                            NcrEngCreationDate = DateTime.Parse("2024-01-18"),
                             NcrEngUserId = 4, //nullable
                             EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Drawing updated for correct dimensions.").EngDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-001").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-007").NcrId
                         });
                     context.SaveChanges();
                 }
@@ -762,34 +763,98 @@ namespace HaverDevProject.Data
                         new Drawing
                         {
                             DrawingOriginalRevNumber = 1,
-                            DrawingUpdatedRevNumber = 3,
-                            DrawingRevDate = DateTime.Parse("2023-10-23"),
+                            DrawingUpdatedRevNumber = 2,
+                            DrawingRevDate = DateTime.Parse("2023-12-08"),
                             DrawingUserId = 1, //need to make nullable
                             NcrEngId = context.NcrEngs.FirstOrDefault(f => f.NcrEngDispositionDescription == "Example Description of Disposition 1").NcrEngId //THIS MUST CHANGE
                         },
                         new Drawing
                         {
-                            DrawingOriginalRevNumber = 2,
+                            DrawingOriginalRevNumber = 3,
                             DrawingUpdatedRevNumber = 4,
-                            DrawingRevDate = DateTime.Parse("2023-11-03"),
+                            DrawingRevDate = DateTime.Parse("2023-12-10"),
                             DrawingUserId = 2, //need to make nullable
                             NcrEngId = context.NcrEngs.FirstOrDefault(f => f.NcrEngDispositionDescription == "Example Description of Disposition 2").NcrEngId //THIS MUST CHANGE
                         },
                         new Drawing
                         {
-                            DrawingOriginalRevNumber = 3,
-                            DrawingUpdatedRevNumber = 4,
+                            DrawingOriginalRevNumber = 5,
+                            DrawingUpdatedRevNumber = 6,
                             DrawingRevDate = DateTime.Parse("2023-12-16"),
                             DrawingUserId = 3, //need to make nullable
                             NcrEngId = context.NcrEngs.FirstOrDefault(f => f.NcrEngDispositionDescription == "Example Description of Disposition 3").NcrEngId //THIS MUST CHANGE
                         },
                         new Drawing
                         {
-                            DrawingOriginalRevNumber = 4,
-                            DrawingUpdatedRevNumber = 7,
-                            DrawingRevDate = DateTime.Parse("2024-1-02"),
+                            DrawingOriginalRevNumber = 7,
+                            DrawingUpdatedRevNumber = 8,
+                            DrawingRevDate = DateTime.Parse("2023-12-16"),
                             DrawingUserId = 4, //need to make nullable
                             NcrEngId = context.NcrEngs.FirstOrDefault(f => f.NcrEngDispositionDescription == "Example Description of Disposition 4").NcrEngId //THIS MUST CHANGE
+                        },
+                        new Drawing
+                        {
+                            DrawingOriginalRevNumber = 1,
+                            DrawingUpdatedRevNumber = 3,
+                            DrawingRevDate = DateTime.Parse("2023-12-19"),
+                            DrawingUserId = 1, //need to make nullable
+                            NcrEngId = context.NcrEngs.FirstOrDefault(f => f.NcrEngDispositionDescription == "Example Description of Disposition 5").NcrEngId //THIS MUST CHANGE
+                        },
+                        new Drawing
+                        {
+                            DrawingOriginalRevNumber = 2,
+                            DrawingUpdatedRevNumber = 4,
+                            DrawingRevDate = DateTime.Parse("2024-01-04"),
+                            DrawingUserId = 2, //need to make nullable
+                            NcrEngId = context.NcrEngs.FirstOrDefault(f => f.NcrEngDispositionDescription == "Example Description of Disposition 6").NcrEngId //THIS MUST CHANGE
+                        },
+                        new Drawing
+                        {
+                            DrawingOriginalRevNumber = 3,
+                            DrawingUpdatedRevNumber = 4,
+                            DrawingRevDate = DateTime.Parse("2024-01-06"),
+                            DrawingUserId = 3, //need to make nullable
+                            NcrEngId = context.NcrEngs.FirstOrDefault(f => f.NcrEngDispositionDescription == "Example Description of Disposition 7").NcrEngId //THIS MUST CHANGE
+                        },
+                        new Drawing
+                        {
+                            DrawingOriginalRevNumber = 4,
+                            DrawingUpdatedRevNumber = 7,
+                            DrawingRevDate = DateTime.Parse("2024-01-07"),
+                            DrawingUserId = 4, //need to make nullable
+                            NcrEngId = context.NcrEngs.FirstOrDefault(f => f.NcrEngDispositionDescription == "Example Description of Disposition 8").NcrEngId //THIS MUST CHANGE
+                        },
+                        new Drawing
+                        {
+                            DrawingOriginalRevNumber = 1,
+                            DrawingUpdatedRevNumber = 3,
+                            DrawingRevDate = DateTime.Parse("2024-01-08"),
+                            DrawingUserId = 1, //need to make nullable
+                            NcrEngId = context.NcrEngs.FirstOrDefault(f => f.NcrEngDispositionDescription == "Example Description of Disposition 9").NcrEngId //THIS MUST CHANGE
+                        },
+                        new Drawing
+                        {
+                            DrawingOriginalRevNumber = 2,
+                            DrawingUpdatedRevNumber = 4,
+                            DrawingRevDate = DateTime.Parse("2024-01-12"),
+                            DrawingUserId = 2, //need to make nullable
+                            NcrEngId = context.NcrEngs.FirstOrDefault(f => f.NcrEngDispositionDescription == "Example Description of Disposition 10").NcrEngId //THIS MUST CHANGE
+                        },
+                        new Drawing
+                        {
+                            DrawingOriginalRevNumber = 3,
+                            DrawingUpdatedRevNumber = 4,
+                            DrawingRevDate = DateTime.Parse("2024-01-14"),
+                            DrawingUserId = 3, //need to make nullable
+                            NcrEngId = context.NcrEngs.FirstOrDefault(f => f.NcrEngDispositionDescription == "Example Description of Disposition 11").NcrEngId //THIS MUST CHANGE
+                        },
+                        new Drawing
+                        {
+                            DrawingOriginalRevNumber = 4,
+                            DrawingUpdatedRevNumber = 7,
+                            DrawingRevDate = DateTime.Parse("2024-01-18"),
+                            DrawingUserId = 4, //need to make nullable
+                            NcrEngId = context.NcrEngs.FirstOrDefault(f => f.NcrEngDispositionDescription == "Example Description of Disposition 12").NcrEngId //THIS MUST CHANGE
                         });
                     context.SaveChanges();
                 }
@@ -842,110 +907,110 @@ namespace HaverDevProject.Data
                         new NcrPurchasing
                         {
                             NcrPurchasingDescription = "Replacement required",
-                            NcrPurchCreationDate = DateTime.Parse("2023-10-24"),
-                            NcrPurchasingLastUpdated = DateTime.Now,
+                            NcrPurchCreationDate = DateTime.Parse("2023-12-09"),
+                            NcrPurchasingLastUpdated = DateTime.Parse("2023-12-09"),
                             NcrPurchasingUserId = 1, //need to make nullable
                             OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "N/A").OpDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-001").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-137").NcrId
                         },
                         new NcrPurchasing
                         {
                             NcrPurchasingDescription = "Use as is",
-                            NcrPurchCreationDate = DateTime.Parse("2023-11-04"),
-                            NcrPurchasingLastUpdated = DateTime.Now,
+                            NcrPurchCreationDate = DateTime.Parse("2023-12-11"),
+                            NcrPurchasingLastUpdated = DateTime.Parse("2023-12-11"),
                             NcrPurchasingUserId = 2, //need to make nullable
                             OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Replacement required.").OpDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-002").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-138").NcrId
                         },
                         new NcrPurchasing
                         {
                             NcrPurchasingDescription = "Use as is",
                             NcrPurchCreationDate = DateTime.Parse("2023-12-17"),
-                            NcrPurchasingLastUpdated = DateTime.Now,
+                            NcrPurchasingLastUpdated = DateTime.Parse("2023-12-17"),
                             NcrPurchasingUserId = 3, //need to make nullable
                             OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework per engineering disposition.").OpDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-003").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-139").NcrId
                         },
                         new NcrPurchasing
                         {
                             NcrPurchasingDescription = "Rework per engineering disposition",
-                            NcrPurchCreationDate = DateTime.Parse("2024-1-03"),
-                            NcrPurchasingLastUpdated = DateTime.Now,
+                            NcrPurchCreationDate = DateTime.Parse("2023-12-17"),
+                            NcrPurchasingLastUpdated = DateTime.Parse("2023-12-17"),
                             NcrPurchasingUserId = 4, //need to make nullable
                             OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework per engineering disposition.").OpDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-004").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-140").NcrId
                         },
                         new NcrPurchasing
                         {
                             NcrPurchasingDescription = "Replacement required",
-                            NcrPurchCreationDate = DateTime.Parse("2023-10-24"),
-                            NcrPurchasingLastUpdated = DateTime.Now,
-                            NcrPurchasingUserId = 1, //need to make nullable
+                            NcrPurchCreationDate = DateTime.Parse("2023-12-20"),
+                            NcrPurchasingLastUpdated = DateTime.Parse("2023-12-20"),
+                            NcrPurchasingUserId = 5, //need to make nullable
                             OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "N/A").OpDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-005").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-141").NcrId
                         },
                         new NcrPurchasing
                         {
                             NcrPurchasingDescription = "Use as is",
-                            NcrPurchCreationDate = DateTime.Parse("2023-11-04"),
-                            NcrPurchasingLastUpdated = DateTime.Now,
-                            NcrPurchasingUserId = 2, //need to make nullable
+                            NcrPurchCreationDate = DateTime.Parse("2024-01-05"),
+                            NcrPurchasingLastUpdated = DateTime.Parse("2024-01-05"),
+                            NcrPurchasingUserId = 6, //need to make nullable
                             OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Replacement required.").OpDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-006").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-001").NcrId
                         },
                         new NcrPurchasing
                         {
                             NcrPurchasingDescription = "Use as is",
-                            NcrPurchCreationDate = DateTime.Parse("2023-12-17"),
-                            NcrPurchasingLastUpdated = DateTime.Now,
-                            NcrPurchasingUserId = 3, //need to make nullable
+                            NcrPurchCreationDate = DateTime.Parse("2024-01-07"),
+                            NcrPurchasingLastUpdated = DateTime.Parse("2024-01-07"),
+                            NcrPurchasingUserId = 7, //need to make nullable
                             OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework per engineering disposition.").OpDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-007").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-002").NcrId
                         },
                         new NcrPurchasing
                         {
                             NcrPurchasingDescription = "Rework per engineering disposition",
-                            NcrPurchCreationDate = DateTime.Parse("2024-1-03"),
-                            NcrPurchasingLastUpdated = DateTime.Now,
-                            NcrPurchasingUserId = 4, //need to make nullable
+                            NcrPurchCreationDate = DateTime.Parse("2024-01-08"),
+                            NcrPurchasingLastUpdated = DateTime.Parse("2024-01-08"),
+                            NcrPurchasingUserId = 8, //need to make nullable
                             OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework per engineering disposition.").OpDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-008").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-003").NcrId
                         },
-                                                new NcrPurchasing
+                        new NcrPurchasing
                         {
                             NcrPurchasingDescription = "Replacement required",
-                            NcrPurchCreationDate = DateTime.Parse("2023-10-24"),
-                            NcrPurchasingLastUpdated = DateTime.Now,
-                            NcrPurchasingUserId = 1, //need to make nullable
+                            NcrPurchCreationDate = DateTime.Parse("2024-01-09"),
+                            NcrPurchasingLastUpdated = DateTime.Parse("2024-01-09"),
+                            NcrPurchasingUserId = 9, //need to make nullable
                             OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "N/A").OpDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-009").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-004").NcrId
                         },
                         new NcrPurchasing
                         {
                             NcrPurchasingDescription = "Use as is",
-                            NcrPurchCreationDate = DateTime.Parse("2023-11-04"),
-                            NcrPurchasingLastUpdated = DateTime.Now,
-                            NcrPurchasingUserId = 2, //need to make nullable
+                            NcrPurchCreationDate = DateTime.Parse("2024-01-13"),
+                            NcrPurchasingLastUpdated = DateTime.Parse("2024-01-13"),
+                            NcrPurchasingUserId = 10, //need to make nullable
                             OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Replacement required.").OpDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-010").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-005").NcrId
                         },
                         new NcrPurchasing
                         {
                             NcrPurchasingDescription = "Use as is",
-                            NcrPurchCreationDate = DateTime.Parse("2023-12-17"),
-                            NcrPurchasingLastUpdated = DateTime.Now,
-                            NcrPurchasingUserId = 3, //need to make nullable
+                            NcrPurchCreationDate = DateTime.Parse("2024-01-15"),
+                            NcrPurchasingLastUpdated = DateTime.Parse("2024-01-15"),
+                            NcrPurchasingUserId = 11, //need to make nullable
                             OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework per engineering disposition.").OpDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-011").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-006").NcrId
                         },
                         new NcrPurchasing
                         {
                             NcrPurchasingDescription = "Rework per engineering disposition",
-                            NcrPurchCreationDate = DateTime.Parse("2024-1-03"),
-                            NcrPurchasingLastUpdated = DateTime.Now,
-                            NcrPurchasingUserId = 4, //need to make nullable
+                            NcrPurchCreationDate = DateTime.Parse("2024-01-19"),
+                            NcrPurchasingLastUpdated = DateTime.Parse("2024-01-19"),
+                            NcrPurchasingUserId = 12, //need to make nullable
                             OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework per engineering disposition.").OpDispositionTypeId,
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-001").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-007").NcrId
                         });
                     context.SaveChanges();
                 }
@@ -955,13 +1020,13 @@ namespace HaverDevProject.Data
                     context.FollowUps.AddRange(
                         new FollowUp
                         {
-                            FollowUpExpectedDate = DateTime.Parse("2023-10-25"),
+                            FollowUpExpectedDate = DateTime.Parse("2023-12-10"),
                             FollowUpTypeId = context.FollowUpTypes.FirstOrDefault(f => f.FollowUpTypeName == "Resolution").FollowUpTypeId,
                             NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 1).NcrPurchId //THIS MUST CHANGE
                         },
                         new FollowUp
                         {
-                            FollowUpExpectedDate = DateTime.Parse("2023-11-05"),
+                            FollowUpExpectedDate = DateTime.Parse("2023-12-12"),
                             FollowUpTypeId = context.FollowUpTypes.FirstOrDefault(f => f.FollowUpTypeName == "Clarification").FollowUpTypeId,
                             NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 2).NcrPurchId //THIS MUST CHANGE
                         },
@@ -973,9 +1038,57 @@ namespace HaverDevProject.Data
                         },
                         new FollowUp
                         {
-                            FollowUpExpectedDate = DateTime.Parse("2024-01-04"),
+                            FollowUpExpectedDate = DateTime.Parse("2023-12-18"),
                             FollowUpTypeId = context.FollowUpTypes.FirstOrDefault(f => f.FollowUpTypeName == "Update").FollowUpTypeId,
                             NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 4).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new FollowUp
+                        {
+                            FollowUpExpectedDate = DateTime.Parse("2023-12-21"),
+                            FollowUpTypeId = context.FollowUpTypes.FirstOrDefault(f => f.FollowUpTypeName == "Resolution").FollowUpTypeId,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 5).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new FollowUp
+                        {
+                            FollowUpExpectedDate = DateTime.Parse("2024-01-06"),
+                            FollowUpTypeId = context.FollowUpTypes.FirstOrDefault(f => f.FollowUpTypeName == "Clarification").FollowUpTypeId,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 6).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new FollowUp
+                        {
+                            FollowUpExpectedDate = DateTime.Parse("2024-01-08"),
+                            FollowUpTypeId = context.FollowUpTypes.FirstOrDefault(f => f.FollowUpTypeName == "Feedback").FollowUpTypeId,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 7).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new FollowUp
+                        {
+                            FollowUpExpectedDate = DateTime.Parse("2024-01-09"),
+                            FollowUpTypeId = context.FollowUpTypes.FirstOrDefault(f => f.FollowUpTypeName == "Update").FollowUpTypeId,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 8).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new FollowUp
+                        {
+                            FollowUpExpectedDate = DateTime.Parse("2024-01-10"),
+                            FollowUpTypeId = context.FollowUpTypes.FirstOrDefault(f => f.FollowUpTypeName == "Resolution").FollowUpTypeId,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 9).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new FollowUp
+                        {
+                            FollowUpExpectedDate = DateTime.Parse("2024-01-14"),
+                            FollowUpTypeId = context.FollowUpTypes.FirstOrDefault(f => f.FollowUpTypeName == "Clarification").FollowUpTypeId,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 10).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new FollowUp
+                        {
+                            FollowUpExpectedDate = DateTime.Parse("2024-01-16"),
+                            FollowUpTypeId = context.FollowUpTypes.FirstOrDefault(f => f.FollowUpTypeName == "Feedback").FollowUpTypeId,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 11).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new FollowUp
+                        {
+                            FollowUpExpectedDate = DateTime.Parse("2024-01-20"),
+                            FollowUpTypeId = context.FollowUpTypes.FirstOrDefault(f => f.FollowUpTypeName == "Update").FollowUpTypeId,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 12).NcrPurchId //THIS MUST CHANGE
                         });
 
                     context.SaveChanges();
@@ -1003,6 +1116,46 @@ namespace HaverDevProject.Data
                         {
                             CarNumber = 9253,
                             NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 4).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new Car
+                        {
+                            CarNumber = 2618,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 5).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new Car
+                        {
+                            CarNumber = 8723,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 6).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new Car
+                        {
+                            CarNumber = 9231,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 7).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new Car
+                        {
+                            CarNumber = 7772,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 8).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new Car
+                        {
+                            CarNumber = 3290,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 9).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new Car
+                        {
+                            CarNumber = 6666,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 10).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new Car
+                        {
+                            CarNumber = 4411,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 11).NcrPurchId //THIS MUST CHANGE
+                        },
+                        new Car
+                        {
+                            CarNumber = 1592,
+                            NcrPurchId = context.NcrPurchasings.FirstOrDefault(f => f.NcrPurchasingUserId == 12).NcrPurchId //THIS MUST CHANGE
                         });
 
                     context.SaveChanges();
@@ -1015,10 +1168,10 @@ namespace HaverDevProject.Data
                         {
                             NcrReInspectAcceptable = true,
                             NcrReInspectNewNcrNumber = null,
-                            NcrReInspectCreationDate = DateTime.Parse("2023-10-25"),
-                            NcrReInspectLastUpdated = DateTime.Now,
+                            NcrReInspectCreationDate = DateTime.Parse("2023-12-11"),
+                            NcrReInspectLastUpdated = DateTime.Parse("2023-12-11"),
                             NcrReInspectUserId = 1, //need to make nullable
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-001").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-137").NcrId
                         },
                         new NcrReInspect
                         {
@@ -1027,97 +1180,98 @@ namespace HaverDevProject.Data
                             NcrReInspectCreationDate = DateTime.Parse("2023-11-05"),
                             NcrReInspectLastUpdated = DateTime.Now,
                             NcrReInspectUserId = 2, //need to make nullable
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-002").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-138").NcrId
                         },
                         new NcrReInspect
                         {
                             NcrReInspectAcceptable = true,
                             NcrReInspectNewNcrNumber = null,
-                            NcrReInspectCreationDate = DateTime.Parse("2023-12-18"),
-                            NcrReInspectLastUpdated = DateTime.Now,
+
+                            NcrReInspectCreationDate = DateTime.Parse("2023-12-19"),
+                            NcrReInspectLastUpdated = DateTime.Parse("2023-12-19"),
                             NcrReInspectUserId = 3, //need to make nullable
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-003").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-139").NcrId
                         },
                         new NcrReInspect
                         {
                             NcrReInspectAcceptable = true,
                             NcrReInspectNewNcrNumber = null,
-                            NcrReInspectCreationDate = DateTime.Parse("2024-01-04"),
-                            NcrReInspectLastUpdated = DateTime.Now,
+                            NcrReInspectCreationDate = DateTime.Parse("2023-12-19"),
+                            NcrReInspectLastUpdated = DateTime.Parse("2023-12-19"),
                             NcrReInspectUserId = 4, //need to make nullable
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-004").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-140").NcrId
                         },
                         new NcrReInspect
                         {
                             NcrReInspectAcceptable = true,
                             NcrReInspectNewNcrNumber = null,
-                            NcrReInspectCreationDate = DateTime.Parse("2023-10-25"),
-                            NcrReInspectLastUpdated = DateTime.Now,
+                            NcrReInspectCreationDate = DateTime.Parse("2023-12-22"),
+                            NcrReInspectLastUpdated = DateTime.Parse("2023-12-22"),
                             NcrReInspectUserId = 1, //need to make nullable
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-005").NcrId
-                        },
-                        new NcrReInspect
-                        {
-                            NcrReInspectAcceptable = true,
-                            NcrReInspectNewNcrNumber = 1,
-                            NcrReInspectCreationDate = DateTime.Parse("2023-11-05"),
-                            NcrReInspectLastUpdated = DateTime.Now,
-                            NcrReInspectUserId = 2, //need to make nullable
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-006").NcrId
-                        },
-                        new NcrReInspect
-                        {
-                            NcrReInspectAcceptable = true,
-                            NcrReInspectNewNcrNumber = 2,
-                            NcrReInspectCreationDate = DateTime.Parse("2023-12-18"),
-                            NcrReInspectLastUpdated = DateTime.Now,
-                            NcrReInspectUserId = 3, //need to make nullable
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-007").NcrId
-                        },
-                        new NcrReInspect
-                        {
-                            NcrReInspectAcceptable = true,
-                            NcrReInspectNewNcrNumber = 3,
-                            NcrReInspectCreationDate = DateTime.Parse("2024-01-04"),
-                            NcrReInspectLastUpdated = DateTime.Now,
-                            NcrReInspectUserId = 4, //need to make nullable
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-008").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "23-141").NcrId
                         },
                         new NcrReInspect
                         {
                             NcrReInspectAcceptable = true,
                             NcrReInspectNewNcrNumber = null,
-                            NcrReInspectCreationDate = DateTime.Parse("2023-10-25"),
-                            NcrReInspectLastUpdated = DateTime.Now,
-                            NcrReInspectUserId = 1, //need to make nullable
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-009").NcrId
-                        },
-                        new NcrReInspect
-                        {
-                            NcrReInspectAcceptable = true,
-                            NcrReInspectNewNcrNumber = 1,
-                            NcrReInspectCreationDate = DateTime.Parse("2023-11-05"),
-                            NcrReInspectLastUpdated = DateTime.Now,
+                            NcrReInspectCreationDate = DateTime.Parse("2024-01-07"),
+                            NcrReInspectLastUpdated = DateTime.Parse("2024-01-07"),
                             NcrReInspectUserId = 2, //need to make nullable
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-010").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-001").NcrId
                         },
                         new NcrReInspect
                         {
                             NcrReInspectAcceptable = true,
-                            NcrReInspectNewNcrNumber = 2,
-                            NcrReInspectCreationDate = DateTime.Parse("2023-12-18"),
-                            NcrReInspectLastUpdated = DateTime.Now,
+                            NcrReInspectNewNcrNumber = null,
+                            NcrReInspectCreationDate = DateTime.Parse("2024-01-09"),
+                            NcrReInspectLastUpdated = DateTime.Parse("2024-01-09"),
                             NcrReInspectUserId = 3, //need to make nullable
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-011").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-002").NcrId
                         },
                         new NcrReInspect
                         {
                             NcrReInspectAcceptable = true,
-                            NcrReInspectNewNcrNumber = 3,
-                            NcrReInspectCreationDate = DateTime.Parse("2024-01-04"),
-                            NcrReInspectLastUpdated = DateTime.Now,
+                            NcrReInspectNewNcrNumber = null,
+                            NcrReInspectCreationDate = DateTime.Parse("2024-01-10"),
+                            NcrReInspectLastUpdated = DateTime.Parse("2024-01-10"),
                             NcrReInspectUserId = 4, //need to make nullable
-                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-001").NcrId
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-003").NcrId
+                        },
+                        new NcrReInspect
+                        {
+                            NcrReInspectAcceptable = true,
+                            NcrReInspectNewNcrNumber = null,
+                            NcrReInspectCreationDate = DateTime.Parse("2024-01-11"),
+                            NcrReInspectLastUpdated = DateTime.Parse("2024-01-11"),
+                            NcrReInspectUserId = 1, //need to make nullable
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-004").NcrId
+                        },
+                        new NcrReInspect
+                        {
+                            NcrReInspectAcceptable = true,
+                            NcrReInspectNewNcrNumber = null,
+                            NcrReInspectCreationDate = DateTime.Parse("2024-01-15"),
+                            NcrReInspectLastUpdated = DateTime.Parse("2024-01-15"),
+                            NcrReInspectUserId = 2, //need to make nullable
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-005").NcrId
+                        },
+                        new NcrReInspect
+                        {
+                            NcrReInspectAcceptable = true,
+                            NcrReInspectNewNcrNumber = null,
+                            NcrReInspectCreationDate = DateTime.Parse("2024-01-17"),
+                            NcrReInspectLastUpdated = DateTime.Parse("2024-01-17"),
+                            NcrReInspectUserId = 3, //need to make nullable
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-006").NcrId
+                        },
+                        new NcrReInspect
+                        {
+                            NcrReInspectAcceptable = true,
+                            NcrReInspectNewNcrNumber = null,
+                            NcrReInspectCreationDate = DateTime.Parse("2024-01-21"),
+                            NcrReInspectLastUpdated = DateTime.Parse("2024-01-21"),
+                            NcrReInspectUserId = 4, //need to make nullable
+                            NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "24-007").NcrId
                         });
                     context.SaveChanges();
                 }
