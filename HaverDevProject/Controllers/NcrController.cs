@@ -324,14 +324,14 @@ namespace HaverDevProject.Controllers
             {
                 _context.Ncrs.Remove(ncr);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool NcrExists(int id)
         {
-          return _context.Ncrs.Any(e => e.NcrId == id);
+            return _context.Ncrs.Any(e => e.NcrId == id);
         }
     }
 }
