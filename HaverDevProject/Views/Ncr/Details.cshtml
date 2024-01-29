@@ -97,9 +97,8 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Number</th>
+                                            <th>SAP No.</th>
                                             <th>Name</th>
-                                            <th>Description</th>
                                             <th>Qty Received</th>
                                             <th>Qty Defective</th>
                                         </tr>
@@ -217,7 +216,6 @@
                             <thead>
                                 <tr>
                                     <th>Customer Notification Required</th>
-                                    <th>Notification Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -225,7 +223,6 @@
                                 {
                                     <tr>
                                         <td>@(e.NcrEngCustomerNotification == true ? "Yes" : "No")</td>
-                                        <td>Sent</td>
                                     </tr>
                                 }
                             </tbody>
@@ -273,7 +270,7 @@
                             <thead>
                                 <tr>
                                     <th>Preliminary Decision</th>
-                                    <th>Replacement Required</th>
+                                    <th>Description</th>
                                     <th>Operations Manager</th>
                                     <th>Creation Date</th>
                                     <th>Last Updated</th>
@@ -284,7 +281,7 @@
                                 {
                                     <tr>
                                         <td>@p.OpDispositionType.OpDispositionTypeName</td>
-                                        <td></td>
+                                        <td>@p.NcrPurchasingDescription</td>
                                         <td>L. Pentland</td>
                                         <td>@p.NcrPurchCreationDate.ToString("yyyy-MM-dd")</td>
                                         <td>@p.NcrPurchasingLastUpdated.ToString("yyyy-MM-dd")</td>
