@@ -110,28 +110,28 @@ namespace HaverDevProject.Data
                     context.Items.AddRange(
                         new Item
                         {
-                            ItemNumber = 10344214,
+                            ItemNumber = 10342455,
                             ItemName = "Bearing Housing",
                             ItemDescription = "Protective enclosure for bearings.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "INTEGRITY WOVEN WIRE").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 10482862,
+                            ItemNumber = 10482834,
                             ItemName = "Backing Shield",
                             ItemDescription = "Shield for internal components.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "FLO COMPONENTS LTD.").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 11536286,
+                            ItemNumber = 11536261,
                             ItemName = "Side Arm",
                             ItemDescription = "Structural component for reinforcement.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "AJAX TOCCO").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 11854265,
+                            ItemNumber = 11854290,
                             ItemName = "Panel",
                             ItemDescription = "Surface to house internal components.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "HINGSTON METAL FABRICATORS").SupplierId
