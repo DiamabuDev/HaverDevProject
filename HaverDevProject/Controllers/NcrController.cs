@@ -217,8 +217,10 @@ namespace HaverDevProject.Controllers
         // GET: Ncr/Create
         public IActionResult Create()
         {
-            ViewData["StatusUpdateId"] = new SelectList(_context.StatusUpdates, "StatusUpdateId", "StatusUpdateName");
-            return View();
+            Ncr ncr = new Ncr();
+            PopulateDropDownLists(ncr);
+            //PopulateProAppCheckboxes(ncr);
+            return View(ncr);
         }
 
         // POST: Ncr/Create
@@ -226,7 +228,8 @@ namespace HaverDevProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NcrId,NcrNumber,NcrLastUpdated,StatusUpdateId")] Ncr ncr)
+        public async Task<IActionResult> Create([Bind("NcrId,NcrNumber,StatusUpdateId,OrderId,NcrQasalesOrder,SupplierId,ProAppId,OrderQuanReceived,OrderQuanDefective," +
+            "ItemId,ItemNumber,DefectId,DefectDesription,NcrQaitemMarNonConforming,NcrQacreationDate")] Ncr ncr)
         {
             if (ModelState.IsValid)
             {
@@ -234,9 +237,10 @@ namespace HaverDevProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StatusUpdateId"] = new SelectList(_context.StatusUpdates, "StatusUpdateId", "StatusUpdateName", ncr.StatusUpdateId);
+            PopulateDropDownLists(ncr);
             return View(ncr);
         }
+
 
         // GET: Ncr/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -327,6 +331,64 @@ namespace HaverDevProject.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        private SelectList SupplierSelectList(int? selectedId)
+        {
+            return new SelectList(_context.Suppliers
+                .OrderBy(s => s.SupplierName), "SupplierId", "SupplierName", selectedId);
+        }
+
+        private SelectList ItemSelectList(int? selectedId)
+        {
+            return new SelectList(_context.Items
+                .OrderBy(s => s.ItemName), "ItemId", "ItemName", selectedId);
+        }
+
+        private SelectList DefectSelectList(int? selectedId)
+        {
+            return new SelectList(_context.Defects
+                .OrderBy(s => s.DefectName), "DefectId", "DefectName", selectedId);
+        }
+
+        private SelectList ProAppSelectList(int? selectedId)
+        {
+            return new SelectList(_context.ProcessApplicables
+                .OrderBy(s => s.ProAppName), "ProAppId", "ProAppName", selectedId);
+        }
+
+        private SelectList StatusSelectList(int? selectedId)
+        {
+            return new SelectList(_context.StatusUpdates
+                .OrderBy(s => s.StatusUpdateName), "StatusUpdateId", "StatusUpdateName", selectedId);
+        }
+
+        //private void PopulateProAppCheckboxes(Ncr ncr)
+        //{
+        //    //For this to work, you must have Included the FunctionRooms 
+        //    //in the Function
+        //    var allOptions = _context.ProcessApplicables;
+        //    var currentOptionIDs = new HashSet<int>(ncr?.NcrQas.Select(b => b.ProAppId));
+        //    var checkBoxes = new List<CheckOptionVM>();
+        //    foreach (var option in allOptions)
+        //    {
+        //        checkBoxes.Add(new CheckOptionVM
+        //        {
+        //            ID = option.ProAppId,
+        //            DisplayText = option.ProAppName,
+        //            Assigned = currentOptionIDs.Contains(option.ProAppId)
+        //        });
+        //    }
+        //    ViewData["ProAppOptions"] = checkBoxes;
+        //}
+
+        private void PopulateDropDownLists(Ncr ncr = null)
+        {
+            ViewData["SupplierId"] = SupplierSelectList(ncr?.NcrQas.FirstOrDefault()?.OrderDetails.FirstOrDefault()?.Item.Supplier.SupplierId);
+            ViewData["ItemId"] = ItemSelectList(ncr?.NcrQas.FirstOrDefault()?.OrderDetails.FirstOrDefault()?.Item.ItemId);
+            ViewData["DefectId"] = DefectSelectList(ncr?.NcrQas.FirstOrDefault()?.OrderDetails.FirstOrDefault()?.Item.ItemDefects.FirstOrDefault()?.DefectId);
+            ViewData["ProAppId"] = ProAppSelectList(ncr?.NcrQas.FirstOrDefault()?.ProAppId);
+            ViewData["StatusUpdateId"] = StatusSelectList(ncr?.StatusUpdateId);
         }
 
         private bool NcrExists(int id)
