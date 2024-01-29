@@ -35,6 +35,19 @@
                         <input asp-for="ItemDescription" class="form-control" placeholder="Description" />
                         <span asp-validation-for="ItemDescription" class="text-danger"></span>
                     </div>
+                    <div class="form-group">
+                        <label asp-for="SupplierId" class="control-label"></label>
+                        <select asp-for="SupplierId" class="form-control" asp-items="ViewBag.FunctionTypeID">
+                            <option value="">Select a Supplier</option>
+                            <option value="">Select a Supplier</option>
+                            <option value="">AJAX TOCCO</option>
+                            <option value="">HINGSTON METAL FABRICATORS</option>
+                            <option value="">HOTZ ENVIRONMENTAL SERVICES</option>
+                            <option value="">BLACK CREEK METAL</option>
+                            <option value="">POLYMER EXTRUSIONS INC</option>
+                        </select>
+                        <span asp-validation-for="SupplierId" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
             <div class="card-footer">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -163,7 +164,7 @@ namespace HaverDevProject.Controllers
         // GET: Item/Create
         public IActionResult Create()
         {
-            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierCode");
+            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierCode, SupplierName");
             return View();
         }
 
@@ -180,13 +181,18 @@ namespace HaverDevProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierCode", item.SupplierId);
+            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "Supplier", item.SupplierId);
             return View(item);
         }
 
         // GET: Item/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+
+            var items = _context.Items
+                .Include(i => i.Supplier)
+                .AsNoTracking();
+
             if (id == null || _context.Items == null)
             {
                 return NotFound();
