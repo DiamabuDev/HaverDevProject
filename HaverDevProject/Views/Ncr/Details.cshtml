@@ -7,8 +7,16 @@
 <h1 class="m-2">Non Conforming Report Details</h1>
 
 <div class="container mt-3">
+    <div class="form-group d-flex justify-content-end mt-2">
+        <button class="btn btn-secondary me-4">
+            <i class="bi bi-file-pdf"></i> Download PDF
+        </button>
+        <button class="btn btn-secondary me-4">
+            <i class="bi bi-file-earmark-spreadsheet"></i> Download Excel File
+        </button>
+    </div>
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-10 mx-auto">
             <div class="card">
                 <div class="card-header custom-header-bg">
                     General Information
@@ -89,9 +97,8 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Number</th>
+                                            <th>SAP No.</th>
                                             <th>Name</th>
-                                            <th>Description</th>
                                             <th>Qty Received</th>
                                             <th>Qty Defective</th>
                                         </tr>
@@ -143,6 +150,38 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-header custom-secondary-bg">
+                    Additional Information
+                </div>
+                <div class="card-header">
+                    Images
+                </div>
+                <div class="card-body pb-0">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="~/images/img-example1.png" class="img-fluid" alt="Description of Image 1">
+                        </div>
+                        <div class="col-md-6">
+                            <img src="~/images/img-example2.png" class="img-fluid" alt="Description of Image 2">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header">
+                    Attachments / Comments
+                </div>
+                <div class="card-body pb-0 mb-2">
+                    @foreach (var qa in Model.NcrQas)
+                    {
+                        @if (qa.OrderDetails.FirstOrDefault()?.Item?.ItemDefects.FirstOrDefault()?.ItemDefectVideos.FirstOrDefault()?.ItemDefectVideoLink?.Any() == true)
+                        {
+                            <a href="@qa.OrderDetails.FirstOrDefault()?.Item?.ItemDefects.FirstOrDefault()?.ItemDefectVideos.FirstOrDefault()?.ItemDefectVideoLink" target="_blank">Video Link</a>
+                        }
+                        else
+                        {
+                            <a href="https://www.youtube.com/watch?v=8hSuUrK53io&ab_channel=JorgeCeledonVEVO" target="_blank">https://www.youtube.com/watch?v=8hSuUrK53io&ab_channel=JorgeCeledonVEVO</a>
+                        }
+                    }
+                </div>
                 <div class="card">
                     <div class="card-header custom-header-bg">
                         Engineering
@@ -177,7 +216,6 @@
                             <thead>
                                 <tr>
                                     <th>Customer Notification Required</th>
-                                    <th>Notification Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -185,7 +223,6 @@
                                 {
                                     <tr>
                                         <td>@(e.NcrEngCustomerNotification == true ? "Yes" : "No")</td>
-                                        <td>Sent</td>
                                     </tr>
                                 }
                             </tbody>
@@ -233,7 +270,7 @@
                             <thead>
                                 <tr>
                                     <th>Preliminary Decision</th>
-                                    <th>Replacement Required</th>
+                                    <th>Description</th>
                                     <th>Operations Manager</th>
                                     <th>Creation Date</th>
                                     <th>Last Updated</th>
@@ -244,7 +281,7 @@
                                 {
                                     <tr>
                                         <td>@p.OpDispositionType.OpDispositionTypeName</td>
-                                        <td></td>
+                                        <td>@p.NcrPurchasingDescription</td>
                                         <td>L. Pentland</td>
                                         <td>@p.NcrPurchCreationDate.ToString("yyyy-MM-dd")</td>
                                         <td>@p.NcrPurchasingLastUpdated.ToString("yyyy-MM-dd")</td>
@@ -319,10 +356,16 @@
             </div>
         </div>
 
-        <div class="my-3">
-            <a asp-action="" asp-route-id="" class="btn btn-primary">Download PDF</a>
-            <a asp-action="" asp-route-id="" class="btn btn-primary">Download Excel File</a>
-            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        <div class="form-group d-flex justify-content-end mt-2">
+            <button class="btn btn-secondary me-4">
+                <i class="bi bi-file-pdf"></i> Download PDF
+            </button>
+            <button class="btn btn-secondary me-4">
+                <i class="bi bi-file-earmark-spreadsheet"></i> Download Excel File
+            </button>
+            <button type="button" onclick="location.href='@Url.Action("Index")'" class="btn btn-secondary">
+                <i class="bi bi-arrow-90deg-left"></i> Back to List
+            </button>
         </div>
     </div>
 </div>

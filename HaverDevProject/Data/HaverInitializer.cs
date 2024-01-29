@@ -110,84 +110,84 @@ namespace HaverDevProject.Data
                     context.Items.AddRange(
                         new Item
                         {
-                            ItemNumber = 10344214,
+                            ItemNumber = 10342455,
                             ItemName = "Bearing Housing",
                             ItemDescription = "Protective enclosure for bearings.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "INTEGRITY WOVEN WIRE").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 10482862,
+                            ItemNumber = 10482834,
                             ItemName = "Backing Shield",
                             ItemDescription = "Shield for internal components.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "FLO COMPONENTS LTD.").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 11536286,
+                            ItemNumber = 11536261,
                             ItemName = "Side Arm",
                             ItemDescription = "Structural component for reinforcement.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "AJAX TOCCO").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 11854265,
+                            ItemNumber = 11854290,
                             ItemName = "Panel",
                             ItemDescription = "Surface to house internal components.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "HINGSTON METAL FABRICATORS").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 10344214,
+                            ItemNumber = 10344215,
                             ItemName = "Bearing Housing",
                             ItemDescription = "Protective enclosure for bearings.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "HOTZ ENVIRONMENTAL SERVICES").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 10482862,
+                            ItemNumber = 10482863,
                             ItemName = "Backing Shield",
                             ItemDescription = "Shield for internal components.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "BLACK CREEK METAL").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 11536286,
+                            ItemNumber = 11536287,
                             ItemName = "Side Arm",
                             ItemDescription = "Structural component for reinforcement.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "POLYMER EXTRUSIONS INC").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 11854265,
+                            ItemNumber = 11854266,
                             ItemName = "Panel",
                             ItemDescription = "Surface to house internal components.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "DON CASSELMAN & SON LTD").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 10344214,
+                            ItemNumber = 10344216,
                             ItemName = "Bearing Housing",
                             ItemDescription = "Protective enclosure for bearings.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "W S TYLER - PARTICLE & FINE").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 10482862,
+                            ItemNumber = 10482864,
                             ItemName = "Backing Shield",
                             ItemDescription = "Shield for internal components.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "LAWRENCE SINTERED METALS").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 11536286,
+                            ItemNumber = 11536288,
                             ItemName = "Side Arm",
                             ItemDescription = "Structural component for reinforcement.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "FASTENAL COMPANY").SupplierId
                         },
                         new Item
                         {
-                            ItemNumber = 11854265,
+                            ItemNumber = 11854267,
                             ItemName = "Panel",
                             ItemDescription = "Surface to house internal components.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "HBC ENGINEERING").SupplierId
@@ -518,7 +518,7 @@ namespace HaverDevProject.Data
                     context.OrderDetails.AddRange(
                         new OrderDetail
                         {
-                            OrderNumber = 12345678,
+                            OrderNumber = 32778899,
                             OrderQuanReceived = 10,
                             OrderQuanDefective = 2,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Bearing Housing").ItemId,
@@ -526,7 +526,7 @@ namespace HaverDevProject.Data
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 12758492,
+                            OrderNumber = 34377801,
                             OrderQuanReceived = 5,
                             OrderQuanDefective = 1,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Backing Shield").ItemId,
@@ -534,7 +534,7 @@ namespace HaverDevProject.Data
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 12345678,
+                            OrderNumber = 88786565,
                             OrderQuanReceived = 10,
                             OrderQuanDefective = 2,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Side Arm").ItemId,
@@ -542,7 +542,7 @@ namespace HaverDevProject.Data
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 12345678,
+                            OrderNumber = 33566400,
                             OrderQuanReceived = 40,
                             OrderQuanDefective = 8,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Panel").ItemId,
@@ -550,7 +550,7 @@ namespace HaverDevProject.Data
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 12345678,
+                            OrderNumber = 99832323,
                             OrderQuanReceived = 10,
                             OrderQuanDefective = 2,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Bearing Housing").ItemId,
@@ -558,7 +558,7 @@ namespace HaverDevProject.Data
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 12758492,
+                            OrderNumber = 66654309,
                             OrderQuanReceived = 5,
                             OrderQuanDefective = 1,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Backing Shield").ItemId,
@@ -566,7 +566,7 @@ namespace HaverDevProject.Data
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 12345678,
+                            OrderNumber = 88977653,
                             OrderQuanReceived = 10,
                             OrderQuanDefective = 2,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Side Arm").ItemId,
@@ -574,7 +574,7 @@ namespace HaverDevProject.Data
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 12345678,
+                            OrderNumber = 22445435,
                             OrderQuanReceived = 40,
                             OrderQuanDefective = 8,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Panel").ItemId,
@@ -582,7 +582,7 @@ namespace HaverDevProject.Data
                         },
                                                 new OrderDetail
                         {
-                            OrderNumber = 12345678,
+                            OrderNumber = 55478341,
                             OrderQuanReceived = 10,
                             OrderQuanDefective = 2,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Bearing Housing").ItemId,
@@ -598,7 +598,7 @@ namespace HaverDevProject.Data
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 12345678,
+                            OrderNumber = 99876563,
                             OrderQuanReceived = 10,
                             OrderQuanDefective = 2,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Side Arm").ItemId,
@@ -606,7 +606,7 @@ namespace HaverDevProject.Data
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 12345678,
+                            OrderNumber = 43565459,
                             OrderQuanReceived = 40,
                             OrderQuanDefective = 8,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Panel").ItemId,
