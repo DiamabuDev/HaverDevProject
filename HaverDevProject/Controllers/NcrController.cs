@@ -9,6 +9,7 @@ using HaverDevProject.Data;
 using HaverDevProject.Models;
 using HaverDevProject.Utilities;
 using HaverDevProject.CustomControllers;
+//using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HaverDevProject.Controllers
 {
@@ -23,7 +24,7 @@ namespace HaverDevProject.Controllers
 
         // GET: Ncr
         public async Task<IActionResult> Index(string SearchCode, int? SupplierID, DateTime StartDate, DateTime EndDate, int? page, int? pageSizeID,
-    string actionButton, string sortDirection = "asc", string sortField = "Status")
+    string actionButton, string sortDirection = "asc", string sortField = "Created")
         {
             //Set the date range filer based on the values in the database
             if (EndDate == DateTime.MinValue)
@@ -45,7 +46,7 @@ namespace HaverDevProject.Controllers
             }
 
             //List of sort options.
-            string[] sortOptions = new[] {"NCR #", "Defect", "Supplier", "Status", "Created" }; 
+            string[] sortOptions = new[] {"NCR #", "Defect", "Supplier", "Status", "Created", "PO Number"}; 
 
             PopulateDropDownLists();
 
@@ -53,6 +54,7 @@ namespace HaverDevProject.Controllers
                 .Include(n=>n.StatusUpdate)
                 .Include(n=>n.NcrQas)
                 .Include(n=>n.NcrEngs).ThenInclude(n=>n.EngDispositionType)
+                .Include(n=>n.NcrQas).ThenInclude(n=>n.OrderDetails)
                 .Include(n=>n.NcrQas).ThenInclude(n=>n.OrderDetails).ThenInclude(od=>od.Item).ThenInclude(i=>i.Supplier)
                 .Include(n=>n.NcrQas).ThenInclude(n=>n.OrderDetails).ThenInclude(n =>n.Item).ThenInclude(n=>n.ItemDefects).ThenInclude(n=>n.Defect)
                 .AsNoTracking();
@@ -61,7 +63,8 @@ namespace HaverDevProject.Controllers
             //Filterig values                       
             if (!String.IsNullOrEmpty(SearchCode))
             {
-                ncr = ncr.Where(s => s.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName.ToUpper().Contains(SearchCode.ToUpper()));
+                ncr = ncr.Where(s => s.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName.ToUpper().Contains(SearchCode.ToUpper())
+                || s.NcrNumber.ToUpper().Contains(SearchCode.ToUpper()));
                 //ncr = ncr.Where(s => s.NcrNumber.ToUpper().Contains(SearchCode.ToUpper())
                 //|| s.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName.ToUpper().Contains(SearchCode.ToUpper())
                 //|| s.NcrEngs.FirstOrDefault().EngDispositionType.EngDispositionTypeName.ToUpper().Contains(SearchCode.ToUpper())
@@ -143,6 +146,23 @@ namespace HaverDevProject.Controllers
                         .OrderByDescending(p => p.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.Supplier.SupplierName);
                     ViewData["filterApplied:Supplier"] = "<i class='bi bi-sort-down'></i>";
                 }
+            }            
+            else if (sortField == "Created")
+            {
+                if (sortDirection == "desc") //desc by default
+                {
+                    ncr = ncr
+                        .OrderBy(p => p.NcrQas.FirstOrDefault().NcrQacreationDate);
+
+                    ViewData["filterApplied:Created"] = "<i class='bi bi-sort-up'></i>";
+                }
+                else
+                {
+                    ncr = ncr
+                        .OrderByDescending(p => p.NcrQas.FirstOrDefault().NcrQacreationDate);
+
+                    ViewData["filterApplied:Created"] = "<i class='bi bi-sort-down'></i>";
+                }                
             }
             else if (sortField == "Status")
             {
@@ -159,52 +179,21 @@ namespace HaverDevProject.Controllers
                     ViewData["filterApplied:Status"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
-            else //if (sortField == "Created")
+            else //(sortField == "PO Number")
             {
-                if (sortDirection == "desc") //desc by default
+                if (sortDirection == "asc")
                 {
                     ncr = ncr
-                        .OrderBy(p => p.NcrQas.FirstOrDefault().NcrQacreationDate);
-
-                    ViewData["filterApplied:Created"] = "<i class='bi bi-sort-up'></i>";
+                        .OrderBy(p => p.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().OrderNumber);
+                    ViewData["filterApplied:PONumber"] = "<i class='bi bi-sort-up'></i>";
                 }
                 else
                 {
                     ncr = ncr
-                        .OrderByDescending(p => p.NcrQas.FirstOrDefault().NcrQacreationDate);
-
-                    ViewData["filterApplied:Created"] = "<i class='bi bi-sort-down'></i>";
+                        .OrderByDescending(p => p.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().OrderNumber);
+                    ViewData["filterApplied:PONumber"] = "<i class='bi bi-sort-down'></i>";
                 }
-
-
-                //if (sortDirection == "asc")
-                //{
-                //    ncr = ncr
-                //        .OrderBy(p => p.NcrQas.FirstOrDefault().NcrQacreationDate);
-
-                //    ViewData["filterApplied:Created"] = "<i class='bi bi-sort-up'></i>";
-                //}
-                //else
-                //{
-                //    ncr = ncr
-                //        .OrderByDescending(p => p.NcrQas.FirstOrDefault().NcrQacreationDate);
-
-                //    ViewData["filterApplied:Created"] = "<i class='bi bi-sort-down'></i>";
-                //}
             }
-            //else // "Status"
-            //{
-            //    if (sortDirection == "asc")
-            //    {
-            //        ncr = ncr
-            //            .OrderBy(p => p.StatusUpdate.StatusUpdateName);
-            //    }
-            //    else
-            //    {
-            //        ncr = ncr
-            //            .OrderByDescending(p => p.StatusUpdate.StatusUpdateName);
-            //    }
-            //}
 
             //Set sort for next time
             ViewData["sortField"] = sortField;

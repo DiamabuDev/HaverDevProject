@@ -28,7 +28,7 @@
                     @Html.TextBox("EndDate", @ViewData["EndDate"], new { @class = "form-control", type = "date" })
                 </div>
                 <div class="form-group col-lg-3 col-md-5 col-sm-10 col-10">
-                    <label class="control-label mb-1">Search by defect:</label>
+                    <label class="control-label mb-1">Search by NCR # or defect :</label>
                     @Html.TextBox("SearchCode", null, new { @class = "form-control" })
                 </div>
                 <div class="form-group col-lg-2 col-md-7 col-sm-10 col-10 align-self-end">
@@ -62,7 +62,12 @@
                     <button type="submit" name="actionButton" value="Defect" class="btn text-light">Defect
                     @Html.Raw(ViewData["filterApplied:Defect"])
                     </button>
-                </th>                
+                </th>    
+                <th class="d-none d-md-table-cell">
+                    <button type="submit" name="actionButton" value="PO Number" class="btn text-light">PO Number                        
+                        @Html.Raw(ViewData["filterApplied:PONumber"])
+                    </button>
+                </th>
                 <th>
                     <button type="submit" name="actionButton" value="Status" class="btn text-light">Status
                     @Html.Raw(ViewData["filterApplied:Status"])
@@ -93,6 +98,9 @@
                     </td>
                     <td class="d-none d-md-table-cell">
                         @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName)
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().OrderNumber)
                     </td>                    
                     <td class="@((item.StatusUpdate.StatusUpdateName == "Active") ? "stillactive" : "closed")">
                         @Html.DisplayFor(modelItem => item.StatusUpdate.StatusUpdateName)
