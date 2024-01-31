@@ -179,11 +179,11 @@ body {
 /*Style for NCR List (Index.html)*/
 
 .stillactive {
-    color: darkgreen
+    color: green
 }
 
 .closed {
-    color: darkred;
+    color: red;
 }
 
 .standout, .closed, .stillactive {
