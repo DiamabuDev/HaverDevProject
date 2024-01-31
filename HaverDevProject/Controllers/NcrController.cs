@@ -23,7 +23,7 @@ namespace HaverDevProject.Controllers
         }
 
         // GET: Ncr
-        public async Task<IActionResult> Index(string SearchCode, int? SupplierID, DateTime StartDate, DateTime EndDate, int? page, int? pageSizeID,
+        public async Task<IActionResult> Index(string filter, string SearchCode, int? SupplierID, DateTime StartDate, DateTime EndDate, int? page, int? pageSizeID,
     string actionButton, string sortDirection = "asc", string sortField = "Created")
         {
             //Set the date range filer based on the values in the database
@@ -59,9 +59,23 @@ namespace HaverDevProject.Controllers
                 .Include(n=>n.NcrQas).ThenInclude(n=>n.OrderDetails).ThenInclude(n =>n.Item).ThenInclude(n=>n.ItemDefects).ThenInclude(n=>n.Defect)
                 .AsNoTracking();
 
-            
-            //Filterig values                       
-            if (!String.IsNullOrEmpty(SearchCode))
+
+            //Filterig values
+            if (!String.IsNullOrEmpty(filter))
+            {
+                if (filter == "Active")
+                {
+                    // Lógica para filtrar NCRs activos
+                    // Puedes ajustar esto según la estructura de tu modelo y lógica de filtrado
+                    ncr = ncr.Where(n => n.StatusUpdate.StatusUpdateName == "Active");
+                }
+                else if(filter == "Closed")
+                {
+                    ncr = ncr.Where(n => n.StatusUpdate.StatusUpdateName == "Closed");
+                }
+            }
+
+                if (!String.IsNullOrEmpty(SearchCode))
             {
                 ncr = ncr.Where(s => s.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName.ToUpper().Contains(SearchCode.ToUpper())
                 || s.NcrNumber.ToUpper().Contains(SearchCode.ToUpper()));

@@ -6,11 +6,26 @@
 
 <h1><i class="bi bi-caret-right-fill"></i> Non-Conformance Reports</h1>
 
-<form asp-action="Index" method="get">
+<form id="ncrForm" asp-action="Index" method="get">
     <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
     <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
-    <div class="text-end mb-2">
-        <a asp-action="Create" class="btn btn-primary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New</a>
+    <input type="hidden" id="filter" name="filter" value="@ViewData["filter"]" />
+    <div class="row mt-3 mb-2">
+        <div class="col-8">            
+            <div class="d-flex justify-content-start">
+                <input type="radio" class="btn-check btn-filter" name="filter" id="All" autocomplete="off" checked value="All">
+                <label class="btn btn-secondary me-2" for="All">All NCRs</label>
+
+                <input type="radio" class="btn-check btn-filter" name="filter" id="Active" autocomplete="off" value="Active" data-filter="Active">
+                <label class="btn btn-success me-2" for="Active">NCRs Actives</label>
+
+                <input type="radio" class="btn-check btn-filter" name="filter" id="Closed" autocomplete="off" value="Closed" data-filter="Closed">
+                <label class="btn btn-danger me-2" for="Closed">NCRs Closed</label>
+            </div>
+        </div>
+        <div class="col-4 text-end">
+            <a asp-action="Create" class="btn btn-primary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New NCR</a>
+        </div>
     </div>
     <div class="form-horizontal">
         <div class="card card-body bg-custom-color mb-2">
@@ -44,32 +59,38 @@
             <tr>
                 <th></th>
                 <th class="d-none d-md-table-cell">
-                    <button type="submit" name="actionButton" value="Created" class="btn text-light">Created 
-                    @Html.Raw(ViewData["filterApplied:Created"])
+                    <button type="submit" name="actionButton" value="Created" class="btn text-light custom-btn-text-start">
+                        Created
+                        @Html.Raw(ViewData["filterApplied:Created"])
                     </button>
                 </th>
                 <th>
-                    <button type="submit" name="actionButton" value="NCR #" class="btn text-light">NCR #
+                    <button type="submit" name="actionButton" value="NCR #" class="btn text-light custom-btn-text-start">
+                        NCR #
                     @Html.Raw(ViewData["filterApplied:NcrNumber"])
                     </button>
                 </th>
                 <th>
-                    <button type="submit" name="actionButton" value="Supplier" class="btn text-light">Supplier
+                    <button type="submit" name="actionButton" value="Supplier" class="btn text-light custom-btn-text-start">
+                        Supplier
                     @Html.Raw(ViewData["filterApplied:Supplier"])
                     </button>
                 </th>
                 <th class="d-none d-md-table-cell">
-                    <button type="submit" name="actionButton" value="Defect" class="btn text-light">Defect
+                    <button type="submit" name="actionButton" value="Defect" class="btn text-light custom-btn-text-start">
+                        Defect
                     @Html.Raw(ViewData["filterApplied:Defect"])
                     </button>
                 </th>    
                 <th class="d-none d-md-table-cell">
-                    <button type="submit" name="actionButton" value="PO Number" class="btn text-light">PO Number                        
+                    <button type="submit" name="actionButton" value="PO Number" class="btn text-light custom-btn-text-start">
+                        PO Number
                         @Html.Raw(ViewData["filterApplied:PONumber"])
                     </button>
                 </th>
                 <th>
-                    <button type="submit" name="actionButton" value="Status" class="btn text-light">Status
+                    <button type="submit" name="actionButton" value="Status" class="btn text-light custom-btn-text-start">
+                        Status
                     @Html.Raw(ViewData["filterApplied:Status"])
                     </button>
                 </th>
@@ -124,5 +145,21 @@
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
-    </script>   
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Manejar el clic en los botones de filtro
+            $('.btn-filter').on('click', function () {
+                // Establecer el valor del filtro en el formulario
+                $('#filter').val($(this).data('filter'));
+
+                // Enviar el formulario
+                $('#ncrForm').submit();
+            });
+        });
+    </script>
+
+
 }

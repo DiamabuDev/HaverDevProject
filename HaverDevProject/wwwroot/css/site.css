@@ -179,6 +179,7 @@ body {
 
 
 
+
 /* Provided by David S*/
 .form-group {
     margin-bottom: 1rem
@@ -198,8 +199,8 @@ body {
     font-weight: 600;
 }
 
-.column-active {
-    color: darkred; /* Cambia el color de fondo según tus preferencias */
-    font-size: 25px;
+.custom-btn-text-start {
+    text-align: left;
+    padding-left: 0;
 }
 
