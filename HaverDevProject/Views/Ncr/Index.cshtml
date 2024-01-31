@@ -4,22 +4,37 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>NCR List</h2>
+<h1><i class="bi bi-caret-right-fill"></i> Non-Conformance Reports</h1>
 
 <form asp-action="Index" method="get">
     <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
     <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
+    <div class="text-end mb-2">
+        <a asp-action="Create" class="btn btn-primary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New</a>
+    </div>
     <div class="form-horizontal">
         <div class="card card-body bg-custom-color mb-2">
             <div class="row d-flex justify-content-center align-items-center">
-                <div class="form-group col-lg-5 col-md-5 col-sm-10 col-10">
-                    <label class="control-label mb-1">Search NCR reports by the fields below:</label>
+                <div class="form-group col-lg-3 col-md-5 col-sm-10 col-10">
+                    <label class="control-label">Filter by Suppliers:</label>
+                    @Html.DropDownList("SupplierID", null, "All Suppliers", htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="form-group col-lg-2">
+                    <label class="control-label">Start Date:</label>
+                    @Html.TextBox("StartDate", @ViewData["StartDate"], new { @class = "form-control", type = "date" })
+                </div>
+                <div class="form-group col-lg-2">
+                    <label class="control-label">End Date:</label>
+                    @Html.TextBox("EndDate", @ViewData["EndDate"], new { @class = "form-control", type = "date" })
+                </div>
+                <div class="form-group col-lg-3 col-md-5 col-sm-10 col-10">
+                    <label class="control-label mb-1">Search by defect:</label>
                     @Html.TextBox("SearchCode", null, new { @class = "form-control" })
                 </div>
-                <div class="form-group col-lg-6 col-md-7 col-sm-10 col-10 align-self-end">
+                <div class="form-group col-lg-2 col-md-7 col-sm-10 col-10 align-self-end">
                     <input type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary ms-2" />
                     <a asp-action="Index" class="btn btn-outline-dark ms-4">Clear</a>
-                    <a asp-action="Create" class="btn btn-primary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New</a>
+                    
                 </div>
             </div>
         </div>
@@ -27,25 +42,31 @@
     <table class="table table-hover table-striped">
         <thead class="custom-header-bg">
             <tr>
+                <th></th>
+                <th class="d-none d-md-table-cell">
+                    <button type="submit" name="actionButton" value="Created" class="btn text-light">Created 
+                    @Html.Raw(ViewData["filterApplied:Created"])
+                    </button>
+                </th>
                 <th>
-                    <input type="submit" name="actionButton" value="NCR #" class="btn text-light" />
-                    <span><i class="bi bi-filter"></i></span>
+                    <button type="submit" name="actionButton" value="NCR #" class="btn text-light">NCR #
+                    @Html.Raw(ViewData["filterApplied:NcrNumber"])
+                    </button>
+                </th>
+                <th>
+                    <button type="submit" name="actionButton" value="Supplier" class="btn text-light">Supplier
+                    @Html.Raw(ViewData["filterApplied:Supplier"])
+                    </button>
                 </th>
                 <th class="d-none d-md-table-cell">
-                    <input type="submit" name="actionButton" value="Defect" class="btn text-light" />
-                    <span><i class="bi bi-filter"></i></span>
-                </th>
-                <th class="d-none d-md-table-cell">
-                    <input type="submit" name="actionButton" value="Created" class="btn text-light" />
-                    <span><i class="bi bi-filter"></i></span>
-                </th>
+                    <button type="submit" name="actionButton" value="Defect" class="btn text-light">Defect
+                    @Html.Raw(ViewData["filterApplied:Defect"])
+                    </button>
+                </th>                
                 <th>
-                    <input type="submit" name="actionButton" value="Updated" class="btn text-light" />
-                    <span><i class="bi bi-filter"></i></span>
-                </th>
-                <th>
-                    <input type="submit" name="actionButton" value="Status" class="btn text-light" />
-                    <span><i class="bi bi-filter"></i></span>
+                    <button type="submit" name="actionButton" value="Status" class="btn text-light">Status
+                    @Html.Raw(ViewData["filterApplied:Status"])
+                    </button>
                 </th>
 @*                 <th>
                     <input type="submit" name="actionButton" value="Assigned" class="btn text-light" />
@@ -58,18 +79,21 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td class="standout">
-                        @Html.DisplayFor(modelItem => item.NcrNumber)
-                    </td>
-                    <td class="d-none d-md-table-cell">
-                        @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName)
+                    <td class="ps-3 @((item.StatusUpdate.StatusUpdateName =="Active" ) ? "stillactive" : "closed" )">
+                        <i class="bi bi-circle-fill" data-bs-toggle="tooltip" data-bs-placement="top" title="@((item.StatusUpdate.StatusUpdateName == "Active") ? "Active" : "Closed")"></i>
                     </td>
                     <td class="d-none d-md-table-cell">
                         @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().NcrQacreationDate)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NcrLastUpdated)
+                    <td class="standout">
+                        @Html.DisplayFor(modelItem => item.NcrNumber)
                     </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.Supplier.SupplierName)
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName)
+                    </td>                    
                     <td class="@((item.StatusUpdate.StatusUpdateName == "Active") ? "stillactive" : "closed")">
                         @Html.DisplayFor(modelItem => item.StatusUpdate.StatusUpdateName)
                     </td>
@@ -92,5 +116,5 @@
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
-    </script>
+    </script>   
 }

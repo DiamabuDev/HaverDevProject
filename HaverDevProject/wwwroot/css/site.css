@@ -176,6 +176,7 @@ body {
     background-color: gray;
 }
 
+
 /* Provided by David S*/
 .form-group {
     margin-bottom: 1rem
@@ -193,5 +194,10 @@ body {
 
 .standout, .closed, .stillactive {
     font-weight: 600;
+}
+
+.column-active {
+    color: darkred; /* Cambia el color de fondo según tus preferencias */
+    font-size: 25px;
 }
 
