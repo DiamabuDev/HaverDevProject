@@ -18,200 +18,216 @@
     <div class="row">
         <div class="col-md-10 mx-auto">
             <div class="card">
-                <div class="card-header custom-header-bg">
+                <div class="card-header custom-header-bg text-center">
                     General Information
                 </div>
-                <div class="card-body pb-0">
+                <div class="card-body pb-0 pt-0">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>NCR No</th>
-                                <th>Status</th>
+                                <th class="two-cols-1">NCR No</th>
+                                <th class="two-cols">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>@Model.NcrNumber</td>
-                                <td>@Model.StatusUpdate.StatusUpdateName</td>
+                                <td class="two-cols-1">@Model.NcrNumber</td>
+                                <td class="two-cols">@Model.StatusUpdate.StatusUpdateName</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header custom-header-bg">
-                    Quality Representative
-                </div>
-                <div class="card-body pb-0">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Process Applicable</th>
-                                <th>Quality Representative</th>
-                                <th>Creation Date</th>
-                                <th>Last Updated</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var qa in Model.NcrQas)
-                            {
-                                <tr>
-                                    <td>@qa.ProApp.ProAppName</td>
-                                    <td>R. May</td>
-                                    <td>@qa.NcrQacreationDate.ToString("yyyy-MM-dd")</td>
-                                    <td>@qa.NcrQalastUpdated.ToString("yyyy-MM-dd")</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card-body pb-0">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Supplier Name</th>
-                                <th>PO or Prod. No.</th>
-                                <th>Sales Order No.</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var qa in Model.NcrQas)
-                            {
-                                <tr>
-                                    <td>@qa.OrderDetails.FirstOrDefault().Item.Supplier.SupplierName</td>
-                                    <td>@qa.OrderDetails.FirstOrDefault().OrderNumber</td>
-                                    <td>@qa.NcrQasalesOrder</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <div class="row">
-                    <!-- Item Information -->
-                    <div class="col-lg-6 col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                Item Information
-                            </div>
-                            <div class="card-body pb-0">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>SAP No.</th>
-                                            <th>Name</th>
-                                            <th>Qty Received</th>
-                                            <th>Qty Defective</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var qa in Model.NcrQas)
-                                        {
-                                            <tr>
-                                                <td>@qa.OrderDetails.FirstOrDefault().Item.ItemNumber</td>
-                                                <td>@qa.OrderDetails.FirstOrDefault().Item.ItemName</td>
-                                                <td>@qa.OrderDetails.FirstOrDefault().Item.ItemDescription</td>
-                                                <td>@qa.OrderDetails.FirstOrDefault().OrderQuanReceived</td>
-                                                <td>@qa.OrderDetails.FirstOrDefault().OrderQuanDefective</td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+            
+            <button class="btn custom-header-bg icon-drop" type="button" data-bs-toggle="collapse" data-bs-target="#qualityRepSection" aria-expanded="false" aria-controls="qualityRepSection">
+                Quality Representative <i class="bi bi-chevron-down"></i>
+            </button>
 
-                    <!-- Defect Information -->
-                    <div class="col-lg-6 col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                Defect Information
-                            </div>
-                            <div class="card-body pb-0">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Description</th>
-                                            <th>Item Marked Non Conforming</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var qa in Model.NcrQas)
-                                        {
-                                            <tr>
-                                                <td>@qa.OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName</td>
-                                                <td>@qa.OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectDesription</td>
-                                                <td>@(qa.NcrQaitemMarNonConforming == true ? "Yes" : "No")</td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-header custom-secondary-bg">
-                    Additional Information
-                </div>
-                <div class="card-header">
-                    Images
-                </div>
-                <div class="card-body pb-0">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img src="~/images/img-example1.png" class="img-fluid" alt="Description of Image 1">
-                        </div>
-                        <div class="col-md-6">
-                            <img src="~/images/img-example2.png" class="img-fluid" alt="Description of Image 2">
-                        </div>
-                    </div>
-                </div>
-                <div class="card-header">
-                    Attachments / Comments
-                </div>
-                <div class="card-body pb-0 mb-2">
-                    @foreach (var qa in Model.NcrQas)
-                    {
-                        @if (qa.OrderDetails.FirstOrDefault()?.Item?.ItemDefects.FirstOrDefault()?.ItemDefectVideos.FirstOrDefault()?.ItemDefectVideoLink?.Any() == true)
-                        {
-                            <a href="@qa.OrderDetails.FirstOrDefault()?.Item?.ItemDefects.FirstOrDefault()?.ItemDefectVideos.FirstOrDefault()?.ItemDefectVideoLink" target="_blank">Video Link</a>
-                        }
-                        else
-                        {
-                            <a href="https://www.youtube.com/watch?v=8hSuUrK53io&ab_channel=JorgeCeledonVEVO" target="_blank">https://www.youtube.com/watch?v=8hSuUrK53io&ab_channel=JorgeCeledonVEVO</a>
-                        }
-                    }
-                </div>
+            <div class="collapse" id="qualityRepSection">
                 <div class="card">
-                    <div class="card-header custom-header-bg">
-                        Engineering
-                    </div>
-                    <div class="card-body pb-0">
+                    <div class="card-body pb-0 pt-0">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Disposition</th>
-                                    <th>Disposition Details</th>
-                                    <th>Engineer</th>
-                                    <th>Creation Date</th>
-                                    <th>Last Updated</th>
+                                    <th class="four-cols">Process Applicable</th>
+                                    <th class="four-cols">Supplier Name</th>
+                                    <th class="four-cols">PO or Prod. No.</th>
+                                    <th class="four-cols">Sales Order No.</th>                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var qa in Model.NcrQas)
+                                {
+                                    <tr>
+                                        <td class="four-cols">@qa.ProApp.ProAppName</td>
+                                        <td class="four-cols">@qa.OrderDetails.FirstOrDefault().Item.Supplier.SupplierName</td>
+                                        <td class="four-cols">@qa.OrderDetails.FirstOrDefault().OrderNumber</td>
+                                        <td class="four-cols">@qa.NcrQasalesOrder</td>                                  
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="card-body pb-0 pt-0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Item Marked Non Conforming</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var qa in Model.NcrQas)
+                                {
+                                    <tr>
+                                        <td>@(qa.NcrQaitemMarNonConforming == true ? "Yes" : "No")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="card">
+                         <div class="card-header">
+                              Item Information
+                          </div>
+                          <div class="card-body pb-0 pt-0">
+                               <table class="table">
+                                   <thead>
+                                       <tr>
+                                           <th class="four-cols">SAP No.</th>
+                                           <th class="four-cols">Description</th>
+                                           <th class="four-cols">Qty Received</th>
+                                           <th class="four-cols">Qty Defective</th>
+                                       </tr>
+                                   </thead>
+                               <tbody>
+                                    @foreach (var qa in Model.NcrQas)
+                                    {
+                                        <tr>
+                                            <td class="four-cols">@qa.OrderDetails.FirstOrDefault().Item.ItemNumber</td>
+                                            <td class="four-cols">@qa.OrderDetails.FirstOrDefault().Item.ItemName</td>
+                                            <td class="four-cols">@qa.OrderDetails.FirstOrDefault().OrderQuanReceived</td>
+                                            <td class="four-cols">@qa.OrderDetails.FirstOrDefault().OrderQuanDefective</td>
+                                        </tr>
+                                    }
+                               </tbody>
+                               </table>
+                         </div>
+                    </div>
+
+                    <div class="card">
+                         <div class="card-header">
+                            Defect Information
+                         </div>
+                         <div class="card-body pb-0 pt-0">
+                             <table class="table">
+                                 <thead>
+                                     <tr>
+                                         <th class="two-cols-1">Name</th>
+                                         <th class="two-cols">Description</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach (var qa in Model.NcrQas)
+                                    {
+                                        <tr>
+                                            <td class="two-cols-1">@qa.OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName</td>
+                                            <td class="two-cols">@qa.OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectDesription</td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                             </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body pb-0 pt-0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="three-cols">Quality Representative</th>
+                                    <th class="three-cols">Creation Date</th>
+                                    <th class="three-cols">Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                  @foreach (var qa in Model.NcrQas)
+                                      {
+                                        <tr>
+                                            <td class="three-cols">R. May</td>
+                                            <td class="three-cols">@qa.NcrQacreationDate.ToString("yyyy-MM-dd")</td>
+                                            <td class="three-cols">@qa.NcrQalastUpdated.ToString("yyyy-MM-dd")</td>
+                                        </tr>
+                                      }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button class="btn custom-secondary-bg icon-drop" type="button" data-bs-toggle="collapse" data-bs-target="#additionalInfo" aria-expanded="false" aria-controls="additionalInfo">
+                    Additional Information <i class="bi bi-chevron-down"></i>
+                </button>
+                <div class="collapse" id="additionalInfo">
+
+                    <div class="card-header">
+                        Images
+                    </div>
+                    <div class="card-body pb-0">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="~/images/img-example1.png" class="img-fluid" alt="Description of Image 1">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="~/images/img-example2.png" class="img-fluid" alt="Description of Image 2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        Attachments / Comments
+                    </div>
+                    <div class="card-body">
+                        @foreach (var qa in Model.NcrQas)
+                        {
+                            @if (qa.OrderDetails.FirstOrDefault()?.Item?.ItemDefects.FirstOrDefault()?.ItemDefectVideos.FirstOrDefault()?.ItemDefectVideoLink?.Any() == true)
+                            {
+                                <a href="@qa.OrderDetails.FirstOrDefault()?.Item?.ItemDefects.FirstOrDefault()?.ItemDefectVideos.FirstOrDefault()?.ItemDefectVideoLink" target="_blank">Video Link</a>
+                            }
+                            else
+                            {
+                                <a href="https://www.youtube.com/watch?v=8hSuUrK53io&ab_channel=JorgeCeledonVEVO" target="_blank">https://www.youtube.com/watch?v=8hSuUrK53io&ab_channel=JorgeCeledonVEVO</a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn custom-header-bg icon-drop" type="button" data-bs-toggle="collapse" data-bs-target="#engSection" aria-expanded="false" aria-controls="engSection">
+                Engineering <i class="bi bi-chevron-down"></i>
+            </button>
+
+            <div class="collapse" id="engSection">
+                <div class="card">
+                    <div class="card-body pb-0 pt-0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="two-cols-1">Disposition</th>
+                                    <th class="two-cols">Disposition Details</th>                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var e in Model.NcrEngs)
                                 {
                                     <tr>
-                                        <td>@e.EngDispositionType.EngDispositionTypeName</td>
-                                        <td>@e.NcrEngDispositionDescription</td>
-                                        <td>T. Jones</td>
-                                        <td>@e.NcrEngCreationDate.ToString("yyyy-MM-dd")</td>
-                                        <td>@e.NcrEngLastUpdated.ToString("yyyy-MM-dd")</td>
+                                        <td class="two-cols-1">@e.EngDispositionType.EngDispositionTypeName</td>
+                                        <td class="two-cols">@e.NcrEngDispositionDescription</td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-body pb-0">
+                    <div class="card-body pb-0 pt-0">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -228,10 +244,31 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="card-body pb-0 pt-0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="three-cols">Engineer</th>
+                                    <th class="three-cols">Creation Date</th>
+                                    <th class="three-cols">Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var e in Model.NcrEngs)
+                                {
+                                    <tr>
+                                        <td class="three-cols">T. Jones</td>
+                                        <td class="three-cols">@e.NcrEngCreationDate.ToString("yyyy-MM-dd")</td>
+                                        <td class="three-cols">@e.NcrEngLastUpdated.ToString("yyyy-MM-dd")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="card-header">
                         Drawing Information
                     </div>
-                    <div class="card-body pb-0">
+                    <div class="card-body pb-0 pt-0">
                         <table class="table">
                             <thead>
                                 @foreach (var e in Model.NcrEngs)
@@ -260,37 +297,34 @@
                         </table>
                     </div>
                 </div>
+            </div>
 
+            <button class="btn custom-header-bg icon-drop" type="button" data-bs-toggle="collapse" data-bs-target="#purchSection" aria-expanded="false" aria-controls="purchSection">
+                Purchasing <i class="bi bi-chevron-down"></i>
+            </button>
+
+            <div class="collapse" id="purchSection">
                 <div class="card">
-                    <div class="card-header custom-header-bg">
-                        Purchasing
-                    </div>
-                    <div class="card-body pb-0">
+                    <div class="card-body pb-0 pt-0">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Preliminary Decision</th>
-                                    <th>Description</th>
-                                    <th>Operations Manager</th>
-                                    <th>Creation Date</th>
-                                    <th>Last Updated</th>
+                                    <th class="two-cols-1">Preliminary Decision</th>
+                                    <th class="two-cols">Description</th>                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var p in Model.NcrPurchasings)
                                 {
                                     <tr>
-                                        <td>@p.OpDispositionType.OpDispositionTypeName</td>
-                                        <td>@p.NcrPurchasingDescription</td>
-                                        <td>L. Pentland</td>
-                                        <td>@p.NcrPurchCreationDate.ToString("yyyy-MM-dd")</td>
-                                        <td>@p.NcrPurchasingLastUpdated.ToString("yyyy-MM-dd")</td>
+                                        <td class="two-cols-1">@p.OpDispositionType.OpDispositionTypeName</td>
+                                        <td class="two-cols">@p.NcrPurchasingDescription</td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-body pb-0">
+                    <div class="card-body pb-0 pt-0">
                         <table class="table">
                             <thead>
                                 @foreach (var p in Model.NcrPurchasings)
@@ -318,22 +352,47 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card-header custom-header-bg">
-                        Re-Inspection
+                    <div class="card-body pb-0 pt-0">
+                        <table class="table">
+                            <thead>
+                                @foreach (var p in Model.NcrPurchasings)
+                                {
+                                    <tr>
+                                        <th class="three-cols">Operations Manager</th>
+                                        <th class="three-cols">Creation Date</th>
+                                        <th class="three-cols">Last Updated</th>
+                                    </tr>
+                                }
+                            </thead>
+                            <tbody>
+                                @foreach (var p in Model.NcrPurchasings)
+                                {
+                                    <tr>
+                                        <td class="three-cols">L. Pentland</td>
+                                        <td class="three-cols">@p.NcrPurchCreationDate.ToString("yyyy-MM-dd")</td>
+                                        <td class="three-cols">@p.NcrPurchasingLastUpdated.ToString("yyyy-MM-dd")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="card-body pb-0">
+                </div>
+            </div>
+
+            <button class="btn custom-header-bg icon-drop" type="button" data-bs-toggle="collapse" data-bs-target="#reinSection" aria-expanded="false" aria-controls="reinSection">
+                Re-Inspection <i class="bi bi-chevron-down"></i>
+            </button>
+
+            <div class="collapse" id="reinSection">
+                <div class="card">
+                    <div class="card-body pb-0 pt-0">
                         <table class="table">
                             <thead>
                                 @foreach (var ri in Model.NcrReInspects)
                                 {
                                     <tr>
-                                        <th>Re-Inspection Acceptable</th>
-                                        <th>@(ri.NcrReInspectAcceptable ? "" : "New NCR Number")</th>
-                                        <th>Quality Inspector</th>
-                                        <th>Creation Date</th>
-                                        <th>Last Updated</th>
+                                        <th class="two-cols-1">Re-Inspection Acceptable</th>
+                                        <th class="two-cols">@(ri.NcrReInspectAcceptable ? "" : "New NCR Number")</th>                                            
                                     </tr>
                                 }
                             </thead>
@@ -341,17 +400,37 @@
                                 @foreach (var ri in Model.NcrReInspects)
                                 {
                                     <tr>
-                                        <td>@(ri.NcrReInspectAcceptable ? "Yes" : "No")</td>
-                                        <td>@ri.NcrReInspectNewNcrNumber</td>
-                                        <td>R. May</td>
-                                        <td>@ri.NcrReInspectCreationDate.ToString("yyyy-MM-dd")</td>
-                                        <td>@ri.NcrReInspectLastUpdated.ToString("yyyy-MM-dd")</td>
+                                        <td class="two-cols-1">@(ri.NcrReInspectAcceptable ? "Yes" : "No")</td>
+                                        <td class="two-cols">@ri.NcrReInspectNewNcrNumber</td>                                            
                                     </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
-
+                    <div class="card-body pb-0 pt-0">
+                            <table class="table">
+                                <thead>
+                                    @foreach (var ri in Model.NcrReInspects)
+                                    {
+                                        <tr>
+                                            <th class="three-cols">Quality Inspector</th>
+                                            <th class="three-cols">Creation Date</th>
+                                            <th class="three-cols">Last Updated</th>
+                                        </tr>
+                                    }
+                                </thead>
+                                <tbody>
+                                    @foreach (var ri in Model.NcrReInspects)
+                                    {
+                                        <tr>
+                                            <td class="three-cols">R. May</td>
+                                            <td class="three-cols">@ri.NcrReInspectCreationDate.ToString("yyyy-MM-dd")</td>
+                                            <td class="three-cols">@ri.NcrReInspectLastUpdated.ToString("yyyy-MM-dd")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                 </div>
             </div>
         </div>

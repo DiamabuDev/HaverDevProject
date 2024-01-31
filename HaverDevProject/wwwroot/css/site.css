@@ -195,3 +195,24 @@ body {
     font-weight: 600;
 }
 
+.two-cols-1 {
+    width: 30%;
+}
+
+.two-cols {
+    width: 70%;
+}
+
+.three-cols {
+    width: 20%;
+}
+
+.four-cols {
+    width: 25%;
+}
+
+.icon-drop {
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
