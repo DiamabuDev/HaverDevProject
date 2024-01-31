@@ -150,12 +150,8 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            // Manejar el clic en los botones de filtro
-            $('.btn-filter').on('click', function () {
-                // Establecer el valor del filtro en el formulario
-                $('#filter').val($(this).data('filter'));
-
-                // Enviar el formulario
+            $('.btn-filter').on('click', function () {                
+                $('#filter').val($(this).data('filter'));                                
                 $('#ncrForm').submit();
             });
         });
