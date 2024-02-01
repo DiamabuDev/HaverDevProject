@@ -69,8 +69,8 @@
             event.preventDefault();
             var address = $(this).attr("href");
             var lookup = address.split("/")[1];
-            var dropdownId = lookupToDropdownId[lookup]; // Use the mapped ID
-            var id = $("#" + dropdownId).val(); // Use the correct ID to get the value
+            var dropdownId = lookupToDropdownId[lookup]; 
+            var id = $("#" + dropdownId).val(); 
             var caption = $("#" + lookup).html();
 
             if (!id) {
