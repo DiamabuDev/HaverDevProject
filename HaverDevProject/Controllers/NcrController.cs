@@ -9,6 +9,7 @@ using HaverDevProject.Data;
 using HaverDevProject.Models;
 using HaverDevProject.Utilities;
 using HaverDevProject.CustomControllers;
+//using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HaverDevProject.Controllers
 {
@@ -22,34 +23,83 @@ namespace HaverDevProject.Controllers
         }
 
         // GET: Ncr
-        public async Task<IActionResult> Index(string SearchCode, int? page, int? pageSizeID,
-    string actionButton, string sortDirection = "asc", string sortField = "Status")
+        public async Task<IActionResult> Index(string filter, string SearchCode, int? SupplierID, DateTime StartDate, DateTime EndDate, int? page, int? pageSizeID,
+    string actionButton, string sortDirection = "asc", string sortField = "Created")
         {
-            //List of sort options.
-            string[] sortOptions = new[] { "NCR #", "Defect", "Disposition", "Created", "Updated", "Status", "Assigned" };
+            //Set the date range filer based on the values in the database
+            if (EndDate == DateTime.MinValue)
+            {
+                StartDate = _context.NcrQas
+                .Min(f => f.NcrQacreationDate.Date);
+                EndDate = _context.NcrQas
+                .Max(f => f.NcrQacreationDate.Date);
 
+                ViewData["StartDate"] = StartDate.ToString("yyyy-MM-dd");
+                ViewData["EndDate"] = EndDate.ToString("yyyy-MM-dd");
+            }
+            //Check the order of the dates and swap them if required
+            if (EndDate < StartDate)
+            {
+                DateTime temp = EndDate;
+                EndDate = StartDate;
+                StartDate = temp;
+            }
+
+            //List of sort options.
+            string[] sortOptions = new[] { "NCR #", "Defect", "Supplier", "Status", "Created", "PO Number" };
+
+            PopulateDropDownLists();
 
             var ncr = _context.Ncrs
-                .Include(n=>n.StatusUpdate)
-                .Include(n=>n.NcrEngs)
-                .ThenInclude(n=>n.EngDispositionType)
-                .Include(n=>n.NcrQas)
-                .ThenInclude(n=>n.OrderDetails)
-                .ThenInclude(n =>n.Item)
-                .ThenInclude(n=>n.ItemDefects)
-                .ThenInclude(n=>n.Defect)
+                .Include(n => n.StatusUpdate)
+                .Include(n => n.NcrQas)
+                .Include(n => n.NcrEngs).ThenInclude(n => n.EngDispositionType)
+                .Include(n => n.NcrQas).ThenInclude(n => n.OrderDetails)
+                .Include(n => n.NcrQas).ThenInclude(n => n.OrderDetails).ThenInclude(od => od.Item).ThenInclude(i => i.Supplier)
+                .Include(n => n.NcrQas).ThenInclude(n => n.OrderDetails).ThenInclude(n => n.Item).ThenInclude(n => n.ItemDefects).ThenInclude(n => n.Defect)
                 .AsNoTracking();
 
-            //Filterig values                       
+
+            //Filterig values
+            if (!String.IsNullOrEmpty(filter))
+            {
+                if (filter == "Active")
+                {
+                    // Lógica para filtrar NCRs activos
+                    // Puedes ajustar esto según la estructura de tu modelo y lógica de filtrado
+                    ncr = ncr.Where(n => n.StatusUpdate.StatusUpdateName == "Active");
+                }
+                else if (filter == "Closed")
+                {
+                    ncr = ncr.Where(n => n.StatusUpdate.StatusUpdateName == "Closed");
+                }
+            }
+
             if (!String.IsNullOrEmpty(SearchCode))
             {
-                ncr = ncr.Where(s => s.NcrNumber.ToUpper().Contains(SearchCode.ToUpper())
-                || s.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName.ToUpper().Contains(SearchCode.ToUpper())
-                || s.NcrEngs.FirstOrDefault().EngDispositionType.EngDispositionTypeName.ToUpper().Contains(SearchCode.ToUpper())
-                || s.NcrQas.FirstOrDefault().NcrQacreationDate.Date.ToString() == SearchCode.ToUpper()
-                || s.NcrLastUpdated.Date.ToString() == SearchCode.ToUpper()
-                || s.StatusUpdate.StatusUpdateName.ToUpper().Contains(SearchCode.ToUpper()));
+                ncr = ncr.Where(s => s.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName.ToUpper().Contains(SearchCode.ToUpper())
+                || s.NcrNumber.ToUpper().Contains(SearchCode.ToUpper()));
+                //ncr = ncr.Where(s => s.NcrNumber.ToUpper().Contains(SearchCode.ToUpper())
+                //|| s.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName.ToUpper().Contains(SearchCode.ToUpper())
+                //|| s.NcrEngs.FirstOrDefault().EngDispositionType.EngDispositionTypeName.ToUpper().Contains(SearchCode.ToUpper())
+                //|| s.NcrQas.FirstOrDefault().NcrQacreationDate.Date.ToString() == SearchCode.ToUpper()
+                //|| s.NcrLastUpdated.Date.ToString() == SearchCode.ToUpper()
+                //|| s.StatusUpdate.StatusUpdateName.ToUpper().Contains(SearchCode.ToUpper()));
             }
+            if (SupplierID.HasValue)
+            {
+                ncr = ncr.Where(n => n.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.Supplier.SupplierId == SupplierID);
+            }
+            if (StartDate == EndDate)
+            {
+                ncr = ncr.Where(n => n.NcrQas.FirstOrDefault().NcrQacreationDate == StartDate);
+            }
+            else
+            {
+                ncr = ncr.Where(n => n.NcrQas.FirstOrDefault().NcrQacreationDate >= StartDate &&
+                         n.NcrQas.FirstOrDefault().NcrQacreationDate <= EndDate);
+            }
+
 
             //Sorting columns
             if (!String.IsNullOrEmpty(actionButton)) //Form Submitted!
@@ -72,11 +122,13 @@ namespace HaverDevProject.Controllers
                 {
                     ncr = ncr
                         .OrderBy(p => p.NcrNumber);
+                    ViewData["filterApplied:NcrNumber"] = "<i class='bi bi-sort-up'></i>";
                 }
                 else
                 {
                     ncr = ncr
                         .OrderByDescending(p => p.NcrNumber);
+                    ViewData["filterApplied:NcrNumber"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
             else if (sortField == "Defect")
@@ -85,50 +137,45 @@ namespace HaverDevProject.Controllers
                 {
                     ncr = ncr
                         .OrderBy(p => p.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName);
+                    ViewData["filterApplied:Defect"] = "<i class='bi bi-sort-up'></i>";
                 }
                 else
                 {
                     ncr = ncr
                         .OrderByDescending(p => p.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.ItemDefects.FirstOrDefault().Defect.DefectName);
+                    ViewData["filterApplied:Defect"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
-            else if (sortField == "Disposition")
+            else if (sortField == "Supplier")
             {
                 if (sortDirection == "asc")
                 {
                     ncr = ncr
-                        .OrderBy(p => p.NcrEngs.FirstOrDefault().EngDispositionType.EngDispositionTypeName);
+                        .OrderBy(p => p.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.Supplier.SupplierName);
+                    ViewData["filterApplied:Supplier"] = "<i class='bi bi-sort-up'></i>";
                 }
                 else
                 {
                     ncr = ncr
-                        .OrderByDescending(p => p.NcrEngs.FirstOrDefault().EngDispositionType.EngDispositionTypeName);
+                        .OrderByDescending(p => p.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().Item.Supplier.SupplierName);
+                    ViewData["filterApplied:Supplier"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
             else if (sortField == "Created")
             {
-                if (sortDirection == "asc")
+                if (sortDirection == "desc") //desc by default
                 {
                     ncr = ncr
                         .OrderBy(p => p.NcrQas.FirstOrDefault().NcrQacreationDate);
+
+                    ViewData["filterApplied:Created"] = "<i class='bi bi-sort-up'></i>";
                 }
                 else
                 {
                     ncr = ncr
                         .OrderByDescending(p => p.NcrQas.FirstOrDefault().NcrQacreationDate);
-                }
-            }
-            else if (sortField == "Updated")
-            {
-                if (sortDirection == "asc")
-                {
-                    ncr = ncr
-                        .OrderBy(p => p.NcrLastUpdated);
-                }
-                else
-                {
-                    ncr = ncr
-                        .OrderByDescending(p => p.NcrLastUpdated);
+
+                    ViewData["filterApplied:Created"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
             else if (sortField == "Status")
@@ -137,26 +184,31 @@ namespace HaverDevProject.Controllers
                 {
                     ncr = ncr
                         .OrderBy(p => p.StatusUpdate.StatusUpdateName);
+                    ViewData["filterApplied:Status"] = "<i class='bi bi-sort-up'></i>";
                 }
                 else
                 {
                     ncr = ncr
                         .OrderByDescending(p => p.StatusUpdate.StatusUpdateName);
+                    ViewData["filterApplied:Status"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
-            else //Sorting by Assigned 
+            else //(sortField == "PO Number")
             {
                 if (sortDirection == "asc")
                 {
                     ncr = ncr
-                        .OrderBy(p => p.NcrQas.FirstOrDefault().NcrQauserId);
+                        .OrderBy(p => p.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().OrderNumber);
+                    ViewData["filterApplied:PONumber"] = "<i class='bi bi-sort-up'></i>";
                 }
                 else
                 {
                     ncr = ncr
-                        .OrderByDescending(p => p.NcrQas.FirstOrDefault().NcrQauserId);
+                        .OrderByDescending(p => p.NcrQas.FirstOrDefault().OrderDetails.FirstOrDefault().OrderNumber);
+                    ViewData["filterApplied:PONumber"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
+
             //Set sort for next time
             ViewData["sortField"] = sortField;
             ViewData["sortDirection"] = sortDirection;
@@ -381,6 +433,8 @@ namespace HaverDevProject.Controllers
         //    }
         //    ViewData["ProAppOptions"] = checkBoxes;
         //}
+
+
 
         private void PopulateDropDownLists(Ncr ncr = null)
         {
