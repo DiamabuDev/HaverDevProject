@@ -243,3 +243,7 @@ body {
 .custom-hover:hover a {
     color: white !important;
 }
+
+.big-col {
+    width: 40%;
+}

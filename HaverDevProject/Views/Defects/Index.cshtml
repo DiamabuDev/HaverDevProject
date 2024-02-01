@@ -40,13 +40,13 @@
         <thead class="custom-header-bg">
             <tr>
                 <th></th>
-                <th class="d-none d-md-table-cell">
+                <th>
                     <button type="submit" name="actionButton" value="Defect" class="btn text-light custom-btn-text-start">
                         Defect
                         @Html.Raw(ViewData["filterApplied:DefectName"])
                     </button>
                 </th>
-                <th class="d-none d-md-table-cell">
+                <th class="big-col">
                     <button type="submit" name="actionButton" value="Description" class="btn text-light custom-btn-text-start">
                         Defect
                         @Html.Raw(ViewData["filterApplied:Description"])
@@ -73,27 +73,28 @@
                         @Html.DisplayFor(modelItem => item.DefectDesription)
                     </td>
 
-                    <td class="d-none d-xxl-table-cell custom-hover">
+                        <td custom-hover">
                         @{
                             int itemCount = item.ItemDefects.Count;
                             if (itemCount > 0)
                             {
-                                string firstItem = item.ItemDefects.FirstOrDefault().Item.ItemName;
+                                var sortedItems = item.ItemDefects.OrderBy(id => id.Item.ItemName).ToList();
+
+                                string firstItem = sortedItems.FirstOrDefault().Item.ItemName;
                                 if (itemCount > 1)
                                 {
                                     string itemList = "";
-                                    var c = item.ItemDefects.ToList();
-                                    for (int i = 1; i < itemCount; i++)//Skip the first because we have it already
+                                    for (int i = 1; i < itemCount; i++) //Skip the first because we have it already
                                     {
-                                        itemList += c[i].Item.ItemName + " <br />";
+                                        itemList += sortedItems[i].Item.ItemName + " <br />";
                                     }
-                                    <a class="text-dark custom-link" role="button" data-bs-toggle="collapse" href="#collapseItem@(item.DefectId)"
-                                       aria-expanded="false" aria-controls="collapseItem@(item.DefectId)">
+                                <a class="text-dark custom-link" role="button" data-bs-toggle="collapse" href="#collapseItem@(item.DefectId)"
+                                   aria-expanded="false" aria-controls="collapseItem@(item.DefectId)">
                                         @firstItem <span class="badge btn-primary">@itemCount</span>
-                                    </a>
-                                    <div class="collapse" id="collapseItem@(item.DefectId)">
+                                </a>
+                                <div class="collapse" id="collapseItem@(item.DefectId)">
                                         @Html.Raw(itemList)
-                                    </div>
+                                </div>
                                 }
                                 else
                                 {
@@ -101,7 +102,8 @@
                                 }
                             }
                         }
-                    </td>
+    </td>
+
 
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.DefectId" class="btn text-primary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil-square"></i></a>

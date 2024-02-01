@@ -237,7 +237,7 @@ namespace HaverDevProject.Controllers
                 try
                 {
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("Details", new { defectToUpdate.DefectId });
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {

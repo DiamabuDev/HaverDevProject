@@ -12,6 +12,7 @@ using HaverDevProject.Data;
 using HaverDevProject.Models;
 using HaverDevProject.CustomControllers;
 using HaverDevProject.Utilities;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace HaverDevProject.Controllers
 {
@@ -189,17 +190,14 @@ namespace HaverDevProject.Controllers
         // GET: Item/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-
-            var items = _context.Items
-                .Include(i => i.Supplier)
-                .AsNoTracking();
-
             if (id == null || _context.Items == null)
             {
                 return NotFound();
             }
+            var item = await _context.Items
+                .Include(i => i.Supplier)
+                .FirstOrDefaultAsync(d => d.ItemId == id);
 
-            var item = await _context.Items.FindAsync(id);
             if (item == null)
             {
                 return NotFound();
@@ -215,7 +213,9 @@ namespace HaverDevProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id)
         {
-            var itemToUpdate = await _context.Items.FirstOrDefaultAsync(i => i.ItemId == id);
+            var itemToUpdate = await _context.Items
+                .Include (i => i.Supplier)
+                .FirstOrDefaultAsync(i => i.ItemId == id);
 
             if (id != itemToUpdate.ItemId)
             {
@@ -223,23 +223,16 @@ namespace HaverDevProject.Controllers
             }
 
             if (await TryUpdateModelAsync<Item>(itemToUpdate, "",
-                    i => i.ItemName))
+                    i => i.ItemNumber, i => i.ItemName, i => i.ItemDescription))
             {
                 try
                 {
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (RetryLimitExceededException /* dex */)
                 {
-                    if (!ItemExists(itemToUpdate.ItemId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    ModelState.AddModelError("", "Unable to save changes after multiple attempts. Try again, and if the problem persists, see your system administrator.");
                 }
                 catch (DbUpdateException)
                 {
@@ -262,6 +255,7 @@ namespace HaverDevProject.Controllers
             var item = await _context.Items
                 .Include(i => i.Supplier)
                 .FirstOrDefaultAsync(m => m.ItemId == id);
+
             if (item == null)
             {
                 return NotFound();
