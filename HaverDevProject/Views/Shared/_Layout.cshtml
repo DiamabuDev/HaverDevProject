@@ -61,6 +61,13 @@
             </div>
         </nav>
     </header>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -78,3 +85,11 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $(".alert-success").fadeOut('slow');
+        }, 3000); // Adjust the time according to your needs
+    });
+</script>

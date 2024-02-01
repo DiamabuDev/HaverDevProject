@@ -177,12 +177,22 @@ namespace HaverDevProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ItemId,ItemNumber,ItemName,ItemDescription,SupplierId")] Item item)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(item);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(item);
+                    await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Item created successfully!";
+                    return RedirectToAction(nameof(Index));
+                }
             }
+
+            catch (DbUpdateException)
+            {                
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");       
+            }
+
             ViewBag.SupplierId = new SelectList(_context.Suppliers, "SupplierId", "SupplierName", item.SupplierId);
             return View(item);
         }
@@ -228,6 +238,7 @@ namespace HaverDevProject.Controllers
                 try
                 {
                     await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Item updated successfully!";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (RetryLimitExceededException /* dex */)
