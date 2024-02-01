@@ -292,7 +292,10 @@ namespace HaverDevProject.Controllers
         
         private void PopulateAssignedItemCheckboxes(Defect defect)
         {
-            var allItems = _context.Items;
+            var allItems = _context.Items
+                .Select(i => new { i.ItemId, i.ItemName })
+                .Distinct();
+            
             var currentItemDefectIDs = new HashSet<int>(defect.ItemDefects.Select(id => id.ItemId));
             var checkBoxes = new List<CheckOptionVM>();
             foreach (var item in allItems)
@@ -339,7 +342,8 @@ namespace HaverDevProject.Controllers
 
         private SelectList ItemSelectList(int? selectedId)
         {
-            return new SelectList(_context.Items.OrderBy(i => i.ItemName), "ItemId", "ItemName", selectedId);
+            return new SelectList(_context.Items.OrderBy(i => i.ItemName).Select(i => new { i.ItemId, i.ItemName })
+            .Distinct(), "ItemId", "ItemName", selectedId);
         }
         private void PopulateDropDownList(Item item = null)
         {
