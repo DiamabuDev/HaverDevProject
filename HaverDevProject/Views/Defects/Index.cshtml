@@ -6,14 +6,14 @@
 
 <h1><i class="bi bi-caret-right-fill"></i>Defects</h1>
 
-<form asp-action="Index" method="get">
+<form id="defectForm" asp-action="Index" method="get">
     <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
     <input type="hidden" name="sortField" value="@ViewData["sortField"]" />
     <input type="hidden" id="filter" name="filter" value="@ViewData["filter"]" />
     
     <div class="row mt-3 mb-2">
         <div class="d-flex justify-content-end">
-            <a asp-action="Create" class="btn btn-primary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New NCR</a>
+            <a asp-action="Create" class="btn btn-primary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New Defect</a>
         </div>
     </div>
 
@@ -55,7 +55,7 @@
                 <th>
                     <button type="submit" name="actionButton" value="Item" class="btn text-light custom-btn-text-start">
                         Items
-                        @Html.Raw(ViewData["filterApplied:Items"])
+                        @Html.Raw(ViewData["filterApplied:Item"])
                     </button>
                 </th>
                 <th></th>
@@ -106,7 +106,6 @@
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.DefectId" class="btn text-primary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil-square"></i></a>
                         <a asp-action="Details" asp-route-id="@item.DefectId" class="btn text-primary" data-bs-toggle="tooltip" title="Details"><i class="bi bi-eye-fill"></i></a>
-                        <a asp-action="Delete" asp-route-id="@item.DefectId" class="btn text-danger" data-bs-toggle="tooltip" title="Delete"><i class="bi bi-trash3-fill"></i></a>
                     </td>
                 </tr>
             }
@@ -120,5 +119,15 @@
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.btn-filter').on('click', function () {
+                $('#filter').val($(this).data('filter'));
+                $('#defectForm').submit();
+            });
+        });
     </script>
 }

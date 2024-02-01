@@ -1,4 +1,4 @@
-﻿namespace CateringManagement.ViewModels
+﻿namespace HaverDevProject.ViewModels
 {
     public class ListOptionVM
     {

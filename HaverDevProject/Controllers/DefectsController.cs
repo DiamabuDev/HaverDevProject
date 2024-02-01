@@ -9,8 +9,9 @@ using HaverDevProject.Data;
 using HaverDevProject.Models;
 using HaverDevProject.CustomControllers;
 using HaverDevProject.Utilities;
-using CateringManagement.ViewModels;
+using HaverDevProject.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
+using Defect = HaverDevProject.Models.Defect;
 
 namespace HaverDevProject.Controllers
 {
