@@ -22,17 +22,6 @@ namespace HaverDevProject.Controllers
             _context = context;
         }
 
-        private SelectList SupplierSelectList(int? selectedId)
-        {
-            return new SelectList(_context.Suppliers.OrderBy(s => s.SupplierName), "SupplierId", "SupplierName", selectedId);
-        }
-
-        private void PopulateDrodDownList(Supplier supplier = null)
-        {
-            ViewData["SupplierID"] = SupplierSelectList(supplier?.SupplierId);
-        }
-
-
         // GET: Item
         public async Task<IActionResult> Index(string SearchCode, int? SupplierID, int? page, int? pageSizeID,
             string actionButton, string sortDirection = "asc", string sortField = "Code")
@@ -58,8 +47,6 @@ namespace HaverDevProject.Controllers
                 items = items.Where(s => s.Supplier.SupplierId == SupplierID);
             }
 
-
-
             //Sorting columns
             if (!String.IsNullOrEmpty(actionButton)) //Form Submitted!
             {
@@ -82,11 +69,14 @@ namespace HaverDevProject.Controllers
                 {
                     items = items
                         .OrderBy(p => p.ItemNumber);
+                    ViewData["filterApplied:ItemNumber"] = "<i class='bi bi-sort-up'></i>";
+
                 }
                 else
                 {
                     items = items
                         .OrderByDescending(p => p.ItemNumber);
+                    ViewData["filterApplied:ItemNumber"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
             else if (sortField == "Item")
@@ -95,37 +85,46 @@ namespace HaverDevProject.Controllers
                 {
                     items = items
                         .OrderBy(p => p.ItemName);
+                    ViewData["filterApplied:ItemName"] = "<i class='bi bi-sort-up'></i>";
                 }
                 else
                 {
                     items = items
                         .OrderByDescending(p => p.ItemName);
+                    ViewData["filterApplied:ItemName"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
-            else if (sortField == "Description")
-            {
-                if (sortDirection == "asc")
-                {
-                    items = items
-                        .OrderBy(p => p.ItemDescription);
-                }
-                else
-                {
-                    items = items
-                        .OrderByDescending(p => p.ItemDescription);
-                }
-            }
+            //else if (sortField == "Description")
+            //{
+            //    if (sortDirection == "asc")
+            //    {
+            //        items = items
+            //            .OrderBy(p => p.ItemDescription);
+            //        ViewData["filterApplied:Description"] = "<i class='bi bi-sort-up'></i>";
+
+            //    }
+            //    else
+            //    {
+            //        items = items
+            //            .OrderByDescending(p => p.ItemDescription);
+            //        ViewData["filterApplied:Description"] = "<i class='bi bi-sort-down'></i>";
+
+            //    }
+            //}
             else //Sorting by Supplier Name
             {
                 if (sortDirection == "asc")
                 {
                     items = items
                         .OrderBy(p => p.Supplier.SupplierName);
+                    ViewData["filterApplied:Supplier"] = "<i class='bi bi-sort-up'></i>";
+
                 }
                 else
                 {
                     items = items
                         .OrderByDescending(p => p.Supplier.SupplierName);
+                    ViewData["filterApplied:Supplier"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
             //Set sort for next time
@@ -279,6 +278,16 @@ namespace HaverDevProject.Controllers
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        private SelectList SupplierSelectList(int? selectedId)
+        {
+            return new SelectList(_context.Suppliers.OrderBy(s => s.SupplierName), "SupplierId", "SupplierName", selectedId);
+        }
+
+        private void PopulateDrodDownList(Supplier supplier = null)
+        {
+            ViewData["SupplierID"] = SupplierSelectList(supplier?.SupplierId);
         }
 
         private bool ItemExists(int id)

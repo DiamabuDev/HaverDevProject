@@ -219,8 +219,6 @@ namespace HaverDevProject.Controllers
             var pagedData = await PaginatedList<Ncr>.CreateAsync(ncr.AsNoTracking(), page ?? 1, pageSize);
 
             return View(pagedData);
-
-
         }
 
         // GET: Ncr/Details/5
