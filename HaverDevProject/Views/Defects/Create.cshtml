@@ -24,12 +24,14 @@
                         <label asp-for="DefectName" class="control-label">Defect <small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Defect Name">(e.g. Loose wires)</small> <span class="fw-bold text-danger">*</span></label>
                         <input asp-for="DefectName" class="form-control" placeholder="Defect" />
                         <span asp-validation-for="DefectName" class="text-danger"></span>
+
                     </div>
                     <div class="form-group">
                         <label asp-for="DefectDesription" class="control-label">Description <small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Defect Description"></small> <span class="fw-bold text-danger">*</span></label>
                         <input asp-for="DefectDesription" class="form-control" placeholder="Defect Description" />
                         <span asp-validation-for="DefectDesription" class="text-danger"></span>
-                    </div>
+@*                         <select asp-for="SelectedItemIds" asp-items="ViewData[" ItemId"]" multiple class="form-control"></select>
+ *@                    </div>
                 </div>
             </div>
             <div class="card-footer">

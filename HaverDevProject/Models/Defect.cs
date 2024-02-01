@@ -21,7 +21,7 @@ public partial class Defect
     [Unicode(false)]
     public string DefectName { get; set; }
 
-    [Display(Name = "Description of Defect")]
+    [Display(Name = "Description")]
     [Column("defectDesription")]
     [StringLength(300)]
     [Unicode(false)]
