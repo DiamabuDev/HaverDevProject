@@ -14,9 +14,11 @@ public partial class Item
     public int ItemId { get; set; }
 
     [Column("itemNumber")]
+    [Display(Name = "SAP No.")]
     public int ItemNumber { get; set; }
 
     [Required]
+    [Display(Name = "Description")]
     [Column("itemName")]
     [StringLength(45)]
     [Unicode(false)]
@@ -29,6 +31,8 @@ public partial class Item
     public string ItemDescription { get; set; }
 
     [Column("supplierId")]
+    [Display(Name = "Supplier")]
+
     public int SupplierId { get; set; }
 
     [InverseProperty("Item")]
