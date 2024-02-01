@@ -197,7 +197,7 @@ body {
 
 /* Provided by David S*/
 .form-group {
-    margin-bottom: 1rem
+    font-weight: 600;
 }
 
 /*Style for NCR List (Index.html)*/
@@ -234,4 +234,9 @@ body {
     justify-content: space-between;
     width: 100%;
     margin-bottom: 10px;
+}
+
+.custom-btn-text-start {
+    text-align: left;
+    padding-left: 0;
 }
