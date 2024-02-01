@@ -100,6 +100,54 @@ namespace HaverDevProject.Data
                             SupplierCode = "880065",
                             SupplierName = "HBC ENGINEERING",
                             SupplierEmail = "hbc@example.com"
+                        },
+                        new Supplier
+                        {
+                            SupplierCode = "700502",
+                            SupplierName = "ST CATHARINES PATTERN LTD",
+                            SupplierEmail = "stcathpattern@example.com"
+                        },
+                        new Supplier
+                        {
+                            SupplierCode = "700505",
+                            SupplierName = "NIAGARA PRECISION LTD",
+                            SupplierEmail = "niagaraprecision@example.com"
+                        },
+                        new Supplier
+                        {
+                            SupplierCode = "700508",
+                            SupplierName = "BORDER CITY CASTINGS",
+                            SupplierEmail = "bordercity@example.com"
+                        },
+                        new Supplier
+                        {
+                            SupplierCode = "888888",
+                            SupplierName = "HBC PROCUREMENT",
+                            SupplierEmail = "hbcprocurement@example.com",
+                        },
+                        new Supplier
+                        {
+                            SupplierCode = "792679",
+                            SupplierName = "IFM EFFECTOR CANADA INC.",
+                            SupplierEmail = "ifm@example.com"
+                        },
+                        new Supplier
+                        {
+                            SupplierCode = "792565",
+                            SupplierName = "PLAS-TECH DESIGN FABRICATION DISTRI",
+                            SupplierEmail = "plastech@example.com"
+                        },
+                        new Supplier
+                        {
+                            SupplierCode = "792493",
+                            SupplierName = "SGF-SUDDEUTSCHE GELENKSCHEIBENFABRI",
+                            SupplierEmail = "sgfsudd@example.com"
+                        },
+                        new Supplier
+                        {
+                            SupplierCode = "792011",
+                            SupplierName = "VANDER WEYDEN CONSTRUCTION",
+                            SupplierEmail = "vander@example.com"
                         });
 
                     context.SaveChanges();
@@ -241,12 +289,12 @@ namespace HaverDevProject.Data
                         new Defect
                         {
                             DefectName = "Incorrect specification",
-                            DefectDesription = "Hardware did match the specifications."
+                            DefectDesription = "Hardware did match the specifications. Slot lengths are 53.9mm to 54.04 should be 50mm."
                         },
                         new Defect
                         {
                             DefectName = "Incorrect dimensions",
-                            DefectDesription = "Hardware has improper dimensions."
+                            DefectDesription = "Hardware has improper dimensions. Packing slip and package labels do not match the actual dimensions of the washers."
                         });
 
                     context.SaveChanges();
@@ -393,7 +441,7 @@ namespace HaverDevProject.Data
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
-                            NcrQasalesOrder = "12345",
+                            NcrQasalesOrder = "10401227",
                             NcrQacreationDate = DateTime.Parse("2023-12-07"),
                             NcrQalastUpdated = DateTime.Parse("2023-12-07"),
                             NcrQauserId = 1, //need to make nullable
@@ -403,7 +451,7 @@ namespace HaverDevProject.Data
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
-                            NcrQasalesOrder = "12346",
+                            NcrQasalesOrder = "10401228",
                             NcrQacreationDate = DateTime.Parse("2023-12-09"),
                             NcrQalastUpdated = DateTime.Parse("2023-12-09"),
                             NcrQauserId = 2, //need to make nullable
@@ -413,7 +461,7 @@ namespace HaverDevProject.Data
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
-                            NcrQasalesOrder = "98765",
+                            NcrQasalesOrder = "10401229",
                             NcrQacreationDate = DateTime.Parse("2023-12-11"),
                             NcrQalastUpdated = DateTime.Parse("2023-12-11"),
                             NcrQauserId = 3, //need to make nullable
@@ -423,7 +471,7 @@ namespace HaverDevProject.Data
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
-                            NcrQasalesOrder = "64162",
+                            NcrQasalesOrder = "10401230",
                             NcrQacreationDate = DateTime.Parse("2023-12-13"),
                             NcrQalastUpdated = DateTime.Parse("2023-12-13"),
                             NcrQauserId = 4, //need to make nullable
@@ -433,7 +481,7 @@ namespace HaverDevProject.Data
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
-                            NcrQasalesOrder = "98766",
+                            NcrQasalesOrder = "10401231",
                             NcrQacreationDate = DateTime.Parse("2023-12-17"),
                             NcrQalastUpdated = DateTime.Parse("2023-12-17"),
                             NcrQauserId = 1, //need to make nullable
@@ -443,7 +491,7 @@ namespace HaverDevProject.Data
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
-                            NcrQasalesOrder = "87654",
+                            NcrQasalesOrder = "10410676",
                             NcrQacreationDate = DateTime.Parse("2024-01-03"),
                             NcrQalastUpdated = DateTime.Parse("2024-01-03"),
                             NcrQauserId = 2, //need to make nullable
@@ -453,7 +501,7 @@ namespace HaverDevProject.Data
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
-                            NcrQasalesOrder = "76543",
+                            NcrQasalesOrder = "10410677",
                             NcrQacreationDate = DateTime.Parse("2024-01-04"),
                             NcrQalastUpdated = DateTime.Parse("2024-01-04"),
                             NcrQauserId = 3, //need to make nullable
@@ -463,7 +511,7 @@ namespace HaverDevProject.Data
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
-                            NcrQasalesOrder = "55554",
+                            NcrQasalesOrder = "10410678",
                             NcrQacreationDate = DateTime.Parse("2024-01-06"),
                             NcrQalastUpdated = DateTime.Parse("2024-01-06"),
                             NcrQauserId = 4, //need to make nullable
@@ -473,7 +521,7 @@ namespace HaverDevProject.Data
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
-                            NcrQasalesOrder = "32145",
+                            NcrQasalesOrder = "10410679",
                             NcrQacreationDate = DateTime.Parse("2024-01-07"),
                             NcrQalastUpdated = DateTime.Parse("2024-01-07"),
                             NcrQauserId = 1, //need to make nullable
@@ -483,7 +531,7 @@ namespace HaverDevProject.Data
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
-                            NcrQasalesOrder = "34345",
+                            NcrQasalesOrder = "10410680",
                             NcrQacreationDate = DateTime.Parse("2024-01-11"),
                             NcrQalastUpdated = DateTime.Parse("2024-01-11"),
                             NcrQauserId = 2, //need to make nullable
@@ -493,7 +541,7 @@ namespace HaverDevProject.Data
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
-                            NcrQasalesOrder = "45456",
+                            NcrQasalesOrder = "10410681",
                             NcrQacreationDate = DateTime.Parse("2024-01-14"),
                             NcrQalastUpdated = DateTime.Parse("2024-01-14"),
                             NcrQauserId = 3, //need to make nullable
@@ -503,7 +551,7 @@ namespace HaverDevProject.Data
                         new NcrQa
                         {
                             NcrQaitemMarNonConforming = true,
-                            NcrQasalesOrder = "56567",
+                            NcrQasalesOrder = "10410682",
                             NcrQacreationDate = DateTime.Parse("2024-01-14"),
                             NcrQalastUpdated = DateTime.Parse("2024-01-14"),
                             NcrQauserId = 4, //need to make nullable
@@ -518,99 +566,99 @@ namespace HaverDevProject.Data
                     context.OrderDetails.AddRange(
                         new OrderDetail
                         {
-                            OrderNumber = 32778899,
+                            OrderNumber = 450074554,
                             OrderQuanReceived = 10,
                             OrderQuanDefective = 2,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Bearing Housing").ItemId,
-                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "12345").NcrQaid
+                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "10401227").NcrQaid
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 34377801,
+                            OrderNumber = 450074555,
                             OrderQuanReceived = 5,
                             OrderQuanDefective = 1,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Backing Shield").ItemId,
-                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "12346").NcrQaid
+                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "10401228").NcrQaid
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 88786565,
-                            OrderQuanReceived = 10,
-                            OrderQuanDefective = 2,
+                            OrderNumber = 450074556,
+                            OrderQuanReceived = 40,
+                            OrderQuanDefective = 40,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Side Arm").ItemId,
-                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "98765").NcrQaid
+                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "10401229").NcrQaid
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 33566400,
+                            OrderNumber = 450074557,
                             OrderQuanReceived = 40,
                             OrderQuanDefective = 8,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Panel").ItemId,
-                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "64162").NcrQaid
+                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "10401230").NcrQaid
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 99832323,
-                            OrderQuanReceived = 10,
-                            OrderQuanDefective = 2,
+                            OrderNumber = 450074558,
+                            OrderQuanReceived = 12,
+                            OrderQuanDefective = 4,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Bearing Housing").ItemId,
-                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "98766").NcrQaid
+                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "10401231").NcrQaid
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 66654309,
-                            OrderQuanReceived = 5,
+                            OrderNumber = 450075793,
+                            OrderQuanReceived = 6,
                             OrderQuanDefective = 1,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Backing Shield").ItemId,
-                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "87654").NcrQaid
+                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "10410676").NcrQaid
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 88977653,
-                            OrderQuanReceived = 10,
-                            OrderQuanDefective = 2,
+                            OrderNumber = 450075794,
+                            OrderQuanReceived = 20,
+                            OrderQuanDefective = 10,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Side Arm").ItemId,
-                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "76543").NcrQaid
+                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "10410677").NcrQaid
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 22445435,
-                            OrderQuanReceived = 40,
-                            OrderQuanDefective = 8,
+                            OrderNumber = 450075795,
+                            OrderQuanReceived = 20,
+                            OrderQuanDefective = 20,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Panel").ItemId,
-                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "55554").NcrQaid
+                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "10410678").NcrQaid
                         },
                                                 new OrderDetail
                         {
-                            OrderNumber = 55478341,
-                            OrderQuanReceived = 10,
-                            OrderQuanDefective = 2,
+                            OrderNumber = 450075796,
+                            OrderQuanReceived = 16,
+                            OrderQuanDefective = 4,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Bearing Housing").ItemId,
-                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "32145").NcrQaid
+                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "10410679").NcrQaid
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 12758492,
+                            OrderNumber = 450075797,
                             OrderQuanReceived = 5,
-                            OrderQuanDefective = 1,
+                            OrderQuanDefective = 5,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Backing Shield").ItemId,
-                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "34345").NcrQaid
+                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "10410680").NcrQaid
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 99876563,
-                            OrderQuanReceived = 10,
-                            OrderQuanDefective = 2,
+                            OrderNumber = 450075798,
+                            OrderQuanReceived = 12,
+                            OrderQuanDefective = 6,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Side Arm").ItemId,
-                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "45456").NcrQaid
+                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "10410681").NcrQaid
                         },
                         new OrderDetail
                         {
-                            OrderNumber = 43565459,
+                            OrderNumber = 450075799,
                             OrderQuanReceived = 40,
-                            OrderQuanDefective = 8,
+                            OrderQuanDefective = 32,
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Panel").ItemId,
-                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "56567").NcrQaid
+                            NcrQaid = context.NcrQas.FirstOrDefault(f => f.NcrQasalesOrder == "10410682").NcrQaid
                         });
 
                     context.SaveChanges();
