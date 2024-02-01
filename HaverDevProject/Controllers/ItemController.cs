@@ -1,4 +1,6 @@
 ﻿
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -163,7 +165,7 @@ namespace HaverDevProject.Controllers
         // GET: Item/Create
         public IActionResult Create()
         {
-            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierCode, SupplierName");
+            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierName");
             return View();
         }
 
@@ -180,7 +182,7 @@ namespace HaverDevProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "Supplier", item.SupplierId);
+            ViewBag.SupplierId = new SelectList(_context.Suppliers, "SupplierId", "SupplierName", item.SupplierId);
             return View(item);
         }
 
@@ -202,7 +204,7 @@ namespace HaverDevProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierCode", item.SupplierId);
+            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierName", item.SupplierId);
             return View(item);
         }
 
@@ -211,23 +213,26 @@ namespace HaverDevProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemId,ItemNumber,ItemName,ItemDescription,SupplierId")] Item item)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id != item.ItemId)
+            var itemToUpdate = await _context.Items.FirstOrDefaultAsync(i => i.ItemId == id);
+
+            if (id != itemToUpdate.ItemId)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (await TryUpdateModelAsync<Item>(itemToUpdate, "",
+                    i => i.ItemName))
             {
                 try
                 {
-                    _context.Update(item);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ItemExists(item.ItemId))
+                    if (!ItemExists(itemToUpdate.ItemId))
                     {
                         return NotFound();
                     }
@@ -236,10 +241,14 @@ namespace HaverDevProject.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                catch (DbUpdateException)
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+
             }
-            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierCode", item.SupplierId);
-            return View(item);
+            ViewBag.SupplierId = new SelectList(_context.Suppliers, "SupplierId", "SupplierName", itemToUpdate.SupplierId);
+            return View(itemToUpdate);
         }
 
         // GET: Item/Delete/5
