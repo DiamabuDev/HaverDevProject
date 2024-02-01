@@ -156,17 +156,12 @@ body {
     color: #000;
 }
 
-.back-color {
-    background-color: #002B5C;
-    color: #fff;
-}
-
 .rounded {
     border-radius: 10px;
 }
 
 .table-hover tbody tr:hover {
-    background-color: #B2C2E0;
+    background-color: #6B81AA;
     color: #fff;
 }
 
@@ -239,4 +234,12 @@ body {
 .custom-btn-text-start {
     text-align: left;
     padding-left: 0;
+}
+
+.custom-link:hover {
+    color: white !important;
+}
+
+.custom-hover:hover a {
+    color: white !important;
 }

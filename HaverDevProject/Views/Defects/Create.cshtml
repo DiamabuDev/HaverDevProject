@@ -41,7 +41,7 @@
                                 var checkboxes = ViewData["ItemOptions"] as List<HaverDevProject.ViewModels.CheckOptionVM>; 
                                 foreach (var checkbox in checkboxes)
                                 {
-                                    if (cnt++ % 1 == 0)
+                                    if (cnt++ % 3 == 0)
                                     {
                                     @:</tr><tr>
                                     }
@@ -63,13 +63,13 @@
             <div class="card-footer">
                 <div class="form-group d-flex justify-content-end mt-2">
                     <div>
-                        <button type="submit" class="btn back-color">
-                            <i class='bi bi-plus'></i> Create
+                        <button type="submit" class="btn btn-primary">
+                            <i class='bi-plus-square-dotted'></i> Create
                         </button>
                     </div>
                     <div>
-                        <button type="button" onclick="location.href='@Url.Action("Index")'" class="btn back-color ms-4">
-                            <i class="bi bi-arrow-90deg-left"></i> Back to Item List
+                        <button type="button" onclick="location.href='@Url.Action("Index")'" class="btn btn-primary ms-4">
+                            <i class="bi bi-arrow-90deg-left"></i> Back to Defect List
                         </button>
                     </div>                    
                 </div>

@@ -73,7 +73,7 @@
                         @Html.DisplayFor(modelItem => item.DefectDesription)
                     </td>
 
-                    <td class="d-none d-xxl-table-cell">
+                    <td class="d-none d-xxl-table-cell custom-hover">
                         @{
                             int itemCount = item.ItemDefects.Count;
                             if (itemCount > 0)
@@ -87,11 +87,11 @@
                                     {
                                         itemList += c[i].Item.ItemName + " <br />";
                                     }
-                                    <a class="" role="button" data-bs-toggle="collapse" href="#collapseRoom@(item.DefectId)"
-                                       aria-expanded="false" aria-controls="collapseRoom@(item.DefectId)">
-                                        @firstItem <span class="badge bg-info">@itemCount</span>
+                                    <a class="text-dark custom-link" role="button" data-bs-toggle="collapse" href="#collapseItem@(item.DefectId)"
+                                       aria-expanded="false" aria-controls="collapseItem@(item.DefectId)">
+                                        @firstItem <span class="badge btn-primary">@itemCount</span>
                                     </a>
-                                    <div class="collapse" id="collapseRoom@(item.DefectId)">
+                                    <div class="collapse" id="collapseItem@(item.DefectId)">
                                         @Html.Raw(itemList)
                                     </div>
                                 }
