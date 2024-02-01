@@ -16,7 +16,11 @@ h2 {
     }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
@@ -68,24 +72,24 @@ body {
     justify-content: center;
 }
 
-    .dashboard-item i {
-        font-size: 50px;
-    }
+.dashboard-item i {
+    font-size: 50px;
+}
 
-    .dashboard-item p {
-        margin: 0;
-        font-weight: 500;
-        padding-top: 5px;
-    }
+.dashboard-item p {
+    margin: 0;
+    font-weight: 500;
+    padding-top: 5px;
+}
 
-    .dashboard-item:hover {
-        background-color: #1C335E;
-        color: lightgray;
-    }
+.dashboard-item:hover {
+    background-color: #1C335E;
+    color: lightgray;
+}
 
-        .dashboard-item:hover i {
-            font-size: 55px;
-        }
+.dashboard-item:hover i {
+    font-size: 55px;
+}
 
 .custom-dropdown-color .dropdown-item:hover {
     background-color: #345B91;
@@ -113,20 +117,20 @@ body {
         justify-content: left;
     }
 
-        .dashboard-item i {
-            font-size: 30px;
-            margin-right: 12px;
-            margin-left: 25px;
-        }
+    .dashboard-item i {
+        font-size: 30px;
+        margin-right: 12px;
+        margin-left: 25px;
+    }
 
-        .dashboard-item p {
-            padding-top: 3px;
-            margin: 0;
-        }
+    .dashboard-item p {
+        padding-top: 3px;
+        margin: 0;
+    }
 
-        .dashboard-item:hover i {
-            font-size: 35px;
-        }
+    .dashboard-item:hover i {
+        font-size: 35px;
+    }
 
     .dropdown-item {
         width: 220px;
@@ -210,7 +214,9 @@ body {
     color: red;
 }
 
-.standout, .closed, .stillactive {
+.standout,
+.closed,
+.stillactive {
     font-weight: 600;
 }
 
