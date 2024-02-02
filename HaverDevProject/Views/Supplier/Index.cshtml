@@ -30,18 +30,29 @@
     <table class="table table-hover table-striped">
         <thead class="custom-header-bg">
             <tr>
-                <th>                    
-                    <input type="submit" name="actionButton" value="Code" class="btn text-light"/> 
-                    <span><i class="bi bi-filter"></i></span>
+                <th>  
+                    <button type="submit" name="actionButton" value="Code" class="btn text-light custom-btn-text-start">
+                        SAP No.
+                        @Html.Raw(ViewData["filterApplied:SupplierCode"])
+                    </button>
                 </th>
                 <th>                    
-                    <input type="submit" name="actionButton" value="Name" class="btn text-light" />
-                    <span><i class="bi bi-filter"></i></span>
+                    <button type="submit" name="actionButton" value="Name" class="btn text-light custom-btn-text-start">
+                        Description
+                        @Html.Raw(ViewData["filterApplied:SupplierName"])
+                    </button>
                 </th>
-                <th class="d-none d-md-table-cell">                    
-
-                    <input type="submit" name="actionButton" value="Email" class="btn text-light" />
-                    <span><i class="bi bi-filter"></i></span>
+                <th class="d-none d-md-table-cell">            
+                    <button type="submit" name="actionButton" value="Email" class="btn text-light custom-btn-text-start">
+                        Description
+                        @Html.Raw(ViewData["filterApplied:SupplierEmail"])
+                    </button>
+                </th>
+                <th>
+                    <button type="submit" name="actionButton" value="Status" class="btn text-light custom-btn-text-start">
+                        Status
+                        @Html.Raw(ViewData["filterApplied:Status"])
+                    </button>
                 </th>
                 <th></th>
             </tr>
@@ -58,10 +69,12 @@
                 <td class="d-none d-md-table-cell">
                     @Html.DisplayFor(modelItem => item.SupplierEmail)
                 </td>
+                    <td class="stillactive">
+                        Active
+                    </td>
                 <td>   
                     <a asp-action="Edit" asp-route-id="@item.SupplierId" class="btn text-primary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil-square"></i></a>
                     <a asp-action="Details" asp-route-id="@item.SupplierId" class="btn text-primary" data-bs-toggle="tooltip" title="Details"><i class="bi bi-eye-fill"></i></a>
-                    <a asp-action="Delete" asp-route-id="@item.SupplierId" class="btn text-danger" data-bs-toggle="tooltip" title="Delete"><i class="bi bi-trash3-fill"></i></a>
                 </td>
             </tr>
     }
