@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 <div class="col-md-6 col-10 mx-auto">
-<h1>Supplier</h1>
+    <h1><i class="bi bi-caret-right-fill"></i>Supplier</h1>
 </div>
 <div class="col-md-6 col-10 mx-auto">
     <form asp-action="Edit">
@@ -41,13 +41,13 @@
             <div class="card-footer">
                 <div class="form-group d-flex justify-content-end mt-2">
                     <div>
-                        <button type="button" onclick="location.href='@Url.Action("Index")'" class="btn btn-secondary">
-                            <i class="bi bi-arrow-90deg-left"></i> Back to List
+                        <button type="submit" class="btn btn-primary">
+                            <i class='bi-plus-square-dotted'></i> Save
                         </button>
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-primary ms-4">
-                            <i class="bi bi-floppy"></i> Save
+                        <button type="button" onclick="location.href='@Url.Action("Index")'" class="btn btn-primary ms-4">
+                            <i class="bi bi-arrow-90deg-left"></i> Back to Supplier List
                         </button>
                     </div>
                 </div>
