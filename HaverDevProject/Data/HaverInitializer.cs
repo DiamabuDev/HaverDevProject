@@ -187,57 +187,57 @@ namespace HaverDevProject.Data
                         new Item
                         {
                             ItemNumber = 10344215,
-                            ItemName = "Bearing Housing",
-                            ItemDescription = "Protective enclosure for bearings.",
+                            ItemName = "Jig Washer",
+                            ItemDescription = "Used to separate heavy and light minerals",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "HOTZ ENVIRONMENTAL SERVICES").SupplierId
                         },
                         new Item
                         {
                             ItemNumber = 10482863,
-                            ItemName = "Backing Shield",
-                            ItemDescription = "Shield for internal components.",
+                            ItemName = "Screen",
+                            ItemDescription = "Flat stationary for grading",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "BLACK CREEK METAL").SupplierId
                         },
                         new Item
                         {
                             ItemNumber = 11536287,
-                            ItemName = "Side Arm",
-                            ItemDescription = "Structural component for reinforcement.",
+                            ItemName = "Conveyor",
+                            ItemDescription = "Belt and roller transportation system",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "POLYMER EXTRUSIONS INC").SupplierId
                         },
                         new Item
                         {
                             ItemNumber = 11854266,
-                            ItemName = "Panel",
-                            ItemDescription = "Surface to house internal components.",
+                            ItemName = "Rotary Kiln",
+                            ItemDescription = "Cyclindrical vessel to process feedstock",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "DON CASSELMAN & SON LTD").SupplierId
                         },
                         new Item
                         {
                             ItemNumber = 10344216,
-                            ItemName = "Bearing Housing",
-                            ItemDescription = "Protective enclosure for bearings.",
+                            ItemName = "Liner",
+                            ItemDescription = "Sleeve designed to withstand corrosion",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "W S TYLER - PARTICLE & FINE").SupplierId
                         },
                         new Item
                         {
                             ItemNumber = 10482864,
-                            ItemName = "Backing Shield",
-                            ItemDescription = "Shield for internal components.",
+                            ItemName = "Spherical Roller Bearing",
+                            ItemDescription = "Low friction angular misalignment",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "LAWRENCE SINTERED METALS").SupplierId
                         },
                         new Item
                         {
                             ItemNumber = 11536288,
-                            ItemName = "Side Arm",
-                            ItemDescription = "Structural component for reinforcement.",
+                            ItemName = "Cyconical Bore",
+                            ItemDescription = "Cylinder component for reinforcement.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "FASTENAL COMPANY").SupplierId
                         },
                         new Item
                         {
                             ItemNumber = 11854267,
-                            ItemName = "Panel",
-                            ItemDescription = "Surface to house internal components.",
+                            ItemName = "Spherical Roller Bearing with sliding coated Haver-Bush",
+                            ItemDescription = "Spherical rolling element and a sliding coated Haver-Bush.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "HBC ENGINEERING").SupplierId
                         });
 
@@ -247,35 +247,59 @@ namespace HaverDevProject.Data
                 if (!context.Defects.Any())
                 {
                     context.Defects.AddRange(
-
-//                        Design Error(Drawing)
-//Holes not tapped
-//Incorrect dimensions
-//Incorrect hardware
-//Incorrect hole(size, locations, missing)
-//Incorrect thread size
-//Not Painted
-//Poor Paint finish
-//Poor quality surface finish
-//Poor Weld quality
-//Incorrect fit
-//Incorrect weld size
-//Missing Items
-//Broken / Twisted Wires
-//Out of Crimp
-//Incorrect Specification
-//Incorrect Hook / Hook Orientation
-//Incorrect Center Hole Punching
-//Missing Center Hole Punching
-//Incorrect hardware installation
-//Incorrect labelling
-//Drawing not updated
-//Incorrect material
-//Delivery Quality
-//Finishing error(M.W.STC)
-//Incorrect component(FMP package)
-
-
+                        new Defect
+                        {
+                            DefectName = "Design Error(Drawing)",
+                            DefectDesription = "Incorrect hardware was delivered due to a design error in the drawing."
+                        },
+                        new Defect
+                        {
+                            DefectName = "Poor Paint finish",
+                            DefectDesription = "The delivered item has an unsatisfactory paint finish."
+                        }, new Defect
+                        {
+                            DefectName = "Poor quality surface finish",
+                            DefectDesription = "The surface finish of the delivered item does not meet quality standards."
+                        },
+                        new Defect
+                        {
+                            DefectName = "Poor Weld quality",
+                            DefectDesription = "The welding quality of the delivered item is subpar."
+                        },
+                        new Defect
+                        {
+                            DefectName = "Missing Items",
+                            DefectDesription = "Some components or items are missing from the delivery."
+                        },
+                        new Defect
+                        {
+                            DefectName = "Broken / Twisted Wires",
+                            DefectDesription = "The wires in the delivered item are broken or twisted."
+                        },
+                        new Defect
+                        {
+                            DefectName = "Out of Crimp",
+                            DefectDesription = "The crimping of connectors or terminals is not within acceptable limits."
+                        },
+                        new Defect
+                        {
+                            DefectName = "Incorrect Center Hole Punching",
+                            DefectDesription = "The center hole punching in the delivered item is inaccurate."
+                        },
+                        //Holes not tapped
+                        //Incorrect hole(size, locations, missing)
+                        //Incorrect thread size
+                        //Not Painted
+                        //Incorrect fit
+                        //Incorrect weld size
+                        //Incorrect Hook / Hook Orientation
+                        //Incorrect Center Hole Punching
+                        //Missing Center Hole Punching
+                        //Incorrect labelling
+                        //Drawing not updated
+                        //Incorrect material
+                        //Finishing error(M.W.STC)
+                        //Incorrect component(FMP package)
                         new Defect
                         {
                             DefectName = "Incorrect hardware",
@@ -289,12 +313,12 @@ namespace HaverDevProject.Data
                         new Defect
                         {
                             DefectName = "Incorrect specification",
-                            DefectDesription = "Hardware did match the specifications. Slot lengths are 53.9mm to 54.04 should be 50mm."
+                            DefectDesription = "Hardware did match the specifications."
                         },
                         new Defect
                         {
                             DefectName = "Incorrect dimensions",
-                            DefectDesription = "Hardware has improper dimensions. Packing slip and package labels do not match the actual dimensions of the washers."
+                            DefectDesription = "Hardware has improper dimensions."
                         });
 
                     context.SaveChanges();
@@ -308,6 +332,12 @@ namespace HaverDevProject.Data
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Bearing Housing").ItemId,
                             DefectId = context.Defects.FirstOrDefault(f => f.DefectName == "Delivery quality").DefectId
                         },
+                        new ItemDefect
+                        {
+                            ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Bearing Housing").ItemId,
+                            DefectId = context.Defects.FirstOrDefault(f => f.DefectName == "Incorrect dimensions").DefectId
+                        },
+
                         new ItemDefect
                         {
                             ItemId = context.Items.FirstOrDefault(f => f.ItemName == "Backing Shield").ItemId,
