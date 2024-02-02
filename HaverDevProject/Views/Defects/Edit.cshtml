@@ -4,14 +4,14 @@
     ViewData["Title"] = "Edit";
 }
 <div class="col-md-6 col-10 mx-auto">
-    <h1><i class="bi bi-caret-right-fill"></i>Defect</h1>
+    <h1><i class="bi bi-caret-right-fill"></i>Defect Type</h1>
 </div>
 <div class="col-md-6 col-10 mx-auto">
     <form asp-action="Edit">
         <div class="card border-2">
             <div class="card-header bg-custom-color mb-2 d-flex justify-content-between">
                 <div>
-                    <h2 class="m-0">Edit Defect</h2>
+                    <h2 class="m-0">Edit Defect Type</h2>
                 </div>
                 <div class="justify-content-end">
                     <p class="m-0">Fields marked <span class="fw-bold text-danger">*</span> are required.</p>
@@ -21,18 +21,18 @@
             <div class="card-body col-lg-10 col-11 mx-auto">
                 <div class="row">
                     <div class="form-group">
-                        <label asp-for="DefectName" class="control-label">Defect <small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Defect Name">(e.g. Loose wires)</small> <span class="fw-bold text-danger">*</span></label>
+                        <label asp-for="DefectName" class="control-label">Defect <small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Defect Type Name">(e.g. Loose wires)</small> <span class="fw-bold text-danger">*</span></label>
                         <input asp-for="DefectName" class="form-control" placeholder="Defect" />
                         <span asp-validation-for="DefectName" class="text-danger"></span>
 
                     </div>
                     <div class="form-group">
-                        <label asp-for="DefectDesription" class="control-label">Description <small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Defect Description">(e.g. Caused damaged to the structure)</small></label>
+                        <label asp-for="DefectDesription" class="control-label">Description <small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Defect Type Description">(e.g. Electrical wires are not securely fastened or connected)</small></label>
                         <textarea asp-for="DefectDesription" class="form-control" placeholder="Defect Description"></textarea>
                         <span asp-validation-for="DefectDesription" class="text-danger"></span>
                    </div>
                    <div class="form-group">
-                <label class="control-label">Items </label><small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Items associated to this Defect (One or Multiple)"> (e.g. Panel, Side Arm)</small>
+                <label class="control-label">Items </label><small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Items that can have this Defect (One or Multiple)"> (e.g. Control Panel, Outlet)</small>
                 <div class="m-2">
                     <table>
                         <tr>

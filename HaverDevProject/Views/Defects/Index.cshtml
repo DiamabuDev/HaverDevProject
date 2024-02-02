@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1><i class="bi bi-caret-right-fill"></i>Defects</h1>
+<h1><i class="bi bi-caret-right-fill"></i>Defect Types</h1>
 
 <form id="defectForm" asp-action="Index" method="get">
     <input type="hidden" name="sortDirection" value="@ViewData["sortDirection"]" />
@@ -13,7 +13,7 @@
     
     <div class="row mt-3 mb-2">
         <div class="d-flex justify-content-end">
-            <a asp-action="Create" class="btn btn-primary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New Defect</a>
+            <a asp-action="Create" class="btn btn-primary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New Defect Type</a>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
             <div class="row d-flex justify-content-center align-items-center">               
                 
                 <div class="form-group col-lg-4 col-md-5 col-sm-10 col-10">
-                    <label class="control-label mb-1">Find by Defect:</label>
+                    <label class="control-label mb-1">Find by Defect Type:</label>
                     @Html.TextBox("SearchName", null, new { @class = "form-control" })
                 </div>
                 <div class="form-group col-lg-4 col-md-5 col-sm-10 col-10">
@@ -42,13 +42,13 @@
                 <th></th>
                 <th>
                     <button type="submit" name="actionButton" value="Defect" class="btn text-light custom-btn-text-start">
-                        Defect
+                        Defect Type
                         @Html.Raw(ViewData["filterApplied:DefectName"])
                     </button>
                 </th>
                 <th class="big-col">
                     <button type="submit" name="actionButton" value="Description" class="btn text-light custom-btn-text-start">
-                        Defect
+                        Description
                         @Html.Raw(ViewData["filterApplied:Description"])
                     </button>
                 </th>

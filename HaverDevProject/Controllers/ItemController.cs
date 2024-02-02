@@ -154,7 +154,9 @@ namespace HaverDevProject.Controllers
 
             var item = await _context.Items
                 .Include(i => i.Supplier)
+                .Include(d => d.ItemDefects).ThenInclude(id => id.Defect)
                 .FirstOrDefaultAsync(m => m.ItemId == id);
+
             if (item == null)
             {
                 return NotFound();
