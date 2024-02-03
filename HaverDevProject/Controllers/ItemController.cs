@@ -11,6 +11,7 @@ using HaverDevProject.Models;
 using HaverDevProject.CustomControllers;
 using HaverDevProject.Utilities;
 using Microsoft.EntityFrameworkCore.Storage;
+using HaverDevProject.ViewModels;
 
 namespace HaverDevProject.Controllers
 {
@@ -169,6 +170,8 @@ namespace HaverDevProject.Controllers
             //ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierName");
             //Item item = new Item();
             PopulateDrodDownList();
+            Item item = new Item();
+            PopulateAssignedItemCheckboxes(item);
             return View();
         }
 
@@ -321,6 +324,28 @@ namespace HaverDevProject.Controllers
         {
             ViewData["SupplierID"] = SupplierSelectList(supplier?.SupplierId);
         }
+
+        private void PopulateAssignedItemCheckboxes(Item item)
+        {
+            var allDefects = _context.Defects
+                .Select(d => new { d.DefectId, d.DefectName })
+                .Distinct();
+
+            var currentItemDefectIDs = new HashSet<int>(item.ItemDefects.Select(id => id.DefectId)); //checar
+            var checkBoxes = new List<CheckOptionVM>();
+            foreach (var defect in allDefects)
+            {
+                checkBoxes.Add(new CheckOptionVM
+                {
+                    ID = defect.DefectId,
+                    DisplayText = defect.DefectName,
+                    Assigned = currentItemDefectIDs.Contains(defect.DefectId)
+                });
+            }
+            ViewData["ItemOptions"] = checkBoxes;
+            //ViewData["ItemOptions"] = new MultiSelectList(checkBoxes.OrderBy(d => d.DisplayText), "ID", "DisplayTex");
+        }
+
 
         private bool ItemExists(int id)
         {

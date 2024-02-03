@@ -37,8 +37,7 @@
     </div>
     <table class="table table-hover table-striped">
         <thead class="custom-header-bg">
-            <tr>
-                <th></th>
+            <tr>                
                 <th class="d-none d-md-table-cell">
                     <button type="submit" name="actionButton" value="Code" class="btn text-light custom-btn-text-start">
                         SAP No.
@@ -67,8 +66,7 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td class="ps-3"></td>
+                <tr>                    
                     <td>
                         @Html.DisplayFor(modelItem => item.ItemNumber)
                     </td>

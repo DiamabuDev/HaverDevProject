@@ -39,7 +39,6 @@
     <table class="table table-hover table-striped">
         <thead class="custom-header-bg">
             <tr>
-                <th></th>
                 <th>
                     <button type="submit" name="actionButton" value="Defect" class="btn text-light custom-btn-text-start">
                         Defect Type
@@ -65,7 +64,6 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td class="ps-3"></td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DefectName)
                     </td>
