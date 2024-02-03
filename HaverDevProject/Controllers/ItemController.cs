@@ -1,6 +1,4 @@
 ﻿
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -168,7 +166,9 @@ namespace HaverDevProject.Controllers
         // GET: Item/Create
         public IActionResult Create()
         {
-            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierName");
+            //ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierName");
+            //Item item = new Item();
+            PopulateDrodDownList();
             return View();
         }
 
@@ -189,12 +189,21 @@ namespace HaverDevProject.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-
-            catch (DbUpdateException)
-            {                
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");       
+            catch (RetryLimitExceededException)
+            {
+                ModelState.AddModelError("", "Unable to save changes after multiple attempts. Try again, and if the problem persists, see your system administrator.");
             }
-
+            catch (DbUpdateException dex)
+            {
+                if (dex.GetBaseException().Message.Contains("UNIQUE"))
+                {
+                    ModelState.AddModelError("ItemNumber", "Unable to save changes. Remember, you cannot have duplicate SAP Number.");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+            }
             ViewBag.SupplierId = new SelectList(_context.Suppliers, "SupplierId", "SupplierName", item.SupplierId);
             return View(item);
         }
@@ -243,13 +252,20 @@ namespace HaverDevProject.Controllers
                     TempData["SuccessMessage"] = "Item updated successfully!";
                     return RedirectToAction(nameof(Index));
                 }
-                catch (RetryLimitExceededException /* dex */)
+                catch (RetryLimitExceededException)
                 {
                     ModelState.AddModelError("", "Unable to save changes after multiple attempts. Try again, and if the problem persists, see your system administrator.");
                 }
-                catch (DbUpdateException)
+                catch (DbUpdateException dex)
                 {
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                    if (dex.GetBaseException().Message.Contains("UNIQUE"))
+                    {
+                        ModelState.AddModelError("ItemNumber", "Unable to save changes. Remember, you cannot have duplicate SAP Number.");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                    }
                 }
 
             }

@@ -1,2 +1,2 @@
-﻿Add-Migration -Context HaverNiagaraContext -o Data\HNMigrations Initial
+﻿Add-Migration -Context HaverNiagaraContext -o Data\QLMigrations Initial
 Update-Database -Context HaverNiagaraContext

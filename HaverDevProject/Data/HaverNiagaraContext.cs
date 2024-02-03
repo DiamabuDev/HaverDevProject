@@ -233,6 +233,10 @@ public partial class HaverNiagaraContext : DbContext
             entity.HasKey(e => e.StatusUpdateId).HasName("pk_status_statusUpdateId");
         });
 
+        modelBuilder.Entity<Item>()
+            .HasIndex(i => i.ItemNumber)
+            .IsUnique();
+
         modelBuilder.Entity<Supplier>(entity =>
         {
             entity.HasKey(e => e.SupplierId).HasName("pk_supplier_supplierId");

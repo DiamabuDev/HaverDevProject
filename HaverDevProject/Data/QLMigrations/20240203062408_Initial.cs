@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HaverDevProject.Data.QLMigrations
 {
     /// <inheritdoc />
-    public partial class HaverNiagaraFirstMigration : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -431,6 +431,12 @@ namespace HaverDevProject.Data.QLMigrations
                 name: "IX_followUp_ncrPurchId",
                 table: "followUp",
                 column: "ncrPurchId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_item_itemNumber",
+                table: "item",
+                column: "itemNumber",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_item_supplierId",
