@@ -52,12 +52,12 @@
                         @Html.Raw(ViewData["filterApplied:Description"])
                     </button>
                 </th>
-                <th>
+                @* <th>
                     <button type="submit" name="actionButton" value="Item" class="btn text-light custom-btn-text-start">
                         Items
                         @Html.Raw(ViewData["filterApplied:Item"])
                     </button>
-                </th>
+                </th> *@
                 <th></th>
             </tr>
         </thead>
@@ -73,7 +73,7 @@
                         @Html.DisplayFor(modelItem => item.DefectDesription)
                     </td>
 
-                        <td custom-hover">
+                    @* <td custom-hover">
                         @{
                             int itemCount = item.ItemDefects.Count;
                             if (itemCount > 0)
@@ -102,7 +102,7 @@
                                 }
                             }
                         }
-    </td>
+                    </td> *@
 
 
                     <td>
