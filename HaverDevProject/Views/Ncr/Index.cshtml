@@ -14,7 +14,7 @@
         <div class="col-8">
             <div class="d-flex justify-content-start">
                 <input type="radio" class="btn-check btn-filter" name="filter" id="All" autocomplete="off" checked value="All">
-                <label class="btn btn-secondary me-2" for="All">All NCRs</label>
+                <label class="btn btn-primary me-2" for="All">All NCRs</label>
 
                 <input type="radio" class="btn-check btn-filter" name="filter" id="Active" autocomplete="off" value="Active" data-filter="Active">
                 <label class="btn btn-success me-2" for="Active">NCRs Actives</label>
@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="col-4 text-end">
-            <a asp-action="Create" class="btn btn-primary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New NCR</a>
+            <a asp-action="" class="btn btn-secondary ms-4"> <i class="bi bi-plus-square-dotted"></i> Create New NCR</a> @* asp-action="Create" *@
         </div>
     </div>
     <div class="form-horizontal">
@@ -130,7 +130,7 @@
                 @Html.DisplayFor(modelItem => item.NcrQas.FirstOrDefault().NcrQauserId)
                 </td> *@
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.NcrId" class="btn text-primary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil-square"></i></a>
+                        @* <a asp-action="Edit" asp-route-id="@item.NcrId" class="btn text-primary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil-square"></i></a> *@
                         <a asp-action="Details" asp-route-id="@item.NcrId" class="btn text-primary" data-bs-toggle="tooltip" title="Details"><i class="bi bi-eye-fill"></i></a>
                     </td>
                 </tr>

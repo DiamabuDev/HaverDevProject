@@ -63,15 +63,16 @@
             <div class="card-footer">
                 <div class="form-group d-flex justify-content-end mt-2">
                     <div>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="button" onclick="location.href='@Url.Action("Index")'" class="btn btn-primary">
+                            <i class="bi bi-arrow-90deg-left"></i> Back to Defect List
+                        </button>
+                    </div>  
+                    <div>
+                        <button type="submit" class="btn btn-primary ms-4">
                             <i class="bi bi-floppy"></i> Save
                         </button>
                     </div>
-                    <div>
-                        <button type="button" onclick="location.href='@Url.Action("Index")'" class="btn btn-primary ms-4">
-                            <i class="bi bi-arrow-90deg-left"></i> Back to Defect List
-                        </button>
-                    </div>                    
+                                      
                 </div>
             </div>
         </div>

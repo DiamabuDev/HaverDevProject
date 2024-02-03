@@ -38,22 +38,22 @@
                 </th>
                 <th>                    
                     <button type="submit" name="actionButton" value="Name" class="btn text-light custom-btn-text-start">
-                        Description
+                        Name
                         @Html.Raw(ViewData["filterApplied:SupplierName"])
                     </button>
                 </th>
                 <th class="d-none d-md-table-cell">            
                     <button type="submit" name="actionButton" value="Email" class="btn text-light custom-btn-text-start">
-                        Description
+                        Email
                         @Html.Raw(ViewData["filterApplied:SupplierEmail"])
                     </button>
                 </th>
-                <th>
+                @* <th>
                     <button type="submit" name="actionButton" value="Status" class="btn text-light custom-btn-text-start">
                         Status
                         @Html.Raw(ViewData["filterApplied:Status"])
                     </button>
-                </th>
+                </th> *@
                 <th></th>
             </tr>
         </thead>
@@ -69,9 +69,9 @@
                 <td class="d-none d-md-table-cell">
                     @Html.DisplayFor(modelItem => item.SupplierEmail)
                 </td>
-                    <td class="stillactive">
-                        Active
-                    </td>
+                @* <td class="stillactive">
+                    Active
+                </td> *@
                 <td>   
                     <a asp-action="Edit" asp-route-id="@item.SupplierId" class="btn text-primary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil-square"></i></a>
                     <a asp-action="Details" asp-route-id="@item.SupplierId" class="btn text-primary" data-bs-toggle="tooltip" title="Details"><i class="bi bi-eye-fill"></i></a>
