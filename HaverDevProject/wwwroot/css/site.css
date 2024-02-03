@@ -47,7 +47,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 100px;
+    gap: 50px;
     padding: 20px;
 }
 
@@ -68,27 +68,27 @@ body {
     justify-content: center;
 }
 
-    .dashboard-item i {
-        font-size: 50px;
-    }
+.dashboard-item i {
+    font-size: 50px;
+}
 
-    .dashboard-item p {
-        margin: 0;
-        font-weight: 500;
-        padding-top: 5px;
-    }
+.dashboard-item p {
+    margin: 0;
+    font-weight: 500;
+    padding-top: 5px;
+}
 
-    .dashboard-item:hover {
-        background-color: #1C335E;
-        color: lightgray;
-    }
+.dashboard-item:hover {
+    background-color: #1C335E;
+    color: lightgray;
+}
 
-        .dashboard-item:hover i {
-            font-size: 55px;
-        }
+.dashboard-item:hover i {
+    font-size: 55px;
+}
 
 .custom-dropdown-color .dropdown-item:hover {
-    background-color: #345B91; /*#345B91 #2C4A7C */
+    background-color: #345B91;
     color: #FFFFFF
 }
 
@@ -113,20 +113,20 @@ body {
         justify-content: left;
     }
 
-        .dashboard-item i {
-            font-size: 30px;
-            margin-right: 12px;
-            margin-left: 25px;
-        }
+    .dashboard-item i {
+        font-size: 30px;
+        margin-right: 12px;
+        margin-left: 25px;
+    }
 
-        .dashboard-item p {
-            padding-top: 3px;
-            margin: 0;
-        }
+    .dashboard-item p {
+        padding-top: 3px;
+        margin: 0;
+    }
 
-        .dashboard-item:hover i {
-            font-size: 35px;
-        }
+    .dashboard-item:hover i {
+        font-size: 35px;
+    }
 
     .dropdown-item {
         width: 220px;
