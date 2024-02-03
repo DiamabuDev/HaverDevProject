@@ -16,8 +16,8 @@
                 <button class="btn btn-secondary">
                     <i class="bi bi-file-earmark-spreadsheet"></i> Download Excel File
                 </button>
-            </div> *@
-            <div class="row align-items-center mb-3 mt-4">
+            </div>
+            <div class="row align-items-center mb-3">
 
                 <div class="col-auto fw-bold fs-5">
                     NCR No.:
@@ -27,9 +27,9 @@
                 </div>
 
                 <div class="col-auto">
-                    <span class="btn @(Model.StatusUpdate.StatusUpdateName == "Closed" ? "text-white bg-danger" : "text-white bg-success")">
+                    <button class="btn @(Model.StatusUpdate.StatusUpdateName == "Closed" ? "btn-danger" : "btn-success")">
                         @Model.StatusUpdate.StatusUpdateName
-                    </span>
+                    </button>
                 </div>
 
                 @if (Model.StatusUpdate.StatusUpdateName == "Closed")
@@ -203,7 +203,7 @@
                             }
                             else
                             {
-                                <a href="https://www.youtube.com/watch?v=LBppWlexHbQ" target="_blank">Video: Defect - NCR:2024-006</a>
+                                <a href="https://www.youtube.com/watch?v=8hSuUrK53io&ab_channel=JorgeCeledonVEVO" target="_blank">https://www.youtube.com/watch?v=8hSuUrK53io&ab_channel=JorgeCeledonVEVO</a>
                             }
                         }
                     </div>
