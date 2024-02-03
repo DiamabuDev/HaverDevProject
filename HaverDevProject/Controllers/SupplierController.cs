@@ -61,11 +61,13 @@ namespace HaverDevProject.Controllers
                 {
                     suppliers = suppliers
                         .OrderBy(p => p.SupplierCode);
+                    ViewData["filterApplied:SupplierCode"] = "<i class='bi bi-sort-up'></i>";
                 }
                 else
                 {
                     suppliers = suppliers
                         .OrderByDescending(p => p.SupplierCode);
+                    ViewData["filterApplied:SupplierCode"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
             else if (sortField == "Name")
@@ -74,11 +76,14 @@ namespace HaverDevProject.Controllers
                 {
                     suppliers = suppliers
                         .OrderBy(p => p.SupplierName);
+                    ViewData["filterApplied:SupplierName"] = "<i class='bi bi-sort-up'></i>";
+
                 }
                 else
                 {
                     suppliers = suppliers
                         .OrderByDescending(p => p.SupplierName);
+                    ViewData["filterApplied:SupplierName"] = "<i class='bi bi-sort-down'></i>";
                 }
             }            
             else //Sorting by Email
@@ -87,13 +92,32 @@ namespace HaverDevProject.Controllers
                 {
                     suppliers = suppliers
                         .OrderBy(p => p.SupplierEmail);
+                    ViewData["filterApplied:SupplierEmail"] = "<i class='bi bi-sort-up'></i>";
                 }
                 else
                 {
                     suppliers = suppliers
                         .OrderByDescending(p => p.SupplierEmail);
+                    ViewData["filterApplied:SupplierEmail"] = "<i class='bi bi-sort-down'></i>";
+
                 }
             }
+            //else //Sorting by Status
+            //{
+            //    if (sortDirection == "asc")
+            //    {
+            //        suppliers = suppliers
+            //            .OrderBy(p => p.Status);
+            //        ViewData["filterApplied:SupplierEmail"] = "<i class='bi bi-sort-up'></i>";
+            //    }
+            //    else
+            //    {
+            //        suppliers = suppliers
+            //            .OrderByDescending(p => p.SupplierEmail);
+            //        ViewData["filterApplied:SupplierEmail"] = "<i class='bi bi-sort-down'></i>";
+
+            //    }
+            //}
             //Set sort for next time
             ViewData["sortField"] = sortField;
             ViewData["sortDirection"] = sortDirection;

@@ -4,47 +4,41 @@
     ViewData["Title"] = "Create";
 }
 <div class="col-md-6 col-10 mx-auto">
-    <h1>Item</h1>
+    <h1><i class="bi bi-caret-right-fill"></i>Item</h1>
 </div>
 <div class="col-md-6 col-10 mx-auto">
     <form asp-action="Create">
         <div class="card border-2">
             <div class="card-header bg-custom-color mb-2 d-flex justify-content-between">
                 <div>
-                    <h2>Create Item</h2>
+                    <h2 class="m-0">Create Item</h2>
                 </div>
                 <div class="justify-content-end">
-                    <p>Fields marked <span class="fw-bold text-danger">*</span> are required.</p>
+                    <p class="m-0">Fields marked <span class="fw-bold text-danger">*</span> are required.</p>
                 </div>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             </div>
             <div class="card-body col-lg-10 col-11 mx-auto">
                 <div class="row">
                     <div class="form-group">
-                        <label asp-for="ItemNumber" class="control-label">Item Number <small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Code to identify the item">(e.g. 207956254)</small> <span class="fw-bold text-danger">*</span></label>
+                        <label asp-for="ItemNumber" class="control-label">SAP No. <small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="SAP No. that identifies the Item">(e.g. 207956254)</small> <span class="fw-bold text-danger">*</span></label>
                         <input asp-for="ItemNumber" class="form-control" placeholder="Code" />
                         <span asp-validation-for="ItemNumber" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="ItemName" class="control-label">Name <small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Item name">(e.g. Backing Shield)</small> <span class="fw-bold text-danger">*</span></label>
+                        <label asp-for="ItemName" class="control-label">Description <small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Item Description">(e.g. 1/4" .120)</small> <span class="fw-bold text-danger">*</span></label>
                         <input asp-for="ItemName" class="form-control" placeholder="Name" />
                         <span asp-validation-for="ItemName" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
+                    @* <div class="form-group">
                         <label asp-for="ItemDescription" class="control-label">Description  <small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Description of Item"></small></label>
                         <input asp-for="ItemDescription" class="form-control" placeholder="Description" />
                         <span asp-validation-for="ItemDescription" class="text-danger"></span>
-                    </div>
+                    </div> *@
                     <div class="form-group">
-                        <label asp-for="SupplierId" class="control-label"></label>
-                        <select asp-for="SupplierId" class="form-control" asp-items="ViewBag.FunctionTypeID">
+                        <label asp-for="SupplierId" class="control-label">Supplier <small data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Item Supplier">(e.g. LAWRENCE SINTERED METALS)</small> <span class="fw-bold text-danger">*</span></label>
+                        <select asp-for="SupplierId" class="form-control" asp-items="ViewBag.SupplierId">
                             <option value="">Select a Supplier</option>
-                            <option value="">Select a Supplier</option>
-                            <option value="">AJAX TOCCO</option>
-                            <option value="">HINGSTON METAL FABRICATORS</option>
-                            <option value="">HOTZ ENVIRONMENTAL SERVICES</option>
-                            <option value="">BLACK CREEK METAL</option>
-                            <option value="">POLYMER EXTRUSIONS INC</option>
                         </select>
                         <span asp-validation-for="SupplierId" class="text-danger"></span>
                     </div>
@@ -53,15 +47,15 @@
             <div class="card-footer">
                 <div class="form-group d-flex justify-content-end mt-2">
                     <div>
-                        <button type="button" onclick="location.href='@Url.Action("Index")'" class="btn btn-secondary">
-                            <i class="bi bi-arrow-90deg-left"></i> Back to List
+                        <button type="submit" class="btn btn-primary">
+                            <i class='bi-plus-square-dotted'></i> Create
                         </button>
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-primary ms-4">
-                            <i class='bi bi-plus'></i> Create
+                        <button type="button" onclick="location.href='@Url.Action("Index")'" class="btn btn-primary ms-4">
+                            <i class="bi bi-arrow-90deg-left"></i> Back to Item List
                         </button>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </div>

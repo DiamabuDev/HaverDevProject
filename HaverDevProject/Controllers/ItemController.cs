@@ -1,4 +1,6 @@
 ﻿
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ using HaverDevProject.Data;
 using HaverDevProject.Models;
 using HaverDevProject.CustomControllers;
 using HaverDevProject.Utilities;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace HaverDevProject.Controllers
 {
@@ -21,17 +24,6 @@ namespace HaverDevProject.Controllers
         {
             _context = context;
         }
-
-        private SelectList SupplierSelectList(int? selectedId)
-        {
-            return new SelectList(_context.Suppliers.OrderBy(s => s.SupplierName), "SupplierId", "SupplierName", selectedId);
-        }
-
-        private void PopulateDrodDownList(Supplier supplier = null)
-        {
-            ViewData["SupplierID"] = SupplierSelectList(supplier?.SupplierId);
-        }
-
 
         // GET: Item
         public async Task<IActionResult> Index(string SearchCode, int? SupplierID, int? page, int? pageSizeID,
@@ -58,8 +50,6 @@ namespace HaverDevProject.Controllers
                 items = items.Where(s => s.Supplier.SupplierId == SupplierID);
             }
 
-
-
             //Sorting columns
             if (!String.IsNullOrEmpty(actionButton)) //Form Submitted!
             {
@@ -82,11 +72,14 @@ namespace HaverDevProject.Controllers
                 {
                     items = items
                         .OrderBy(p => p.ItemNumber);
+                    ViewData["filterApplied:ItemNumber"] = "<i class='bi bi-sort-up'></i>";
+
                 }
                 else
                 {
                     items = items
                         .OrderByDescending(p => p.ItemNumber);
+                    ViewData["filterApplied:ItemNumber"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
             else if (sortField == "Item")
@@ -95,37 +88,46 @@ namespace HaverDevProject.Controllers
                 {
                     items = items
                         .OrderBy(p => p.ItemName);
+                    ViewData["filterApplied:ItemName"] = "<i class='bi bi-sort-up'></i>";
                 }
                 else
                 {
                     items = items
                         .OrderByDescending(p => p.ItemName);
+                    ViewData["filterApplied:ItemName"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
-            else if (sortField == "Description")
-            {
-                if (sortDirection == "asc")
-                {
-                    items = items
-                        .OrderBy(p => p.ItemDescription);
-                }
-                else
-                {
-                    items = items
-                        .OrderByDescending(p => p.ItemDescription);
-                }
-            }
+            //else if (sortField == "Description")
+            //{
+            //    if (sortDirection == "asc")
+            //    {
+            //        items = items
+            //            .OrderBy(p => p.ItemDescription);
+            //        ViewData["filterApplied:Description"] = "<i class='bi bi-sort-up'></i>";
+
+            //    }
+            //    else
+            //    {
+            //        items = items
+            //            .OrderByDescending(p => p.ItemDescription);
+            //        ViewData["filterApplied:Description"] = "<i class='bi bi-sort-down'></i>";
+
+            //    }
+            //}
             else //Sorting by Supplier Name
             {
                 if (sortDirection == "asc")
                 {
                     items = items
                         .OrderBy(p => p.Supplier.SupplierName);
+                    ViewData["filterApplied:Supplier"] = "<i class='bi bi-sort-up'></i>";
+
                 }
                 else
                 {
                     items = items
                         .OrderByDescending(p => p.Supplier.SupplierName);
+                    ViewData["filterApplied:Supplier"] = "<i class='bi bi-sort-down'></i>";
                 }
             }
             //Set sort for next time
@@ -152,7 +154,9 @@ namespace HaverDevProject.Controllers
 
             var item = await _context.Items
                 .Include(i => i.Supplier)
+                .Include(d => d.ItemDefects).ThenInclude(id => id.Defect)
                 .FirstOrDefaultAsync(m => m.ItemId == id);
+
             if (item == null)
             {
                 return NotFound();
@@ -164,7 +168,7 @@ namespace HaverDevProject.Controllers
         // GET: Item/Create
         public IActionResult Create()
         {
-            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierCode, SupplierName");
+            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierName");
             return View();
         }
 
@@ -175,35 +179,42 @@ namespace HaverDevProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ItemId,ItemNumber,ItemName,ItemDescription,SupplierId")] Item item)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(item);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(item);
+                    await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Item created successfully!";
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "Supplier", item.SupplierId);
+
+            catch (DbUpdateException)
+            {                
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");       
+            }
+
+            ViewBag.SupplierId = new SelectList(_context.Suppliers, "SupplierId", "SupplierName", item.SupplierId);
             return View(item);
         }
 
         // GET: Item/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-
-            var items = _context.Items
-                .Include(i => i.Supplier)
-                .AsNoTracking();
-
             if (id == null || _context.Items == null)
             {
                 return NotFound();
             }
+            var item = await _context.Items
+                .Include(i => i.Supplier)
+                .FirstOrDefaultAsync(d => d.ItemId == id);
 
-            var item = await _context.Items.FindAsync(id);
             if (item == null)
             {
                 return NotFound();
             }
-            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierCode", item.SupplierId);
+            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierName", item.SupplierId);
             return View(item);
         }
 
@@ -212,35 +223,38 @@ namespace HaverDevProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemId,ItemNumber,ItemName,ItemDescription,SupplierId")] Item item)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id != item.ItemId)
+            var itemToUpdate = await _context.Items
+                .Include (i => i.Supplier)
+                .FirstOrDefaultAsync(i => i.ItemId == id);
+
+            if (id != itemToUpdate.ItemId)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (await TryUpdateModelAsync<Item>(itemToUpdate, "",
+                    i => i.ItemNumber, i => i.ItemName, i => i.ItemDescription))
             {
                 try
                 {
-                    _context.Update(item);
                     await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Item updated successfully!";
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (RetryLimitExceededException /* dex */)
                 {
-                    if (!ItemExists(item.ItemId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    ModelState.AddModelError("", "Unable to save changes after multiple attempts. Try again, and if the problem persists, see your system administrator.");
                 }
-                return RedirectToAction(nameof(Index));
+                catch (DbUpdateException)
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+
             }
-            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierCode", item.SupplierId);
-            return View(item);
+            ViewBag.SupplierId = new SelectList(_context.Suppliers, "SupplierId", "SupplierName", itemToUpdate.SupplierId);
+            return View(itemToUpdate);
         }
 
         // GET: Item/Delete/5
@@ -254,6 +268,7 @@ namespace HaverDevProject.Controllers
             var item = await _context.Items
                 .Include(i => i.Supplier)
                 .FirstOrDefaultAsync(m => m.ItemId == id);
+
             if (item == null)
             {
                 return NotFound();
@@ -279,6 +294,16 @@ namespace HaverDevProject.Controllers
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        private SelectList SupplierSelectList(int? selectedId)
+        {
+            return new SelectList(_context.Suppliers.OrderBy(s => s.SupplierName), "SupplierId", "SupplierName", selectedId);
+        }
+
+        private void PopulateDrodDownList(Supplier supplier = null)
+        {
+            ViewData["SupplierID"] = SupplierSelectList(supplier?.SupplierId);
         }
 
         private bool ItemExists(int id)

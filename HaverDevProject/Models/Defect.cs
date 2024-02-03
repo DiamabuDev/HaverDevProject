@@ -15,13 +15,13 @@ public partial class Defect
     public int DefectId { get; set; }
 
     [Display(Name = "Defect Name")]
-    [Required(ErrorMessage = "You cannot leave Defect Name blank ")]
+    [Required(ErrorMessage = "The Defect Name field is required.")]
     [Column("defectName")]
     [StringLength(45)]
     [Unicode(false)]
     public string DefectName { get; set; }
 
-    [Display(Name = "Description of Defect")]
+    [Display(Name = "Description")]
     [Column("defectDesription")]
     [StringLength(300)]
     [Unicode(false)]
