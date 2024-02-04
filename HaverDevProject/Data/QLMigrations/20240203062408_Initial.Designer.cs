@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HaverDevProject.Data.QLMigrations
 {
     [DbContext(typeof(HaverNiagaraContext))]
-    [Migration("20240127231222_UpdatedSeedData")]
-    partial class UpdatedSeedData
+    [Migration("20240203062408_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -203,6 +203,9 @@ namespace HaverDevProject.Data.QLMigrations
 
                     b.HasKey("ItemId")
                         .HasName("pk_item_itemId");
+
+                    b.HasIndex("ItemNumber")
+                        .IsUnique();
 
                     b.HasIndex("SupplierId");
 

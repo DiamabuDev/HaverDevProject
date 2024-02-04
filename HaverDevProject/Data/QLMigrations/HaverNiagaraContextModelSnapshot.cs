@@ -201,6 +201,9 @@ namespace HaverDevProject.Data.QLMigrations
                     b.HasKey("ItemId")
                         .HasName("pk_item_itemId");
 
+                    b.HasIndex("ItemNumber")
+                        .IsUnique();
+
                     b.HasIndex("SupplierId");
 
                     b.ToTable("item");
