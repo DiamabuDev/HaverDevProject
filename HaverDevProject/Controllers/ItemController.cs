@@ -180,10 +180,19 @@ namespace HaverDevProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemId,ItemNumber,ItemName,ItemDescription,SupplierId")] Item item)
+        public async Task<IActionResult> Create([Bind("ItemId,ItemNumber,ItemName,ItemDescription,SupplierId")] Item item, string[] selectedOptions)
         {
             try
             {
+                if (selectedOptions != null)
+                {
+                    foreach (var condition in selectedOptions)
+                    {
+                        var defectToAdd = new ItemDefect { ItemId = item.ItemId, DefectId = int.Parse(condition) };
+                        item.ItemDefects.Add(defectToAdd);
+                    }
+                }
+
                 if (ModelState.IsValid)
                 {
                     _context.Add(item);
@@ -219,13 +228,15 @@ namespace HaverDevProject.Controllers
                 return NotFound();
             }
             var item = await _context.Items
-                .Include(i => i.Supplier)
+                .Include(d => d.ItemDefects).ThenInclude(id => id.Defect)
+                .Include(i => i.Supplier)                
                 .FirstOrDefaultAsync(d => d.ItemId == id);
 
             if (item == null)
             {
                 return NotFound();
             }
+            PopulateAssignedItemCheckboxes(item);
             ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "SupplierName", item.SupplierId);
             return View(item);
         }
@@ -235,16 +246,19 @@ namespace HaverDevProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id, string[] selectedOptions)
         {
             var itemToUpdate = await _context.Items
+                .Include(d => d.ItemDefects).ThenInclude(id =>id.Defect)
                 .Include (i => i.Supplier)
                 .FirstOrDefaultAsync(i => i.ItemId == id);
 
-            if (id != itemToUpdate.ItemId)
+            if (itemToUpdate == null)
             {
                 return NotFound();
             }
+
+            UpdateDefectItemsCheckboxes(selectedOptions, itemToUpdate);
 
             if (await TryUpdateModelAsync<Item>(itemToUpdate, "",
                     i => i.ItemNumber, i => i.ItemName, i => i.ItemDescription))
@@ -272,6 +286,7 @@ namespace HaverDevProject.Controllers
                 }
 
             }
+            PopulateAssignedItemCheckboxes(itemToUpdate);
             ViewBag.SupplierId = new SelectList(_context.Suppliers, "SupplierId", "SupplierName", itemToUpdate.SupplierId);
             return View(itemToUpdate);
         }
@@ -346,6 +361,35 @@ namespace HaverDevProject.Controllers
             //ViewData["ItemOptions"] = new MultiSelectList(checkBoxes.OrderBy(d => d.DisplayText), "ID", "DisplayTex");
         }
 
+        private void UpdateDefectItemsCheckboxes(string[] selectedDefects, Item itemToUpdate)
+        {
+            if (selectedDefects == null)
+            {
+                itemToUpdate.ItemDefects = new List<ItemDefect>();
+                return;
+            }
+
+            var selectedDefectsHS = new HashSet<string>(selectedDefects);
+            var defectItemsHS = new HashSet<int>(itemToUpdate.ItemDefects.Select(id => id.DefectId));
+            foreach (var defect in _context.Defects)
+            {
+                if (selectedDefectsHS.Contains(defect.DefectId.ToString()))
+                {
+                    if (!defectItemsHS.Contains(defect.DefectId))
+                    {
+                        itemToUpdate.ItemDefects.Add(new ItemDefect { ItemId = itemToUpdate.ItemId, DefectId = defect.DefectId });
+                    }
+                }
+                else
+                {
+                    if (defectItemsHS.Contains(defect.DefectId))
+                    {
+                        ItemDefect itemDefectToRemove = itemToUpdate.ItemDefects.FirstOrDefault(id => id.DefectId == defect.DefectId);
+                        if (itemDefectToRemove != null) _context.Remove(itemDefectToRemove);
+                    }
+                }
+            }
+        }
 
         private bool ItemExists(int id)
         {
