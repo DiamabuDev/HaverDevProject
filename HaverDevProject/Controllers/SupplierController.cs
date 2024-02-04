@@ -170,7 +170,10 @@ namespace HaverDevProject.Controllers
                 {
                     _context.Add(supplier);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    //return RedirectToAction(nameof(Index));
+                    TempData["SuccessMessage"] = "Supplier created successfully!";
+                    int newSupplierId = supplier.SupplierId;
+                    return RedirectToAction("Details", new { id = newSupplierId});
                 }
             }
             catch (RetryLimitExceededException)
@@ -226,7 +229,10 @@ namespace HaverDevProject.Controllers
                 {
                     _context.Update(supplier);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    //return RedirectToAction(nameof(Index));
+                    TempData["SuccessMessage"] = "Supplier updated successfully!";
+                    int updateSupplierId = supplier.SupplierId;
+                    return RedirectToAction("Details", new { id = updateSupplierId });
                 }
                 catch (RetryLimitExceededException)
                 {
