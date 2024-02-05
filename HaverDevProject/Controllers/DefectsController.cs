@@ -176,7 +176,9 @@ namespace HaverDevProject.Controllers
                     _context.Add(defect);
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Defect created successfully!";
-                    return RedirectToAction(nameof(Index));
+                    int newDefectId = defect.DefectId;
+                    return RedirectToAction("Details", new { id = newDefectId });
+                    //return RedirectToAction(nameof(Index));
                 }
             }
             catch (RetryLimitExceededException /* dex */)
@@ -239,7 +241,9 @@ namespace HaverDevProject.Controllers
                 {
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Defect updated successfully!";
-                    return RedirectToAction(nameof(Index));
+                    int updateDefectId = defectToUpdate.DefectId;
+                    return RedirectToAction("Details", new { id = updateDefectId });
+                    //return RedirectToAction(nameof(Index));
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {
