@@ -236,7 +236,7 @@ namespace HaverDevProject.Data
                         new Item
                         {
                             ItemNumber = 11854267,
-                            ItemName = "Spherical Roller Bearing with sliding coated Haver-Bush",
+                            ItemName = "Spherical Roller Washer",
                             ItemDescription = "Spherical rolling element and a sliding coated Haver-Bush.",
                             SupplierId = context.Suppliers.FirstOrDefault(f => f.SupplierName == "HBC ENGINEERING").SupplierId
                         });
@@ -313,7 +313,7 @@ namespace HaverDevProject.Data
                         new Defect
                         {
                             DefectName = "Incorrect specification",
-                            DefectDesription = "Hardware did match the specifications."
+                            DefectDesription = "Hardware did not match the specifications."
                         },
                         new Defect
                         {
@@ -699,11 +699,18 @@ namespace HaverDevProject.Data
                     context.EngDispositionTypes.AddRange(
                         new EngDispositionType
                         {
-                            EngDispositionTypeName = "N/A"
+                            EngDispositionTypeName = "Use As Is"
                         },
                         new EngDispositionType
                         {
-                            EngDispositionTypeName = "Drawing updated for correct dimensions."
+                            EngDispositionTypeName = "Repair"
+                        }, new EngDispositionType
+                        {
+                            EngDispositionTypeName = "Rework"
+                        },
+                        new EngDispositionType
+                        {
+                            EngDispositionTypeName = "Scrap"
                         });
 
                     context.SaveChanges();
@@ -719,7 +726,7 @@ namespace HaverDevProject.Data
                             NcrEngLastUpdated = DateTime.Parse("2023-12-08"),
                             NcrEngCreationDate = DateTime.Parse("2023-12-08"),
                             NcrEngUserId = 1, //nullable
-                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "N/A").EngDispositionTypeId,
+                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Use As Is").EngDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-137").NcrId
                         },
                         new NcrEng
@@ -729,7 +736,7 @@ namespace HaverDevProject.Data
                             NcrEngLastUpdated = DateTime.Parse("2023-12-10"),
                             NcrEngCreationDate = DateTime.Parse("2023-12-10"),
                             NcrEngUserId = 2, //nullable
-                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "N/A").EngDispositionTypeId,
+                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Repair").EngDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-138").NcrId
                         },
                         new NcrEng
@@ -739,7 +746,7 @@ namespace HaverDevProject.Data
                             NcrEngLastUpdated = DateTime.Parse("2023-12-16"),
                             NcrEngCreationDate = DateTime.Parse("2023-12-16"),
                             NcrEngUserId = 3, //nullable
-                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Drawing updated for correct dimensions.").EngDispositionTypeId,
+                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Rework").EngDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-139").NcrId
                         },
                         new NcrEng
@@ -749,7 +756,7 @@ namespace HaverDevProject.Data
                             NcrEngLastUpdated = DateTime.Parse("2023-12-16"),
                             NcrEngCreationDate = DateTime.Parse("2023-12-16"),
                             NcrEngUserId = 4, //nullable
-                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Drawing updated for correct dimensions.").EngDispositionTypeId,
+                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Scrap").EngDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-140").NcrId
                         },
                         new NcrEng
@@ -759,7 +766,7 @@ namespace HaverDevProject.Data
                             NcrEngLastUpdated = DateTime.Parse("2023-12-19"),
                             NcrEngCreationDate = DateTime.Parse("2023-12-19"),
                             NcrEngUserId = 1, //nullable
-                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "N/A").EngDispositionTypeId,
+                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Use As Is").EngDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-141").NcrId
                         },
                         new NcrEng
@@ -769,7 +776,7 @@ namespace HaverDevProject.Data
                             NcrEngLastUpdated = DateTime.Parse("2024-01-04"),
                             NcrEngCreationDate = DateTime.Parse("2024-01-04"),
                             NcrEngUserId = 2, //nullable
-                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "N/A").EngDispositionTypeId,
+                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Scrap").EngDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-001").NcrId
                         },
                         new NcrEng
@@ -779,7 +786,7 @@ namespace HaverDevProject.Data
                             NcrEngLastUpdated = DateTime.Parse("2024-01-06"),
                             NcrEngCreationDate = DateTime.Parse("2024-01-06"),
                             NcrEngUserId = 3, //nullable
-                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Drawing updated for correct dimensions.").EngDispositionTypeId,
+                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Rework").EngDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-002").NcrId
                         },
                         new NcrEng
@@ -789,7 +796,7 @@ namespace HaverDevProject.Data
                             NcrEngLastUpdated = DateTime.Parse("2024-01-07"),
                             NcrEngCreationDate = DateTime.Parse("2024-01-07"),
                             NcrEngUserId = 4, //nullable
-                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Drawing updated for correct dimensions.").EngDispositionTypeId,
+                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Rework").EngDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-003").NcrId
                         },
                         new NcrEng
@@ -799,7 +806,7 @@ namespace HaverDevProject.Data
                             NcrEngLastUpdated = DateTime.Parse("2024-01-08"),
                             NcrEngCreationDate = DateTime.Parse("2024-01-08"),
                             NcrEngUserId = 1, //nullable
-                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "N/A").EngDispositionTypeId,
+                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Repair").EngDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-004").NcrId
                         },
                         new NcrEng
@@ -809,7 +816,7 @@ namespace HaverDevProject.Data
                             NcrEngLastUpdated = DateTime.Parse("2024-01-12"),
                             NcrEngCreationDate = DateTime.Parse("2024-01-12"),
                             NcrEngUserId = 2, //nullable
-                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "N/A").EngDispositionTypeId,
+                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Scrap").EngDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-005").NcrId
                         },
                         new NcrEng
@@ -819,7 +826,7 @@ namespace HaverDevProject.Data
                             NcrEngLastUpdated = DateTime.Parse("2024-01-14"),
                             NcrEngCreationDate = DateTime.Parse("2024-01-14"),
                             NcrEngUserId = 3, //nullable
-                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Drawing updated for correct dimensions.").EngDispositionTypeId,
+                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Scrap").EngDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-006").NcrId
                         },
                         new NcrEng
@@ -829,7 +836,7 @@ namespace HaverDevProject.Data
                             NcrEngLastUpdated = DateTime.Parse("2024-01-18"),
                             NcrEngCreationDate = DateTime.Parse("2024-01-18"),
                             NcrEngUserId = 4, //nullable
-                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Drawing updated for correct dimensions.").EngDispositionTypeId,
+                            EngDispositionTypeId = context.EngDispositionTypes.FirstOrDefault(f => f.EngDispositionTypeName == "Rework").EngDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-007").NcrId
                         });
                     context.SaveChanges();
@@ -965,15 +972,19 @@ namespace HaverDevProject.Data
                     context.OpDispositionTypes.AddRange(
                         new OpDispositionType
                         {
-                            OpDispositionTypeName = "N/A"
+                            OpDispositionTypeName = "Rework 'In-House'"
                         },
                         new OpDispositionType
                         {
-                            OpDispositionTypeName = "Rework per engineering disposition."
+                            OpDispositionTypeName = "Scrap in House"
                         },
                         new OpDispositionType
                         {
-                            OpDispositionTypeName = "Replacement required."
+                            OpDispositionTypeName = "Return to Supplier for either 'rework' or 'replace'"
+                        },
+                        new OpDispositionType
+                        {
+                            OpDispositionTypeName = "Defer for HBC Engineering Review"
                         });
 
                     context.SaveChanges();
@@ -988,7 +999,7 @@ namespace HaverDevProject.Data
                             NcrPurchCreationDate = DateTime.Parse("2023-12-09"),
                             NcrPurchasingLastUpdated = DateTime.Parse("2023-12-09"),
                             NcrPurchasingUserId = 1, //need to make nullable
-                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "N/A").OpDispositionTypeId,
+                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework 'In-House'").OpDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-137").NcrId
                         },
                         new NcrPurchasing
@@ -997,7 +1008,7 @@ namespace HaverDevProject.Data
                             NcrPurchCreationDate = DateTime.Parse("2023-12-11"),
                             NcrPurchasingLastUpdated = DateTime.Parse("2023-12-11"),
                             NcrPurchasingUserId = 2, //need to make nullable
-                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Replacement required.").OpDispositionTypeId,
+                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Scrap in House").OpDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-138").NcrId
                         },
                         new NcrPurchasing
@@ -1006,7 +1017,7 @@ namespace HaverDevProject.Data
                             NcrPurchCreationDate = DateTime.Parse("2023-12-17"),
                             NcrPurchasingLastUpdated = DateTime.Parse("2023-12-17"),
                             NcrPurchasingUserId = 3, //need to make nullable
-                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework per engineering disposition.").OpDispositionTypeId,
+                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Scrap in House").OpDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-139").NcrId
                         },
                         new NcrPurchasing
@@ -1015,7 +1026,7 @@ namespace HaverDevProject.Data
                             NcrPurchCreationDate = DateTime.Parse("2023-12-17"),
                             NcrPurchasingLastUpdated = DateTime.Parse("2023-12-17"),
                             NcrPurchasingUserId = 4, //need to make nullable
-                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework per engineering disposition.").OpDispositionTypeId,
+                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Return to Supplier for either 'rework' or 'replace'").OpDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-140").NcrId
                         },
                         new NcrPurchasing
@@ -1024,7 +1035,7 @@ namespace HaverDevProject.Data
                             NcrPurchCreationDate = DateTime.Parse("2023-12-20"),
                             NcrPurchasingLastUpdated = DateTime.Parse("2023-12-20"),
                             NcrPurchasingUserId = 5, //need to make nullable
-                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "N/A").OpDispositionTypeId,
+                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework 'In-House'").OpDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2023-141").NcrId
                         },
                         new NcrPurchasing
@@ -1033,7 +1044,7 @@ namespace HaverDevProject.Data
                             NcrPurchCreationDate = DateTime.Parse("2024-01-05"),
                             NcrPurchasingLastUpdated = DateTime.Parse("2024-01-05"),
                             NcrPurchasingUserId = 6, //need to make nullable
-                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Replacement required.").OpDispositionTypeId,
+                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Scrap in House").OpDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-001").NcrId
                         },
                         new NcrPurchasing
@@ -1042,7 +1053,7 @@ namespace HaverDevProject.Data
                             NcrPurchCreationDate = DateTime.Parse("2024-01-07"),
                             NcrPurchasingLastUpdated = DateTime.Parse("2024-01-07"),
                             NcrPurchasingUserId = 7, //need to make nullable
-                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework per engineering disposition.").OpDispositionTypeId,
+                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Return to Supplier for either 'rework' or 'replace'").OpDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-002").NcrId
                         },
                         new NcrPurchasing
@@ -1051,7 +1062,7 @@ namespace HaverDevProject.Data
                             NcrPurchCreationDate = DateTime.Parse("2024-01-08"),
                             NcrPurchasingLastUpdated = DateTime.Parse("2024-01-08"),
                             NcrPurchasingUserId = 8, //need to make nullable
-                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework per engineering disposition.").OpDispositionTypeId,
+                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Defer for HBC Engineering Review").OpDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-003").NcrId
                         },
                         new NcrPurchasing
@@ -1060,7 +1071,7 @@ namespace HaverDevProject.Data
                             NcrPurchCreationDate = DateTime.Parse("2024-01-09"),
                             NcrPurchasingLastUpdated = DateTime.Parse("2024-01-09"),
                             NcrPurchasingUserId = 9, //need to make nullable
-                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "N/A").OpDispositionTypeId,
+                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework 'In-House'").OpDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-004").NcrId
                         },
                         new NcrPurchasing
@@ -1069,7 +1080,7 @@ namespace HaverDevProject.Data
                             NcrPurchCreationDate = DateTime.Parse("2024-01-13"),
                             NcrPurchasingLastUpdated = DateTime.Parse("2024-01-13"),
                             NcrPurchasingUserId = 10, //need to make nullable
-                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Replacement required.").OpDispositionTypeId,
+                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Scrap in House").OpDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-005").NcrId
                         },
                         new NcrPurchasing
@@ -1078,7 +1089,7 @@ namespace HaverDevProject.Data
                             NcrPurchCreationDate = DateTime.Parse("2024-01-15"),
                             NcrPurchasingLastUpdated = DateTime.Parse("2024-01-15"),
                             NcrPurchasingUserId = 11, //need to make nullable
-                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework per engineering disposition.").OpDispositionTypeId,
+                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Defer for HBC Engineering Review").OpDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-006").NcrId
                         },
                         new NcrPurchasing
@@ -1087,7 +1098,7 @@ namespace HaverDevProject.Data
                             NcrPurchCreationDate = DateTime.Parse("2024-01-19"),
                             NcrPurchasingLastUpdated = DateTime.Parse("2024-01-19"),
                             NcrPurchasingUserId = 12, //need to make nullable
-                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Rework per engineering disposition.").OpDispositionTypeId,
+                            OpDispositionTypeId = context.OpDispositionTypes.FirstOrDefault(f => f.OpDispositionTypeName == "Return to Supplier for either 'rework' or 'replace'").OpDispositionTypeId,
                             NcrId = context.Ncrs.FirstOrDefault(f => f.NcrNumber == "2024-007").NcrId
                         });
                     context.SaveChanges();
