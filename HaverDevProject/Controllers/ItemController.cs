@@ -198,7 +198,9 @@ namespace HaverDevProject.Controllers
                     _context.Add(item);
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Item created successfully!";
-                    return RedirectToAction(nameof(Index));
+                    int newItemId = item.ItemId;
+                    return RedirectToAction("Details", new { id = newItemId });
+                    //return RedirectToAction(nameof(Index));
                 }
             }
             catch (RetryLimitExceededException)
@@ -267,7 +269,9 @@ namespace HaverDevProject.Controllers
                 {
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Item updated successfully!";
-                    return RedirectToAction(nameof(Index));
+                    int updateItemId = itemToUpdate.ItemId;
+                    return RedirectToAction("Details", new { id = updateItemId });
+                    //return RedirectToAction(nameof(Index));
                 }
                 catch (RetryLimitExceededException)
                 {
